@@ -27,7 +27,7 @@ function simulate(){
   let pX = 0;
   let pY = 0;
 
-  for (var i = 0; i < 500000; i++) {
+  for (let i = 0; i < 500000; i++) {
 
     let choice = Math.random();
     let x = pX;

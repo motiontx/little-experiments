@@ -48,7 +48,7 @@ function simulateSierpinsky(){
 
   let r = height*0.5;
   let center = {x: width * 0.5, y: height * 0.625}
-  for (var i = 0; i < nodes; i++) {
+  for (let i = 0; i < nodes; i++) {
     let angle = i * Math.PI*2 / nodes -  Math.PI/2;
     let x = center.x + r * Math.cos(angle);
     let y = center.y + r * Math.sin(angle);
@@ -57,7 +57,7 @@ function simulateSierpinsky(){
 
   pivot = {x:Math.random()*width, y: Math.random()*height};
 
-  for (var i = 0; i < 500000; i++) {
+  for (let i = 0; i < 500000; i++) {
     let choice = Math.floor(Math.random() * nodes) ;
     let selected = points[choice];
     pivot.x = pivot.x + (selected.x-pivot.x) * zoom;
@@ -92,7 +92,7 @@ function simulatePentagon(){
 
   let r = height*0.5;
   let center = {x: width * 0.5, y: height * 0.5}
-  for (var i = 0; i < nodes; i++) {
+  for (let i = 0; i < nodes; i++) {
     let angle = i * Math.PI*2 / nodes -  Math.PI/2;
     let x = center.x + r * Math.cos(angle);
     let y = center.y + r * Math.sin(angle);
