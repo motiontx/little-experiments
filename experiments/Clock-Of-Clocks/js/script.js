@@ -54,9 +54,9 @@ class Clock {
 class Digit {
   constructor() {
     this.clocks = [];
-    for (var i = 0; i < 6; i++) {
+    for (let i = 0; i < 6; i++) {
       let row = [];
-      for (var j = 0; j < 5; j++) {
+      for (let j = 0; j < 5; j++) {
         row.push(new Clock());
       }
       this.clocks.push(row);
@@ -168,8 +168,8 @@ class Digit {
         break;
     }
 
-    for (var i = 0; i < toSet.length; i++) {
-      for (var j = 0; j < toSet[i].length; j++) {
+    for (let i = 0; i < toSet.length; i++) {
+      for (let j = 0; j < toSet[i].length; j++) {
         this.clocks[i][j].type(toSet[i][j]);
       }
     }
@@ -177,7 +177,7 @@ class Digit {
   }
 
   setLine(i) {
-    for (var j = 0; j < this.clocks[i].length; j++) {
+    for (let j = 0; j < this.clocks[i].length; j++) {
       this.clocks[i][j].set();
     }
   }
@@ -192,7 +192,6 @@ class DigitalClock {
   }
 
   setTime(h, m, s) {
-    console.log(s);
     if (h < 9) {
       this.hour[0].type(0);
       this.hour[1].type(h);
@@ -217,12 +216,12 @@ class DigitalClock {
   }
 
   set() {
-    for (var i = 0; i < 108; i++) {
+    for (let i = 0; i < 108; i++) {
       var dot = new Clock();
       dot.set();
       dot.type(7);
     }
-    for (var i = 0; i < 6; i++) {
+    for (let i = 0; i < 6; i++) {
       var dot = new Clock();
       dot.set();
       dot.type(7);
@@ -248,7 +247,7 @@ class DigitalClock {
       dot.set();
       dot.type(7);
     }
-    for (var i = 0; i < 108; i++) {
+    for (let i = 0; i < 108; i++) {
       var dot = new Clock();
       dot.set();
       dot.type(7);

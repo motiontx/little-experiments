@@ -72,5 +72,17 @@ body {
   transform-origin: bottom center;
   position: absolute;
   left: 43%;
-  transition: transform 0.3s;
+  transition: transform 0.8s;
+}
+
+.firm{
+  width: 1332px;
+  margin: 0.8rem 1rem;
+  color: #333;
+  font-size: 1rem;
+  text-align: right;
+}
+
+.heart{
+  color: #ff1493;
 }
