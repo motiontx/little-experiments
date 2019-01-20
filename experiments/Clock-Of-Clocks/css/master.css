@@ -1,0 +1,76 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: #CCC9A1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: monospace;
+}
+
+.title {
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+  font-size: 50px;
+}
+
+.container {
+  width: 1332px;
+  height: 444px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.clock {
+  box-sizing: border-box;
+  width: 35px;
+  height: 35px;
+  position: relative;
+  border-radius: 50%;
+  background-color: #A53F2B;
+  box-shadow: 0 14px 50px rgba(0, 0, 0, 0.25), 0 10px 50px rgba(0, 0, 0, 0.22);
+  margin: 1px;
+}
+
+.innerClock {
+  border-radius: 50%;
+  background-color: #F0FFCE;
+  width: 83%;
+  height: 83%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  box-shadow: inset 0 5px 3px rgba(0, 0, 0, 0.25);
+}
+
+.center {
+  background-color: #4C230A;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 19%;
+  height: 19%;
+  border-radius: 50%;
+}
+
+.hourHand, .minuteHand {
+  width: 13%;
+  height: 50%;
+  background-color: #4C230A;
+  transform-origin: bottom center;
+  position: absolute;
+  left: 43%;
+  transition: transform 0.3s;
+}
