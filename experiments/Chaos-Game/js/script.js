@@ -3,10 +3,10 @@ const ctx = canvas.getContext('2d');
 
 canvas_container = document.getElementById("canvas_container");
 
-var offSetLeft = canvas.offsetLeft;
-var offSetTop = canvas.offsetTop;
-var width = canvas.width = canvas_container.clientWidth;
-var height = canvas.height = canvas_container.clientHeight;
+let offSetLeft = canvas.offsetLeft;
+let offSetTop = canvas.offsetTop;
+let width = canvas.width = canvas_container.clientWidth;
+let height = canvas.height = canvas_container.clientHeight;
 
 window.addEventListener('resize', function() {
   offSetLeft = canvas.offsetLeft;
@@ -23,13 +23,13 @@ window.addEventListener('resize', function() {
 
 // --------------------------------------------------------------------
 
-var current = "sierpinski";
+let current = "sierpinski";
 
 function simulateSierpinsky(){
 
   current = "sierpinski";
 
-  var c = ctx.createImageData(width, height);
+  let c = ctx.createImageData(width, height);
 
   let nodes = 3;
   let zoom = 0.5;
@@ -73,7 +73,7 @@ function simulatePentagon(){
 
   current = "pentagon";
 
-  var c = ctx.createImageData(width, height);
+  let c = ctx.createImageData(width, height);
 
   let nodes = 5;
   let zoom = 0.5;
@@ -101,8 +101,8 @@ function simulatePentagon(){
 
   pivot = {x:Math.random()*width, y: Math.random()*height};
 
-  var prev = -1;
-  for (var i = 0; i < 500000; i++) {
+  let prev = -1;
+  for (let i = 0; i < 500000; i++) {
     let choice;
     while (true) {
       choice = Math.floor(Math.random() * nodes) ;

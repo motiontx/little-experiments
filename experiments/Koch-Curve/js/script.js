@@ -3,10 +3,10 @@ const ctx = canvas.getContext('2d');
 
 canvas_container = document.getElementById("canvas_container");
 
-var offSetLeft = canvas.offsetLeft;
-var offSetTop = canvas.offsetTop;
-var width = canvas.width = canvas_container.clientWidth;
-var height = canvas.height = canvas_container.clientHeight;
+let offSetLeft = canvas.offsetLeft;
+let offSetTop = canvas.offsetTop;
+let width = canvas.width = canvas_container.clientWidth;
+let height = canvas.height = canvas_container.clientHeight;
 
 window.addEventListener('resize', function() {
   offSetLeft = canvas.offsetLeft;
@@ -36,7 +36,7 @@ class Line {
   children() {
     let children = [];
 
-    let v = Vector.sub(this.end,this.start);
+    let v = Vector.sub(this.end, this.start);
     v.mult(1 / 3);
 
     let a = this.start;
@@ -45,7 +45,7 @@ class Line {
     let d = Vector.sub(this.end, v);
 
     v.rotate(-1.0472);
-    let c = Vector.add(b,v);
+    let c = Vector.add(b, v);
 
     let e = this.end;
 
@@ -73,39 +73,38 @@ class KochCurve {
 
   graph() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    this.lines.forEach( line => {
+    for (let line of this.lines) {
       line.graph();
-    });
+    }
   }
 
   step() {
     if (this.iteration < this.limit) {
       let newLines = [];
-      this.lines.forEach((line) => {
-        line.children().forEach((elem) => {
-          newLines.push(elem);
-        });
-      });
+      for (let line of this.lines) {
+        for (let child of line.children()) {
+          newLines.push(child);
+        }
+      }
       this.lines = newLines;
-      this.iteration ++;
+      this.iteration++;
     }
-
   }
 }
 
-var curve = new KochCurve();
+let curve = new KochCurve();
 
-function step(){
+function step() {
   curve.step();
   curve.graph();
 }
 
-function reset(){
+function reset() {
   curve = new KochCurve();
   curve.graph();
 }
 
-function resetToStep(){
+function resetToStep() {
   let interation = curve.iteration;
   curve = new KochCurve();
   for (let i = 0; i < interation; i++) {

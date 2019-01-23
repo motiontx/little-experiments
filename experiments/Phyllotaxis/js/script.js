@@ -3,10 +3,10 @@ const ctx = canvas.getContext('2d');
 
 canvas_container = document.getElementById("canvas_container");
 
-var offSetLeft = canvas.offsetLeft;
-var offSetTop = canvas.offsetTop;
-var width = canvas.width = canvas_container.clientWidth;
-var height = canvas.height = canvas_container.clientHeight;
+let offSetLeft = canvas.offsetLeft;
+let offSetTop = canvas.offsetTop;
+let width = canvas.width = canvas_container.clientWidth;
+let height = canvas.height = canvas_container.clientHeight;
 
 window.addEventListener('resize', function() {
   offSetLeft = canvas.offsetLeft;
@@ -32,7 +32,7 @@ function generate(angle,cValue){
   let r = 0;
   let c = cValue;
 
-  for (var n = 0; n < 4000; n++) {
+  for (let n = 0; n < 4000; n++) {
 
     let x = r * Math.cos(a*n);
     let y = r * Math.sin(a*n);
