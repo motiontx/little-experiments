@@ -1,5 +1,4 @@
 class Vector {
-
   constructor(x, y) {
     this.x = x || 0;
     this.y = y || 0;
@@ -39,6 +38,10 @@ class Vector {
     let y = this.x * Math.sin(angle) + this.y * Math.cos(angle);
     this.x = x;
     this.y = y;
+  }
+
+  mag(){
+    return Math.sqrt(this.x * this.x + this.y * this.y);
   }
 
 };
