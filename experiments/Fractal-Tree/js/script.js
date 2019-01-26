@@ -37,37 +37,35 @@ class Line {
   children() {
     let children = [];
 
-    let v = Vector.sub(this.end, this.start);
-    v.mult(1 / 3);
-
-    let offsetY = new Vector(0,20);
-
     let a = new Vector();
-    a.add(this.start);
-    a.add(offsetY);
-    let b = Vector.add(this.start, v);
-    b.add(offsetY);
-    let c = Vector.sub(this.end, v);
-    c.add(offsetY);
-    let d = new Vector();
-    d.add(this.end);
-    d.add(offsetY);
+    a.add(this.end);
+    a.sub(this.start);
+    a.rotate(0.4);
+    a.mult(0.8);
+    a.add(this.end);
 
-    children.push(new Line(a, b));
-    children.push(new Line(c, d));
+    let b = new Vector();;
+    b.add(this.end);
+    b.sub(this.start);
+    b.rotate(-0.4)
+    b.mult(0.8);
+    b.add(this.end);
+
+    children.push(new Line(this.end, a));
+    children.push(new Line(this.end, b));
 
     return children;
   }
 };
 
-class CantorSet {
+class FractalTree {
   constructor() {
-    this.limit = 7;
+    this.limit = 10;
     this.iteration = 0;
     this.lines = [];
     this.lastLines = [];
-    let start = new Vector(0, height * 0.5 - 70);
-    let end = new Vector(width, height * 0.5 - 70);
+    let start = new Vector(width * 0.5, height);
+    let end = new Vector(width * 0.5, height * 0.8);
     let firstLine = new Line(start, end);
     this.lines.push(firstLine);
     this.lastLines.push(firstLine);
@@ -99,7 +97,7 @@ class CantorSet {
   }
 }
 
-let curve = new CantorSet();
+let curve = new FractalTree();
 
 function step() {
   curve.step();
@@ -107,13 +105,13 @@ function step() {
 }
 
 function reset() {
-  curve = new CantorSet();
+  curve = new FractalTree();
   curve.graph();
 }
 
 function resetToStep() {
   let interation = curve.iteration;
-  curve = new CantorSet();
+  curve = new FractalTree();
   for (let i = 0; i < interation; i++) {
     curve.step();
   }

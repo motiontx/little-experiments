@@ -60,8 +60,8 @@ class KochCurve {
     this.limit = 7;
     this.iteration = 0;
     this.lines = [];
-    let start = new Vector(0, canvas.height * 0.90);
-    let end = new Vector(canvas.width, canvas.height * 0.90);
+    let start = new Vector(0, height * 0.9);
+    let end = new Vector(width, height * 0.9);
     let firstLine = new Line(start, end);
     this.lines.push(firstLine);
 
@@ -69,7 +69,7 @@ class KochCurve {
   }
 
   graph() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, width, height);
     for (let line of this.lines) {
       line.graph();
     }

@@ -1,0 +1,134 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+body{
+  background-color:#aee5ae;
+  background-image: linear-gradient(white 2px, transparent 2px),
+  linear-gradient(90deg, white 2px, transparent 2px),
+  linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px;
+  font-family: monospace;
+}
+
+.content{
+  width: 85%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#canvas_container{
+  width: 100%;
+  height: 75%;
+  background: #efefef;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  border-top: none;
+  border-bottom: 1px solid #ddd;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #fff, 0 1px 0 #fff;
+  overflow: hidden;
+}
+
+#canvas{
+  width: 100%;
+  height: 100%;
+}
+
+.title{
+  width: 95%;
+  color: #333;
+  font-size: 2.5rem;
+  margin: 0.8rem 1rem;
+}
+
+.row_buttons{
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  margin: 1rem 0;
+  justify-content: center;
+}
+
+.button{
+  position: relative;
+  margin: 0.5rem 0.8rem;
+  width: 6rem;
+  height: 3rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  color: white;
+  font-family: monospace;
+  background-color: #cb99c5;
+  box-shadow: 0 0 0 1px #cb99c5 inset,
+              0 0 0 2px rgba(255,255,255,0.15) inset,
+              0 8px 0 0 rgba(189, 142, 183, .7),
+              0 8px 0 1px rgba(0,0,0,.4),
+              0 8px 8px 1px rgba(0,0,0,0.5);
+  font-weight: 800;
+}
+
+.button:active{
+  top: 9px;
+  background-color: #D19ECB;
+  box-shadow: 0 0 0 1px #cb99c5 inset,
+              0 0 0 2px rgba(255,255,255,0.15) inset,
+              0 0 0 1px rgba(0,0,0,0.4);
+}
+
+.firm{
+  width: 95%;
+  margin: 0.8rem 1rem;
+  color: #333;
+  font-size: 1rem;
+  text-align: right;
+  margin-top: auto;
+}
+
+.heart{
+  color: #ff1493;
+}
+
+@media (max-width: 480px) {
+
+  .content{
+    width: 95%;
+  }
+
+  .title{
+    font-size: 1rem;
+  }
+
+  #canvas_container{
+    height: 50%;
+  }
+
+  .row_buttons{
+    margin: 0.5rem 0;
+  }
+
+  .button{
+    width: 5rem;
+    height: 2.5rem;
+    margin: 0.4rem 0.6rem;
+    font-size: 0.7rem;
+  }
+
+  .firm{
+    font-size: 0.5rem;
+  }
+
+}
