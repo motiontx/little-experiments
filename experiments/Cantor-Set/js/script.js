@@ -30,7 +30,7 @@ class Line {
     ctx.beginPath();
     ctx.lineTo(this.start.x, this.start.y);
     ctx.lineTo(this.end.x, this.end.y);
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 3;
     ctx.stroke();
   };
 
@@ -40,30 +40,37 @@ class Line {
     let v = Vector.sub(this.end, this.start);
     v.mult(1 / 3);
 
+    let offsetY = new Vector(0,20);
+
+    let a = new Vector();
+    a.add(this.start);
+    a.add(offsetY);
     let b = Vector.add(this.start, v);
-    let d = Vector.sub(this.end, v);
+    b.add(offsetY);
+    let c = Vector.sub(this.end, v);
+    c.add(offsetY);
+    let d = new Vector();
+    d.add(this.end);
+    d.add(offsetY);
 
-    v.rotate(-1.0472);
-    let c = Vector.add(b, v);
-
-    children.push(new Line(this.start, b));
-    children.push(new Line(b, c));
+    children.push(new Line(a, b));
     children.push(new Line(c, d));
-    children.push(new Line(d, this.end));
 
     return children;
   }
 };
 
-class KochCurve {
+class CantorSet {
   constructor() {
     this.limit = 7;
     this.iteration = 0;
     this.lines = [];
-    let start = new Vector(0, canvas.height * 0.90);
-    let end = new Vector(canvas.width, canvas.height * 0.90);
+    this.lastLines = [];
+    let start = new Vector(0, canvas.height * 0.5 - 70);
+    let end = new Vector(canvas.width, canvas.height * 0.5 - 70);
     let firstLine = new Line(start, end);
     this.lines.push(firstLine);
+    this.lastLines.push(firstLine);
 
     this.graph();
   }
@@ -78,18 +85,21 @@ class KochCurve {
   step() {
     if (this.iteration < this.limit) {
       let newLines = [];
-      for (let line of this.lines) {
+      for (let line of this.lastLines) {
         for (let child of line.children()) {
           newLines.push(child);
         }
       }
-      this.lines = newLines;
+      for (let newLine of newLines) {
+        this.lines.push(newLine);
+      }
+      this.lastLines = newLines;
       this.iteration++;
     }
   }
 }
 
-let curve = new KochCurve();
+let curve = new CantorSet();
 
 function step() {
   curve.step();
@@ -97,13 +107,13 @@ function step() {
 }
 
 function reset() {
-  curve = new KochCurve();
+  curve = new CantorSet();
   curve.graph();
 }
 
 function resetToStep() {
   let interation = curve.iteration;
-  curve = new KochCurve();
+  curve = new CantorSet();
   for (let i = 0; i < interation; i++) {
     curve.step();
   }
