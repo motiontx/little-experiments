@@ -34,25 +34,41 @@ imageGround.src = "assets/ground.png";
 imageWall.src = "assets/wall.png";
 
 let lastPress;
+let waitNextFrame = false;
 
 let tileWidth = 32;
 let tileHeight = 16;
 
 document.addEventListener('keydown', (evt) => {
-  switch (evt.which) {
-    case KEY_U:
-      lastPress = lastPress == KEY_D ? KEY_D : evt.which;
-      break;
-    case KEY_R:
-      lastPress = lastPress == KEY_L ? KEY_L : evt.which;
-      break;
-    case KEY_D:
-      lastPress = lastPress == KEY_U ? KEY_U : evt.which;
-      break;
-    case KEY_L:
-      lastPress = lastPress == KEY_R ? KEY_R : evt.which;
-      break;
+  if (!waitNextFrame) {
+    switch (evt.which) {
+      case KEY_U:
+        if (lastPress != KEY_D) {
+          lastPress = evt.which;
+          waitNextFrame = true;
+        }
+        break;
+      case KEY_R:
+        if (lastPress != KEY_L) {
+          lastPress = evt.which;
+          waitNextFrame = true;
+        }
+        break;
+      case KEY_D:
+        if (lastPress != KEY_U) {
+          lastPress = evt.which;
+          waitNextFrame = true;
+        }
+        break;
+      case KEY_L:
+        if (lastPress != KEY_R) {
+          lastPress = evt.which;
+          waitNextFrame = true;
+        }
+        break;
+    }
   }
+
 });
 
 function drawIsometric(image, x, y, offY = 0) {
@@ -83,10 +99,18 @@ class BodySection {
     this.y = y;
     this.image = imageSnake;
   }
+
+  checkCollision(obj) {
+    if (obj.x == this.x && obj.y == this.y) {
+      return true;
+    }
+    return false;
+  }
+
 }
 
 class Wall {
-  constructor(x,y) {
+  constructor(x, y) {
     this.x = x;
     this.y = y;
     this.image = imageWall;
@@ -94,7 +118,7 @@ class Wall {
 }
 
 class Snake {
-  constructor(x,y) {
+  constructor(x, y) {
     this.tail = [];
     this.head = new BodySection(x, y)
   }
@@ -108,7 +132,7 @@ class Snake {
   }
 
   checkCollision(obj) {
-    if (obj.x == this.head.x && obj.y == this.head.y) {
+    if (this.head.checkCollision(obj)) {
       return true;
     }
     return false;
@@ -133,7 +157,7 @@ class Game {
     this.snake = new Snake(5, 5);
     this.food = new Food(10, 10);
 
-    this.createWorld(30, 30);
+    this.createWorld(25, 25);
 
   }
 
@@ -148,15 +172,34 @@ class Game {
     for (let i = -1; i < x + 1; i++) {
       for (let j = -1; j < y + 1; j++) {
         if (i == -1 || i == x || j == -1 || j == y) {
-          let wall = new Wall(i,j);
+          let wall = new Wall(i, j);
           this.walls.push(wall);
         }
       }
     }
   }
 
-  restart(){
+  setFood() {
+    let ok = true;
+    let x = Math.floor(Math.random() * this.world.x);
+    let y = Math.floor(Math.random() * this.world.x);
+    this.food = new Food(x, y);
+    for (let section of this.snake.tail) {
+      if (section.checkCollision(this.food)) {
+        ok = false;
+      }
+    }
+    if (this.snake.head.checkCollision(this.food)) {
+      ok = false;
+    }
+    if (!ok) {
+      this.setFood();
+    }
+  }
+
+  restart() {
     this.snake = new Snake(5, 5);
+    this.setFood()
     lastPress = null;
   }
 
@@ -180,6 +223,7 @@ class Game {
 
     if (this.snake.checkCollision(this.food)) {
       this.snake.eat();
+      this.setFood()
     }
 
     this.snake.step(dx, dy);
@@ -187,11 +231,9 @@ class Game {
     let head = this.snake.head;
     if (this.snake.checkTailCollision()) {
       this.restart();
-    }
-    else if (head.x == -1 || head.x == this.world.x) {
+    } else if (head.x == -1 || head.x == this.world.x) {
       this.restart();
-    }
-    else if (head.y == -1 || head.y == this.world.y) {
+    } else if (head.y == -1 || head.y == this.world.y) {
       this.restart();
     }
 
@@ -207,7 +249,7 @@ class Game {
     ctx.fillRect(0, 0, width, height);
     for (let i = -1; i <= this.world.x; i++) {
       for (let j = -1; j <= this.world.y; j++) {
-        drawIsometric(imageGround, j, i, 1);
+        drawIsometric(imageGround, i, j, 1);
       }
     }
     for (let obj of map) {
@@ -221,9 +263,10 @@ game = new Game();
 function loop() {
   setTimeout(() => {
     requestAnimationFrame(loop);
+    waitNextFrame = false;
     game.step();
     game.graph();
-  }, 1000 / 10);
+  }, 1000 / 15);
 }
 
 loop();

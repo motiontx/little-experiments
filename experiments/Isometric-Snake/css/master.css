@@ -19,8 +19,7 @@ body{
 }
 
 .content{
-  width: 85%;
-  height: 100%;
+  width: 60rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,8 +27,8 @@ body{
 }
 
 #canvas_container{
-  width: 100%;
-  height: 75%;
+  width: 60rem;
+  height: 35rem;
   background: #efefef;
   border-radius: 8px;
   border: 1px solid transparent;
@@ -100,35 +99,4 @@ body{
 
 .heart{
   color: #ff1493;
-}
-
-@media (max-width: 480px) {
-
-  .content{
-    width: 95%;
-  }
-
-  .title{
-    font-size: 1rem;
-  }
-
-  #canvas_container{
-    height: 50%;
-  }
-
-  .row_buttons{
-    margin: 0.5rem 0;
-  }
-
-  .button{
-    width: 5rem;
-    height: 2.5rem;
-    margin: 0.4rem 0.6rem;
-    font-size: 0.7rem;
-  }
-
-  .firm{
-    font-size: 0.5rem;
-  }
-
 }
