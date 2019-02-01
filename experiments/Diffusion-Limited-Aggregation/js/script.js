@@ -17,7 +17,7 @@ window.addEventListener('resize', function() {
 
 // --------------------------------------------------------------------
 
-function randomIntFromInterval(min, max){
+function randomIntFromInterval(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
@@ -32,11 +32,13 @@ class Walker {
     this.r = 1;
     this.separation = 10;
   }
+
   randomizePosition() {
-    let angle = Math.random() * 2*Math.PI;
+    let angle = Math.random() * 2 * Math.PI;
     this.x = Math.floor(Math.cos(angle) * 180 + width * 0.5);
     this.y = Math.floor(Math.sin(angle) * 180 + height * 0.5);
   }
+
   step() {
     this.x += randomIntFromInterval(-1, 1);
     this.y += randomIntFromInterval(-1, 1);
@@ -53,6 +55,7 @@ class Walker {
       this.y = 0;
     }
   }
+
   checkCollision(others) {
     for (let stuckWalker of others) {
       let dx = stuckWalker.x - this.x;
@@ -64,6 +67,7 @@ class Walker {
     }
     return false;
   }
+
   draw() {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
@@ -73,23 +77,19 @@ class Walker {
 
 class World {
   constructor(walkers) {
-
     this.walkers = [];
-
     for (var i = 0; i < walkers; i++) {
       this.walkers.push(new Walker());
     }
-
     this.stuckWalkers = [new Walker(width * 0.5, height * 0.5)];
   }
+
   step(iterations) {
     for (let i = 0; i < iterations; i++) {
       for (let walker of this.walkers) {
         walker.step();
       }
-
       let toMove = this.walkers.filter(el => el.checkCollision(this.stuckWalkers));
-
       for (let el of toMove) {
         this.walkers.splice(this.walkers.indexOf(el), 1);
         this.stuckWalkers.push(el);
@@ -108,12 +108,11 @@ class World {
       walker.draw();
     }
   }
-
 }
 
 let world = new World(2000);
 
-function reset(){
+function reset() {
   world = new World(2000);
 }
 
