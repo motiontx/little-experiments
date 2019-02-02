@@ -16,3 +16,23 @@ window.addEventListener('resize', function() {
 });
 
 // --------------------------------------------------------------------
+
+
+document.addEventListener('keydown', (evt) => {
+  if (evt.which == 32) {
+    game.addJump();
+  }
+
+});
+
+let game = new flappyBird();
+
+function loop(){
+  requestAnimationFrame(loop);
+
+  game.step();
+  game.draw();
+
+}
+
+loop();
