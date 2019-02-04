@@ -22,8 +22,9 @@ document.addEventListener('keydown', (evt) => {
   if (evt.which == 32) {
     game.addJump();
   }
-
 });
+
+canvas.addEventListener('touchstart', () => game.addJump());
 
 let game = new flappyBird();
 
