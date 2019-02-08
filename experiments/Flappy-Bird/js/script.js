@@ -13,22 +13,29 @@ window.addEventListener('resize', function() {
   offSetTop = canvas.offsetTop;
   width = canvas.width = canvas_container.clientWidth;
   height = canvas.height = canvas_container.clientHeight;
+
+  game.reset();
 });
 
 // --------------------------------------------------------------------
 
-
 document.addEventListener('keydown', (evt) => {
   if (evt.which == 32) {
-    game.addJump();
+    {
+      game.playing = true;
+      game.addJump()
+    };
   }
 });
 
-canvas.addEventListener('touchstart', () => game.addJump());
+canvas.addEventListener('touchstart', () => {
+  game.playing = true;
+  game.addJump()
+});
 
 let game = new flappyBird();
 
-function loop(){
+function loop() {
   requestAnimationFrame(loop);
   game.step();
   game.draw();

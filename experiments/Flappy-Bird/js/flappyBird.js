@@ -14,6 +14,7 @@ class flappyBird {
 
     this.counter = 200;
     this.maxCounter = 200;
+    this.playing = false;
   }
 
   addJump() {
@@ -21,33 +22,34 @@ class flappyBird {
   }
 
   step() {
-    if (this.bird.isColliding(this.walls)) {
-      this.reset();
-    }
-    if (this.bird.y > height) {
-      this.reset();
-    }
+    if (this.playing) {
+      if (this.bird.isColliding(this.walls)) {
+        this.reset();
+      }
+      if (this.bird.y > height) {
+        this.reset();
+      }
 
-    this.bird.applyForce(this.gravity);
-    if (this.shouldTheBirdJump) {
-      this.bird.resetVelocity();
-      this.bird.applyForce(this.jumpForce);
-      this.shouldTheBirdJump = false;
+      this.bird.applyForce(this.gravity);
+      if (this.shouldTheBirdJump) {
+        this.bird.resetVelocity();
+        this.bird.applyForce(this.jumpForce);
+        this.shouldTheBirdJump = false;
+      }
+
+      this.bird.step();
+      this.background.step();
+      for (let wall of this.walls) {
+        wall.step();
+      }
+
+      if (this.counter > this.maxCounter) {
+        this.counter = 0;
+        this.walls.push(new Wall());
+      }
+
+      this.counter++;
     }
-
-    this.bird.step();
-    this.background.step();
-    for (let wall of this.walls) {
-      wall.step();
-    }
-
-    if (this.counter > this.maxCounter) {
-      this.counter = 0;
-      this.walls.push(new Wall());
-    }
-
-    this.counter++;
-
   }
 
   draw() {
