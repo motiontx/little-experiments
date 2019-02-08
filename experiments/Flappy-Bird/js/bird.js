@@ -46,7 +46,7 @@ class Bird {
   }
 
   draw() {
-    ctx.drawImage(imageBird, this.x-17,this.y-17);
+    ctx.drawImage(imageBird, this.x - 17, this.y - 17);
   }
 
 }

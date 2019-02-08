@@ -30,10 +30,8 @@ let game = new flappyBird();
 
 function loop(){
   requestAnimationFrame(loop);
-
   game.step();
   game.draw();
-
 }
 
 loop();

@@ -6,7 +6,7 @@ class flappyBird {
     this.jumpForce = -7;
   }
 
-  reset(){
+  reset() {
     this.bird = new Bird();
     this.walls = [];
 
@@ -16,15 +16,15 @@ class flappyBird {
     this.maxCounter = 200;
   }
 
-  addJump(){
+  addJump() {
     this.shouldTheBirdJump = true;
   }
 
-  step(){
+  step() {
     if (this.bird.isColliding(this.walls)) {
       this.reset();
     }
-    if (this.bird.y> height) {
+    if (this.bird.y > height) {
       this.reset();
     }
 
@@ -50,7 +50,7 @@ class flappyBird {
 
   }
 
-  draw(){
+  draw() {
     this.background.draw();
     this.bird.draw();
     for (let wall of this.walls) {

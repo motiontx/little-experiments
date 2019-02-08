@@ -7,18 +7,18 @@ html, body {
   align-items: center;
 }
 
-body{
-  background-color:#a6c1d6;
-  background-image: linear-gradient(white 2px, transparent 2px),
-  linear-gradient(90deg, white 2px, transparent 2px),
-  linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px),
-  linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px);
+body {
+  background-color: #444;
+  background-image: linear-gradient(#bbb 2px, transparent 2px),
+    linear-gradient(90deg, #bbb 2px, transparent 2px),
+    linear-gradient(rgba(187, 187, 187, .3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(187, 187, 187, .3) 1px, transparent 1px);
   background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
-  background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px;
+  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
   font-family: monospace;
 }
 
-.content{
+.content {
   width: 100%;
   height: 100%;
   display: flex;
@@ -27,20 +27,19 @@ body{
   align-items: center;
 }
 
-#canvas_container{
-
-width: 53.5vh;
-height: 95vh;
+#canvas_container {
+  width: 49vh;
+  height: 98vh;
   background: #efefef;
   border-radius: 8px;
   border: 1px solid transparent;
   border-top: none;
   border-bottom: 1px solid #ddd;
-  box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #fff, 0 1px 0 #fff;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, .39), 0 -1px 1px #fff, 0 1px 0 #fff;
   overflow: hidden;
 }
 
-#canvas{
+#canvas {
   width: 100%;
   height: 100%;
 }
