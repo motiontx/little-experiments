@@ -1,15 +1,20 @@
-
 // --------------------------------------------------------------------
 
 let ctx = new AudioContext();
 
-let oscillator = ctx.createOscillator();
+function playSound(frequency) {
 
-oscillator.connect(ctx.destination);
+  let wave = document.querySelector('input[name="wave"]:checked').value;
 
+  let osc = ctx.createOscillator();
+  let gain = ctx.createGain();
 
+  osc.type = wave;
+  osc.frequency.value = frequency;
+  osc.connect(gain);
 
-oscillator.type = 'triangle';
-oscillator.detune.value = 6
-oscillator.frequency.value = 5000;
-oscillator.start(ctx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.00001, ctx.currentTime + 1.5);
+  gain.connect(ctx.destination);
+
+  osc.start(0);
+}

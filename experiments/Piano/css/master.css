@@ -8,13 +8,11 @@ html, body {
 }
 
 body{
-  background-color:#a6c1d6;
-  background-image: linear-gradient(white 2px, transparent 2px),
-  linear-gradient(90deg, white 2px, transparent 2px),
-  linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px),
-  linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px);
-  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
-  background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px;
+  background-color: #fff;
+  background-image:
+  linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
+  linear-gradient(#eee .1em, transparent .1em);
+  background-size: 100% 1.2em;
   font-family: monospace;
 }
 
@@ -27,57 +25,136 @@ body{
   align-items: center;
 }
 
-
-
 .piano {
   display: flex;
-  padding: 60px 60px 15px 15px;
-  background: tomato;
+  flex-direction: column;
+  padding: 15px;
+  background: #56120a;
   border-radius: 15px;
+
+  border-radius: 6px;
+  border: 1px solid;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.15);
+  border-bottom-width: 8px;
+
 }
 
-.piano-key {
+.topBar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title{
+  color: white;
+  padding-left: 20px;
+}
+
+.settings{
+  display: flex;
+  justify-content: center;
+}
+
+.types{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.waveFormInput + label{
+  position: relative;
+  cursor: pointer;
+  background: #f5f5f5;
+  padding: 5px;
+  margin: 5px;
+  width: 100px;
+  border-radius: 4px;
+  border: 1px solid;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.15);
+  border-bottom-width: 5px;
+}
+
+.waveFormInput{
+  display: none;
+}
+
+.waveFormInput:checked + label{
+    background: #aaa;
+    border-bottom-width: 0;
+    top: 5px;
+}
+
+.keys{
+  display: flex;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.octave{
+  display: flex;
+}
+
+.key {
   border-radius: 0 0 4px 4px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
 }
 
-.piano-key-natural {
+.key-white {
   background: #f5f5f5 linear-gradient(to bottom, transparent, #fff, transparent);
   border: 1px solid;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.15);
   border-right-width: 0;
   border-bottom-width: 2px;
   height: 120px;
-  width: 30px;
+  width: 35px;
   margin-left: -1px;
 }
 
-.piano-key-natural:first-child  {
-  border-top-left-radius:4px;
+.key-black {
+  background: #111 linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.075), transparent);
+  box-shadow: inset 0 0 0 1px #000, inset 0 -4px 0 1px #000, inset 0 -5px 0 1px rgba(255, 255, 255, 0.2);
+  height: 66px;
+  width: 28px;
+  position: relative;
+  left: -14px;
+  margin-right: -28px;
 }
 
-.piano-key-natural:last-child {
-  border-top-right-radius:4px;
-  border-right-width: 1px;
-}
-.piano-key-natural:active {
+.key-white:active {
   background: #d9d9d9 linear-gradient(to bottom, #f1f1f1, transparent, #f1f1f1);
   border-bottom-width: 1px;
   border-left-color: rgba(0, 0, 0, 0.15);
   box-shadow: inset -2px 0 0 0 rgba(0, 0, 0, 0.15), inset 1px 0 0 0 rgba(0, 0, 0, 0.15);
 }
 
-
-
-.piano-key-accidental {
-  background: #111 linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.075), transparent);
-  box-shadow: inset 0 0 0 1px #000, inset 0 -4px 0 1px #000, inset 0 -5px 0 1px rgba(255, 255, 255, 0.2);
-  height: 66px;
-  width: 20px;
-  position: relative;
-  left: -10px;
-  margin-right: -20px;
-}
-.piano-key-accidental.piano-key-pressed, .piano-key-accidental:active {
+.key-black:active {
   background: #000 linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.2));
   box-shadow: inset 0 0 0 1px #000, inset 0 -2px 0 1px #000, inset 0 -3px 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.keys .key:last-child {
+  border-top-right-radius: 4px;
+}
+
+.keys .key:first-child {
+  border-top-left-radius: 4px;
+}
+
+.key-white .key-name{
+  color:#111;
+    font-size: 14px;
+}
+
+.key-black .key-name{
+  color: #f5f5f5;
+    font-size: 10px;
 }
