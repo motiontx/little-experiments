@@ -29,7 +29,9 @@ body {
 
 #canvas_container {
   width: 49vh;
+  max-width: 540px;
   height: 98vh;
+  max-height: 1080px;
   border-radius: 8px;
   overflow: hidden;
 }
