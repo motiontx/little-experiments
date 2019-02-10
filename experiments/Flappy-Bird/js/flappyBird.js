@@ -43,11 +43,14 @@ class flappyBird {
         wall.step();
       }
 
+      if (this.walls.length > 8) {
+        this.walls.shift();
+      }
+
       if (this.counter > this.maxCounter) {
         this.counter = 0;
         this.walls.push(new Wall());
       }
-
       this.counter++;
     }
   }
