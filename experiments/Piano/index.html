@@ -11,106 +11,152 @@
 
 <body>
   <div class="content">
+    <div class="alert">
+      <h3>Hey! Place your device in landscape.</h3>
+      <h5>If you have done that and still see this message, your device is too small to be able to view this site. :(</h5>
+    </div>
     <div class="piano">
       <div class="topBar">
           <h1 class="title">PIANO - WEB AUDIO API</h1>
           <div class="settings">
-              <div class="types">
+            <div class="setting">
+              <div>
+                <input id="sample" class="sampleInput input" type="checkbox" name="sample" onclick="startStopSample()">
+                <label for="sample">Sample</label>
+              </div>
+            </div>
+            <div class="setting">
+              <div>
+                <input id="help" class="helpInput input" type="checkbox" name="help" onclick="showHelp()">
+                <label for="help">Help</label>
+              </div>
+            </div>
+              <div class="setting">
                 <div>
-                  <input id="sine" class="waveFormInput" type="radio" name="wave" value="sine">
+                  <input id="sine" class="waveFormInput input" type="radio" name="wave" value="sine">
                   <label for="sine">Sine</label>
                 </div>
                 <div>
-                  <input id="square" class="waveFormInput" type="radio" name="wave" value="square">
+                  <input id="square" class="waveFormInput input" type="radio" name="wave" value="square">
                   <label for="square">Square</label>
                 </div>
                 <div>
-                  <input id="sawtooth" class="waveFormInput" checked type="radio" name="wave" value="sawtooth">
+                  <input id="sawtooth" class="waveFormInput input" checked type="radio" name="wave" value="sawtooth">
                   <label for="sawtooth">Sawtooth</label>
                 </div>
                 <div>
-                  <input id="triangle" class="waveFormInput" type="radio" name="wave" value="triangle">
-                  <label for="triangle">Triange</label>
+                  <input id="triangle" class="waveFormInput input" type="radio" name="wave" value="triangle">
+                  <label for="triangle">Triangle</label>
                 </div>
               </div>
           </div>
       </div>
       <div class="keys">
-        <div class="octave">
-          <div onclick="playSound(notes[16])" class="key key-white"><p class="key-name">Do</p></div>
-          <div onclick="playSound(notes[17])" class="key key-black"><p class="key-name">Do#</p></div>
-          <div onclick="playSound(notes[18])" class="key key-white"><p class="key-name">Re</p></div>
-          <div onclick="playSound(notes[19])" class="key key-black"><p class="key-name">Re#</p></div>
-          <div onclick="playSound(notes[20])" class="key key-white"><p class="key-name">Mi</p></div>
-          <div onclick="playSound(notes[21])" class="key key-white"><p class="key-name">Fa</p></div>
-          <div onclick="playSound(notes[22])" class="key key-black"><p class="key-name">Fa#</p></div>
-          <div onclick="playSound(notes[23])" class="key key-white"><p class="key-name">Sol</p></div>
-          <div onclick="playSound(notes[24])" class="key key-black"><p class="key-name">Sol#</p></div>
-          <div onclick="playSound(notes[25])" class="key key-white"><p class="key-name">La</p></div>
-          <div onclick="playSound(notes[26])" class="key key-black"><p class="key-name">La#</p></div>
-          <div onclick="playSound(notes[27])" class="key key-white"><p class="key-name">Si</p></div>
+        <div class="octave octave_0">
+          <div onclick="playSound(notes[4])" class="key key-white"><p class="key-name">Do</p><p class="key-number">0</p></div>
+          <div onclick="playSound(notes[5])" class="key key-black"><p class="key-name">Do#</p><p class="key-number">0</p></div>
+          <div onclick="playSound(notes[6])" class="key key-white"><p class="key-name">Re</p><p class="key-number">0</p></div>
+          <div onclick="playSound(notes[7])" class="key key-black"><p class="key-name">Re#</p><p class="key-number">0</p></div>
+          <div onclick="playSound(notes[8])" class="key key-white"><p class="key-name">Mi</p><p class="key-number">0</p></div>
+          <div onclick="playSound(notes[9])" class="key key-white"><p class="key-name">Fa</p><p class="key-number">0</p></div>
+          <div onclick="playSound(notes[10])" class="key key-black"><p class="key-name">Fa#</p><p class="key-number">0</p></div>
+          <div onclick="playSound(notes[11])" class="key key-white"><p class="key-name">Sol</p><p class="key-number">0</p></div>
+          <div onclick="playSound(notes[12])" class="key key-black"><p class="key-name">Sol#</p><p class="key-number">0</p></div>
+          <div onclick="playSound(notes[13])" class="key key-white"><p class="key-name">La</p><p class="key-number">0</p></div>
+          <div onclick="playSound(notes[14])" class="key key-black"><p class="key-name">La#</p><p class="key-number">0</p></div>
+          <div onclick="playSound(notes[15])" class="key key-white"><p class="key-name">Si</p><p class="key-number">0</p></div>
         </div>
-        <div class="octave">
-          <div onclick="playSound(notes[28])" class="key key-white"><p class="key-name">Do</p></div>
-          <div onclick="playSound(notes[29])" class="key key-black"><p class="key-name">Do#</p></div>
-          <div onclick="playSound(notes[30])" class="key key-white"><p class="key-name">Re</p></div>
-          <div onclick="playSound(notes[31])" class="key key-black"><p class="key-name">Re#</p></div>
-          <div onclick="playSound(notes[32])" class="key key-white"><p class="key-name">Mi</p></div>
-          <div onclick="playSound(notes[33])" class="key key-white"><p class="key-name">Fa</p></div>
-          <div onclick="playSound(notes[34])" class="key key-black"><p class="key-name">Fa#</p></div>
-          <div onclick="playSound(notes[35])" class="key key-white"><p class="key-name">Sol</p></div>
-          <div onclick="playSound(notes[36])" class="key key-black"><p class="key-name">Sol#</p></div>
-          <div onclick="playSound(notes[37])" class="key key-white"><p class="key-name">La</p></div>
-          <div onclick="playSound(notes[38])" class="key key-black"><p class="key-name">La#</p></div>
-          <div onclick="playSound(notes[39])" class="key key-white"><p class="key-name">Si</p></div>
+        <div class="octave octave_1">
+          <div onclick="playSound(notes[16])" class="key key-white"><p class="key-name">Do</p><p class="key-number">1</p></div>
+          <div onclick="playSound(notes[17])" class="key key-black"><p class="key-name">Do#</p><p class="key-number">1</p></div>
+          <div onclick="playSound(notes[18])" class="key key-white"><p class="key-name">Re</p><p class="key-number">1</p></div>
+          <div onclick="playSound(notes[19])" class="key key-black"><p class="key-name">Re#</p><p class="key-number">1</p></div>
+          <div onclick="playSound(notes[20])" class="key key-white"><p class="key-name">Mi</p><p class="key-number">1</p></div>
+          <div onclick="playSound(notes[21])" class="key key-white"><p class="key-name">Fa</p><p class="key-number">1</p></div>
+          <div onclick="playSound(notes[22])" class="key key-black"><p class="key-name">Fa#</p><p class="key-number">1</p></div>
+          <div onclick="playSound(notes[23])" class="key key-white"><p class="key-name">Sol</p><p class="key-number">1</p></div>
+          <div onclick="playSound(notes[24])" class="key key-black"><p class="key-name">Sol#</p><p class="key-number">1</p></div>
+          <div onclick="playSound(notes[25])" class="key key-white"><p class="key-name">La</p><p class="key-number">1</p></div>
+          <div onclick="playSound(notes[26])" class="key key-black"><p class="key-name">La#</p><p class="key-number">1</p></div>
+          <div onclick="playSound(notes[27])" class="key key-white"><p class="key-name">Si</p><p class="key-number">1</p></div>
         </div>
-        <div class="octave">
-          <div onclick="playSound(notes[40])" class="key key-white"><p class="key-name">Do</p></div>
-          <div onclick="playSound(notes[41])" class="key key-black"><p class="key-name">Do#</p></div>
-          <div onclick="playSound(notes[42])" class="key key-white"><p class="key-name">Re</p></div>
-          <div onclick="playSound(notes[43])" class="key key-black"><p class="key-name">Re#</p></div>
-          <div onclick="playSound(notes[44])" class="key key-white"><p class="key-name">Mi</p></div>
-          <div onclick="playSound(notes[45])" class="key key-white"><p class="key-name">Fa</p></div>
-          <div onclick="playSound(notes[46])" class="key key-black"><p class="key-name">Fa#</p></div>
-          <div onclick="playSound(notes[47])" class="key key-white"><p class="key-name">Sol</p></div>
-          <div onclick="playSound(notes[48])" class="key key-black"><p class="key-name">Sol#</p></div>
-          <div onclick="playSound(notes[49])" class="key key-white"><p class="key-name">La</p></div>
-          <div onclick="playSound(notes[50])" class="key key-black"><p class="key-name">La#</p></div>
-          <div onclick="playSound(notes[51])" class="key key-white"><p class="key-name">Si</p></div>
+        <div class="octave octave_2">
+          <div onclick="playSound(notes[28])" class="key key-white"><p class="key-name">Do</p><p class="key-number">2</p></div>
+          <div onclick="playSound(notes[29])" class="key key-black"><p class="key-name">Do#</p><p class="key-number">2</p></div>
+          <div onclick="playSound(notes[30])" class="key key-white"><p class="key-name">Re</p><p class="key-number">2</p></div>
+          <div onclick="playSound(notes[31])" class="key key-black"><p class="key-name">Re#</p><p class="key-number">2</p></div>
+          <div onclick="playSound(notes[32])" class="key key-white"><p class="key-name">Mi</p><p class="key-number">2</p></div>
+          <div onclick="playSound(notes[33])" class="key key-white"><p class="key-name">Fa</p><p class="key-number">2</p></div>
+          <div onclick="playSound(notes[34])" class="key key-black"><p class="key-name">Fa#</p><p class="key-number">2</p></div>
+          <div onclick="playSound(notes[35])" class="key key-white"><p class="key-name">Sol</p><p class="key-number">2</p></div>
+          <div onclick="playSound(notes[36])" class="key key-black"><p class="key-name">Sol#</p><p class="key-number">2</p></div>
+          <div onclick="playSound(notes[37])" class="key key-white"><p class="key-name">La</p><p class="key-number">2</p></div>
+          <div onclick="playSound(notes[38])" class="key key-black"><p class="key-name">La#</p><p class="key-number">2</p></div>
+          <div onclick="playSound(notes[39])" class="key key-white"><p class="key-name">Si</p><p class="key-number">2</p></div>
         </div>
-        <div class="octave">
-          <div onclick="playSound(notes[52])" class="key key-white"><p class="key-name">Do</p></div>
-          <div onclick="playSound(notes[53])" class="key key-black"><p class="key-name">Do#</p></div>
-          <div onclick="playSound(notes[54])" class="key key-white"><p class="key-name">Re</p></div>
-          <div onclick="playSound(notes[55])" class="key key-black"><p class="key-name">Re#</p></div>
-          <div onclick="playSound(notes[56])" class="key key-white"><p class="key-name">Mi</p></div>
-          <div onclick="playSound(notes[57])" class="key key-white"><p class="key-name">Fa</p></div>
-          <div onclick="playSound(notes[58])" class="key key-black"><p class="key-name">Fa#</p></div>
-          <div onclick="playSound(notes[59])" class="key key-white"><p class="key-name">Sol</p></div>
-          <div onclick="playSound(notes[60])" class="key key-black"><p class="key-name">Sol#</p></div>
-          <div onclick="playSound(notes[61])" class="key key-white"><p class="key-name">La</p></div>
-          <div onclick="playSound(notes[62])" class="key key-black"><p class="key-name">La#</p></div>
-          <div onclick="playSound(notes[63])" class="key key-white"><p class="key-name">Si</p></div>
+        <div class="octave octave_3">
+          <div onclick="playSound(notes[40])" class="key key-white"><p class="key-name">Do</p><p class="key-number">3</p></div>
+          <div onclick="playSound(notes[41])" class="key key-black"><p class="key-name">Do#</p><p class="key-number">3</p></div>
+          <div onclick="playSound(notes[42])" class="key key-white"><p class="key-name">Re</p><p class="key-number">3</p></div>
+          <div onclick="playSound(notes[43])" class="key key-black"><p class="key-name">Re#</p><p class="key-number">3</p></div>
+          <div onclick="playSound(notes[44])" class="key key-white"><p class="key-name">Mi</p><p class="key-number">3</p></div>
+          <div onclick="playSound(notes[45])" class="key key-white"><p class="key-name">Fa</p><p class="key-number">3</p></div>
+          <div onclick="playSound(notes[46])" class="key key-black"><p class="key-name">Fa#</p><p class="key-number">3</p></div>
+          <div onclick="playSound(notes[47])" class="key key-white"><p class="key-name">Sol</p><p class="key-number">3</p></div>
+          <div onclick="playSound(notes[48])" class="key key-black"><p class="key-name">Sol#</p><p class="key-number">3</p></div>
+          <div onclick="playSound(notes[49])" class="key key-white"><p class="key-name">La</p><p class="key-number">3</p></div>
+          <div onclick="playSound(notes[50])" class="key key-black"><p class="key-name">La#</p><p class="key-number">3</p></div>
+          <div onclick="playSound(notes[51])" class="key key-white"><p class="key-name">Si</p><p class="key-number">3</p></div>
         </div>
-        <div class="octave">
-          <div onclick="playSound(notes[64])" class="key key-white"><p class="key-name">Do</p></div>
-          <div onclick="playSound(notes[65])" class="key key-black"><p class="key-name">Do#</p></div>
-          <div onclick="playSound(notes[66])" class="key key-white"><p class="key-name">Re</p></div>
-          <div onclick="playSound(notes[67])" class="key key-black"><p class="key-name">Re#</p></div>
-          <div onclick="playSound(notes[68])" class="key key-white"><p class="key-name">Mi</p></div>
-          <div onclick="playSound(notes[69])" class="key key-white"><p class="key-name">Fa</p></div>
-          <div onclick="playSound(notes[70])" class="key key-black"><p class="key-name">Fa#</p></div>
-          <div onclick="playSound(notes[71])" class="key key-white"><p class="key-name">Sol</p></div>
-          <div onclick="playSound(notes[72])" class="key key-black"><p class="key-name">Sol#</p></div>
-          <div onclick="playSound(notes[73])" class="key key-white"><p class="key-name">La</p></div>
-          <div onclick="playSound(notes[74])" class="key key-black"><p class="key-name">La#</p></div>
-          <div onclick="playSound(notes[75])" class="key key-white"><p class="key-name">Si</p></div>
+        <div class="octave octave_4">
+          <div onclick="playSound(notes[52])" class="key key-white"><p class="key-name">Do</p><p class="key-number">4</p></div>
+          <div onclick="playSound(notes[53])" class="key key-black"><p class="key-name">Do#</p><p class="key-number">4</p></div>
+          <div onclick="playSound(notes[54])" class="key key-white"><p class="key-name">Re</p><p class="key-number">4</p></div>
+          <div onclick="playSound(notes[55])" class="key key-black"><p class="key-name">Re#</p><p class="key-number">4</p></div>
+          <div onclick="playSound(notes[56])" class="key key-white"><p class="key-name">Mi</p><p class="key-number">4</p></div>
+          <div onclick="playSound(notes[57])" class="key key-white"><p class="key-name">Fa</p><p class="key-number">4</p></div>
+          <div onclick="playSound(notes[58])" class="key key-black"><p class="key-name">Fa#</p><p class="key-number">4</p></div>
+          <div onclick="playSound(notes[59])" class="key key-white"><p class="key-name">Sol</p><p class="key-number">4</p></div>
+          <div onclick="playSound(notes[60])" class="key key-black"><p class="key-name">Sol#</p><p class="key-number">4</p></div>
+          <div onclick="playSound(notes[61])" class="key key-white"><p class="key-name">La</p><p class="key-number">4</p></div>
+          <div onclick="playSound(notes[62])" class="key key-black"><p class="key-name">La#</p><p class="key-number">4</p></div>
+          <div onclick="playSound(notes[63])" class="key key-white"><p class="key-name">Si</p><p class="key-number">4</p></div>
+        </div>
+        <div class="octave octave_5">
+          <div onclick="playSound(notes[64])" class="key key-white"><p class="key-name">Do</p><p class="key-number">5</p></div>
+          <div onclick="playSound(notes[65])" class="key key-black"><p class="key-name">Do#</p><p class="key-number">5</p></div>
+          <div onclick="playSound(notes[66])" class="key key-white"><p class="key-name">Re</p><p class="key-number">5</p></div>
+          <div onclick="playSound(notes[67])" class="key key-black"><p class="key-name">Re#</p><p class="key-number">5</p></div>
+          <div onclick="playSound(notes[68])" class="key key-white"><p class="key-name">Mi</p><p class="key-number">5</p></div>
+          <div onclick="playSound(notes[69])" class="key key-white"><p class="key-name">Fa</p><p class="key-number">5</p></div>
+          <div onclick="playSound(notes[70])" class="key key-black"><p class="key-name">Fa#</p><p class="key-number">5</p></div>
+          <div onclick="playSound(notes[71])" class="key key-white"><p class="key-name">Sol</p><p class="key-number">5</p></div>
+          <div onclick="playSound(notes[72])" class="key key-black"><p class="key-name">Sol#</p><p class="key-number">5</p></div>
+          <div onclick="playSound(notes[73])" class="key key-white"><p class="key-name">La</p><p class="key-number">5</p></div>
+          <div onclick="playSound(notes[74])" class="key key-black"><p class="key-name">La#</p><p class="key-number">5</p></div>
+          <div onclick="playSound(notes[75])" class="key key-white"><p class="key-name">Si</p><p class="key-number">5</p></div>
+        </div>
+        <div class="octave octave_6">
+          <div onclick="playSound(notes[76])" class="key key-white"><p class="key-name">Do</p><p class="key-number">6</p></div>
+          <div onclick="playSound(notes[77])" class="key key-black"><p class="key-name">Do#</p><p class="key-number">6</p></div>
+          <div onclick="playSound(notes[78])" class="key key-white"><p class="key-name">Re</p><p class="key-number">6</p></div>
+          <div onclick="playSound(notes[79])" class="key key-black"><p class="key-name">Re#</p><p class="key-number">6</p></div>
+          <div onclick="playSound(notes[80])" class="key key-white"><p class="key-name">Mi</p><p class="key-number">6</p></div>
+          <div onclick="playSound(notes[81])" class="key key-white"><p class="key-name">Fa</p><p class="key-number">6</p></div>
+          <div onclick="playSound(notes[82])" class="key key-black"><p class="key-name">Fa#</p><p class="key-number">6</p></div>
+          <div onclick="playSound(notes[83])" class="key key-white"><p class="key-name">Sol</p><p class="key-number">6</p></div>
+          <div onclick="playSound(notes[84])" class="key key-black"><p class="key-name">Sol#</p><p class="key-number">6</p></div>
+          <div onclick="playSound(notes[85])" class="key key-white"><p class="key-name">La</p><p class="key-number">6</p></div>
+          <div onclick="playSound(notes[86])" class="key key-black"><p class="key-name">La#</p><p class="key-number">6</p></div>
+          <div onclick="playSound(notes[87])" class="key key-white"><p class="key-name">Si</p><p class="key-number">6</p></div>
         </div>
       </div>
     </div>
+    <p class="firm">Made with <span class="heart">♥</span> by Vittorio Retrivi</p>
   </div>
   <!-- JavaScript files-->
   <script src="js/notes.js" charset="utf-8"></script>
+  <script src="js/TLoZ.js" charset="utf-8"></script>
   <script src="js/script.js" charset="utf-8"></script>
 </body>
 
