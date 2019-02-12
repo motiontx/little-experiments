@@ -1,8 +1,11 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
 html {
   width: 100%;
   height: 100%;
-  margin: 0;
-  padding: 0;
   -webkit-user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
@@ -11,7 +14,6 @@ html {
 }
 
 body {
-  margin: 0;
   width: 100%;
   height: 100%;
   display: flex;
@@ -33,6 +35,173 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+/*----------- Minesweeper -----------*/
+.minesweeper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #F2F4F5;
+  border-radius: 8px;
+  box-shadow: 0px 10px 20px -5px rgba(0, 0, 0, 0.8);
+  font-size: 16px;
+  font-weight: bold;
+  position: relative;
+  overflow: hidden;
+}
+
+.topBar{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.mines{
+  width: 20%;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reset{
+  width: 60%;
+  height: 25px;
+  background-color: #B9C2C7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 0 8px 8px;
+  transition: all 0.3s;
+}
+
+.reset:hover{
+  background-color: #919DA9;
+}
+
+.reset:active{
+  background-color: #6A737B;
+}
+
+.time{
+  width: 20%;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid{
+    padding: 0 15px;
+}
+
+.config{
+    position: absolute;
+    top: -200px;
+    width: 60%;
+    height: 25px;
+      background-color: #F2F4F5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 0 8px 8px;
+    transition: all 0.7s;
+    height: 150px;
+    box-shadow: 0px 10px 20px -5px rgba(0, 0, 0, 0.8);
+      overflow: hidden;
+}
+
+.setting{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  margin:0;
+  width: 150px;
+}
+
+.setting_buttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.button{
+  border: none;
+  width: 20px;
+  height: 20px;
+  background-color: #B9C2C7;
+  margin: 5px;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+
+.button_red{
+  background-color: tomato;
+}
+
+.button_green{
+  background-color: green;
+}
+
+.confirm{
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  border: none;
+  bottom: 0;
+  background-color: tomato;
+}
+
+.row_grid{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.square{
+  width: 25px;
+  height: 25px;
+  background-color: #B9C2C7;
+  margin: 2px;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.square:hover{
+  background-color: #919DA9;
+}
+
+.square:active{
+  background-color: #6A737B;
+}
+
+.config_button{
+  width: 70%;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  background-color: #B9C2C7;
+  border-radius: 8px 8px 0 0;
+  transition: all 0.3s;
+}
+
+.config_button:hover{
+  background-color: #919DA9;
+}
+
+.config_button:active{
+  background-color: #6A737B;
 }
 
 /*----------- Firm -----------*/

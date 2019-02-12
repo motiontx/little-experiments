@@ -11,11 +11,167 @@
 
 <body>
   <div class="content">
+    <div class="minesweeper">
+      <div class="config" id="config">
+        <div class="setting">
+          <p>Width:</p>
+          <div class="setting_buttons">
+            <button type="button" name="button" class="button button_red">-</button>
+            <p>7</p>
+            <button type="button" name="button" class="button button_green">+</button>
+          </div>
+        </div>
+        <div class="setting">
+          <p>Height:</p>
+          <div class="setting_buttons">
+            <button type="button" name="button" class="button button_red">-</button>
+            <p>7</p>
+            <button type="button" name="button" class="button button_green">+</button>
+          </div>
+        </div>
+        <div class="setting">
+          <p>Mines:</p>
+          <div class="setting_buttons">
+            <button type="button" name="button" class="button button_red">-</button>
+            <p>7</p>
+            <button type="button" name="button" class="button button_green">+</button>
+          </div>
+        </div>
+        <button type="button" name="button" class="confirm">Confirm</button>
+      </div>
+      <div class="topBar">
+        <div class="mines">35</div>
+        <div class="reset">😋</div>
+        <div class="time">15:50</div>
+      </div>
+      <div class="grid" id="grid">
+        <div class="row_grid">
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+        </div>
+        <div class="row_grid">
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+        </div>
+        <div class="row_grid">
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+        </div>
+        <div class="row_grid">
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+        </div>
+        <div class="row_grid">
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+        </div>
+        <div class="row_grid">
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+        </div>
+        <div class="row_grid">
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+        </div>
+        <div class="row_grid">
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+        </div>
+        <div class="row_grid">
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+        </div>
+        <div class="row_grid">
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+        </div>
+      </div>
+      <div class="config_button" onclick="openConfig()">CONFIG</div>
+    </div>
     <p class="firm">Made with <span class="heart">♥</span> by Vittorio Retrivi</p>
   </div>
   <!-- JavaScript files-->
-  <script src="js/notes.js" charset="utf-8"></script>
-  <script src="js/TLoZ.js" charset="utf-8"></script>
+  <script src="JS/classes.js" charset="utf-8"></script>
   <script src="js/script.js" charset="utf-8"></script>
 </body>
 
