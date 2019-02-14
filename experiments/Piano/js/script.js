@@ -20,12 +20,12 @@ function playSound(frequency) {
 
 /*-----------------------------------------------------------*/
 
-let key_names = document.getElementsByClassName('key-name');
-let key_numbers = document.getElementsByClassName('key-number');
+const key_names = document.getElementsByClassName('key-name');
+const key_numbers = document.getElementsByClassName('key-number');
+const help = document.getElementById('help')
 
 function showHelp() {
-  let help = document.getElementById('help').checked;
-  let display = help ? "block" : "none";
+  let display = help.checked ? "block" : "none";
   for (let el of key_names) {
     el.style.display = display;
   }
@@ -36,31 +36,26 @@ function showHelp() {
 
 /*-----------------------------------------------------------*/
 
+const lengthSong = song.length;
 let playing = false;
-
 let step = 0;
-let longSong = song.length;
 
 function playSample() {
   if (playing) {
     if (song[step][0] != "Blank") {
       playSound(notesName[song[step][0]]);
     }
-
     setTimeout(playSample, song[step][1] * 0.8);
-
     step++;
-    if (step == longSong) {
+    if (step == lengthSong) {
       step = 0;
     }
   }
 }
 
 function startStopSample() {
+  playing = !playing;
   if (playing) {
-    playing = false;
-  } else {
-    playing = true;
     playSample();
   }
 }

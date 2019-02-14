@@ -2,7 +2,7 @@
 //https://musescore.com/user/20360426/scores/4880846
 // Transcription made by Rafael Verde
 
-// 120 bpm --> 120 beats cada 60000 ms
+// 120 bpm --> 120 beats in 60000 ms
 // 1 beat --> 500 ms
 // 1 bar --> 4 beats --> 2000 ms
 
