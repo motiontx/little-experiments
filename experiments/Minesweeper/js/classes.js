@@ -5,10 +5,12 @@ class Minesweeper {
     this.width = width;
     this.height = height;
     this.gridView = document.getElementById('grid');
+    this.state = document.getElementById('state')
     this.reset();
 
   }
   reset() {
+    this.playing = true;
     this.grid = [];
     for (let i = 0; i < this.height; i++) {
       let row = [];
@@ -25,8 +27,13 @@ class Minesweeper {
 
     this.updateMinesNearby();
     this.showGrid();
+    this.updateView();
     this.bindEvents();
 
+  }
+
+  updateView(){
+    this.state.innerHTML = this.playing ? '😋' : '😔'
   }
 
   showGrid() {
@@ -77,6 +84,24 @@ class Minesweeper {
     }
   }
 
+  play(cell){
+    if (cell.isMine) {
+      this.gameOver();
+    }else {
+      this.revealNeighbors(cell);
+    }
+  }
+
+  gameOver(){
+    this.playing = false;
+    for (let row of this.grid) {
+      for (let cell of row) {
+          cell.reveal();
+      }
+    }
+    this.updateView();
+  }
+
   revealNeighbors(cell){
     if (!cell.revealed) {
       if (!cell.isMine){
@@ -95,7 +120,17 @@ class Minesweeper {
       for (let j = 0; j < this.width; j++) {
         let cell = this.grid[i][j].view;
         cell.addEventListener('click', () => {
-          this.revealNeighbors(this.grid[7][5]);
+          let x;
+          let y;
+          for (let el of cell.classList) {
+            if (el[0] == "x") {
+              x = parseInt(el.substr(2));
+            }
+            if (el[0]== "y") {
+              y = parseInt(el.substr(2));
+            }
+          }
+          this.play(this.grid[y][x]);
         });
       }
     }
