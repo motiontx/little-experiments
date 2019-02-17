@@ -1,29 +1,48 @@
-const numbers = ['▪️','1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣'];
+const numbers = ['▪️', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣'];
+
+function shuffle(array) {
+    var j, x, i;
+    for (i = array.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = array[i];
+        array[i] = array[j];
+        array[j] = x;
+    }
+    return array;
+}
 
 class Minesweeper {
-  constructor(width, height) {
+  constructor(width, height, mines) {
     this.width = width;
     this.height = height;
+    this.mines = mines;
     this.gridView = document.getElementById('grid');
-    this.state = document.getElementById('state')
+    this.stateView = document.getElementById('state');
+    this.minesView = document.getElementById('mines');
+
     this.reset();
 
   }
   reset() {
     this.playing = true;
     this.grid = [];
+    this.checkedCells = this.mines;
+
+    let mines = [];
+    let count = this.mines;
+    for (let i = 0; i < this.width * this.height - 1; i++) {
+      count > 0 ? mines.push(true) : mines.push(false);
+      count --;
+    }
+    mines = shuffle(mines);
+
     for (let i = 0; i < this.height; i++) {
       let row = [];
       for (let j = 0; j < this.width; j++) {
-        row.push(new Cell(j, i));
+        row.push(new Cell(j, i, mines[i*this.height +j]));
       }
       this.grid.push(row);
     }
-    //por ahora...
-    this.grid[5][4].isMine = true;
-    this.grid[5][5].isMine = true;
-    this.grid[3][4].isMine = true;
-    this.grid[1][2].isMine = true;
 
     this.updateMinesNearby();
     this.showGrid();
@@ -32,8 +51,9 @@ class Minesweeper {
 
   }
 
-  updateView(){
-    this.state.innerHTML = this.playing ? '😋' : '😔'
+  updateView() {
+    this.stateView.innerHTML = this.playing ? '😋' : '😔'
+    this.minesView.innerHTML = `${this.checkedCells}/${this.mines}`
   }
 
   showGrid() {
@@ -70,7 +90,7 @@ class Minesweeper {
     return neighbors;
   }
 
-  updateMinesNearby(){
+  updateMinesNearby() {
     for (let row of this.grid) {
       for (let cell of row) {
         let count = 0;
@@ -84,65 +104,104 @@ class Minesweeper {
     }
   }
 
-  play(cell){
-    if (cell.isMine) {
-      this.gameOver();
-    }else {
-      this.revealNeighbors(cell);
+  getCellFromDOM(cellView) {
+    let x;
+    let y;
+    for (let el of cellView.classList) {
+      if (el[0] == "x") {
+        x = parseInt(el.substr(2));
+      }
+      if (el[0] == "y") {
+        y = parseInt(el.substr(2));
+      }
+    }
+    return this.grid[y][x];
+  }
+
+  play(cell) {
+    if (!cell.checked) {
+      if (cell.isMine) {
+        this.gameOver();
+      } else {
+        this.revealNeighbors(cell);
+      }
     }
   }
 
-  gameOver(){
+  checkCell(cell){
+      cell.check();
+      cell.checked ? this.checkedCells-- : this.checkedCells++;
+      this.updateView();
+  }
+
+  gameOver() {
     this.playing = false;
     for (let row of this.grid) {
       for (let cell of row) {
-          cell.reveal();
+        cell.reveal();
       }
     }
     this.updateView();
   }
 
-  revealNeighbors(cell){
-    if (!cell.revealed) {
-      if (!cell.isMine){
+  checkIfIWon(){
+    if (this.checkedCells == 0 ) {
+      for (let row of this.grid) {
+        for (let cell of row) {
+          if (cell.checked) {
+            if (!cell.isMine) {
+              return false;
+            }
+          }
+        }
+      }
+      return true;
+    }
+    return false;
+  }
+
+  revealNeighbors(cell) {
+    if (!cell.revealed && !cell.isMine && !cell.checked) {
         cell.reveal();
         if (cell.numberOfMinesNearby == 0) {
           for (let neighbor of this.neighbors(cell)) {
-              this.revealNeighbors(neighbor);
+            this.revealNeighbors(neighbor);
           }
-        }
       }
     }
   }
 
-  bindEvents(){
+  bindEvents() {
     for (let i = 0; i < this.height; i++) {
       for (let j = 0; j < this.width; j++) {
-        let cell = this.grid[i][j].view;
-        cell.addEventListener('click', () => {
-          let x;
-          let y;
-          for (let el of cell.classList) {
-            if (el[0] == "x") {
-              x = parseInt(el.substr(2));
-            }
-            if (el[0]== "y") {
-              y = parseInt(el.substr(2));
-            }
-          }
-          this.play(this.grid[y][x]);
+
+        let cellView = this.grid[i][j].view;
+
+        cellView.addEventListener('click', () => {
+          let cell = this.getCellFromDOM(cellView);
+          this.play(cell);
         });
+        cellView.addEventListener('contextmenu', (e) => {
+          e.preventDefault();
+          let cell = this.getCellFromDOM(cellView);
+          this.checkCell(cell);
+          if (this.checkIfIWon()) {
+            alert("yay")
+          }
+        });
+
       }
     }
   }
 }
 
 class Cell {
-  constructor(x, y) {
+  constructor(x, y, isMine) {
     this.x = x;
     this.y = y;
     this.revealed = false;
-    this.isMine = false;
+    this.isMine = isMine;
+    this.checked = false;
     this.numberOfMinesNearby = 0;
     this.view = document.createElement('div');
     this.view.className = `cell no_revealed x_${x} y_${y}`;
@@ -153,11 +212,20 @@ class Cell {
     this.updateView();
   }
 
-  updateView(){
+  check(){
+    this.checked = !this.checked;
+    this.updateView();
+  }
+
+  updateView() {
     if (this.revealed) {
       this.view.classList.remove("no_revealed");
       this.view.classList.add("revealed");
       this.view.innerHTML = this.isMine ? '💣' : numbers[this.numberOfMinesNearby];
+    } else if (this.checked){
+      this.view.innerHTML = '🚩';
+    } else {
+      this.view.innerHTML = '';
     }
   }
 }

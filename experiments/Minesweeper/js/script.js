@@ -5,7 +5,7 @@ function configOpenClose(){
   settings = !settings;
 }
 
-let game = new Minesweeper(10,10);
+let game = new Minesweeper(5, 5, 2);
 
 function reset(){
   game.reset();
