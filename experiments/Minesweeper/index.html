@@ -9,49 +9,43 @@
   <link rel="stylesheet" href="css/master.css">
 </head>
 
-<body>
-  <div class="content">
-    <div class="minesweeper">
-      <div class="config" id="config">
-        <div class="setting">
-          <p>Width:</p>
-          <div class="setting_buttons">
-            <button type="button" name="button" class="button button_red">-</button>
-            <p>7</p>
-            <button type="button" name="button" class="button button_green">+</button>
+</body>
+<div class="content">
+  <div class="minesweeper">
+    <div class="config" id="config">
+      <div class="settings">
+        <div class="row_setting">
+          <div class="setting">
+            <div class="pre_input" id="width_pre"></div>
+            <input class="input" id="width_input" type="number" value="15" min="2" max="40">
+          </div>
+          <div class="divider">x</div>
+          <div class="setting">
+            <div class="pre_input" id="height_pre"></div>
+            <input class="input" id="height_input" type="number" value="15" min="2" max="20">
           </div>
         </div>
         <div class="setting">
-          <p>Height:</p>
-          <div class="setting_buttons">
-            <button type="button" name="button" class="button button_red">-</button>
-            <p>7</p>
-            <button type="button" name="button" class="button button_green">+</button>
-          </div>
+          <div class="pre_input" id="bomb_pre">💣</div>
+          <input class="input" id="bombs_input" type="number" value="20" min="1" max="2500">
         </div>
-        <div class="setting">
-          <p>💣💣💣</p>
-          <div class="setting_buttons">
-            <button type="button" name="button" class="button button_red">-</button>
-            <p>7</p>
-            <button type="button" name="button" class="button button_green">+</button>
-          </div>
-        </div>
-        <button type="button" name="button" class="confirm">SAVE AND RESTART</button>
       </div>
-      <div class="topBar">
-        <div class="mines" id="mines"></div>
-        <div class="reset" onclick="reset()" id="state"></div>
-        <div class="time">15:50</div>
-      </div>
-      <div class="grid" id="grid"></div>
-      <div class="config_button" onclick="configOpenClose()">🛠️ CONFIG 🛠️</div>
+      <button type="button" name="button" class="confirm" onclick="saveAndRestart()">SAVE AND RESTART</button>
     </div>
-    <p class="firm">Made with <span class="heart">♥</span> by Vittorio Retrivi</p>
+    <div class="topBar">
+      <div class="mines" id="mines"></div>
+      <div class="reset" onclick="reset()" id="state"></div>
+      <div class="time">TIME</div>
+    </div>
+    <div class="grid" id="grid"></div>
+    <div class="config_button" onclick="configOpenClose()">Config</div>
   </div>
-  <!-- JavaScript files-->
-  <script src="JS/classes.js" charset="utf-8"></script>
-  <script src="js/script.js" charset="utf-8"></script>
+</div>
+
+<!-- JavaScript files-->
+<script src="js/twemoji.min.js"></script>
+<script src="JS/classes.js" charset="utf-8"></script>
+<script src="js/script.js" charset="utf-8"></script>
 </body>
 
 </html>
