@@ -25,8 +25,13 @@ class Minesweeper {
 
   }
 
-  reset() {
+  reset(w = this.width, h = this.height, m = this.mines, t = this.twemoji) {
     // Reset the game
+    this.twemoji = t;
+    this.width = w;
+    this.height = h;
+    this.mines = m;
+
     this.playing = true;
     this.iWin = false;
     this.grid = [];
@@ -43,7 +48,7 @@ class Minesweeper {
     for (let i = 0; i < this.height; i++) {
       let row = [];
       for (let j = 0; j < this.width; j++) {
-        row.push(new Cell(j, i, mines[i * this.height + j], this.twemoji));
+        row.push(new Cell(j, i, mines[i * this.width + j], this.twemoji));
       }
       this.grid.push(row);
     }
@@ -124,7 +129,7 @@ class Minesweeper {
         let cellView = this.grid[i][j].view;
 
         cellView.addEventListener('click', () => {
-          if (!this.timer) {
+          if (!this.timer && this.playing) {
             this.startTimer();
           }
           let cell = this.getCellFromDOM(cellView);
@@ -132,7 +137,7 @@ class Minesweeper {
         });
         cellView.addEventListener('contextmenu', (e) => {
           e.preventDefault();
-          if (!this.timer) {
+          if (!this.timer && this.playing) {
             this.startTimer();
           }
           let cell = this.getCellFromDOM(cellView);

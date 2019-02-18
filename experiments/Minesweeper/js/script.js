@@ -13,7 +13,7 @@ function configOpenClose() {
   settings = !settings;
 }
 
-let game = new Minesweeper(10, 10, 10);
+const game = new Minesweeper(10, 10, 10);
 
 function reset() {
   game.reset();
@@ -30,7 +30,7 @@ function saveAndRestart() {
   } else if (bombs > width * height) {
     alert("More bombs than cells!");
   } else {
-    game = new Minesweeper(width, height, bombs, twemoji);
+    game.reset(width, height, bombs, twemoji);
     configOpenClose();
   }
 }
