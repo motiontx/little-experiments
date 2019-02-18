@@ -9,6 +9,12 @@
   <link rel="stylesheet" href="css/master.css">
 </head>
 
+<!--
+Hi! 😊
+This code is inspired by the following repository:
+https://github.com/muan/emoji-minesweeper
+-->
+
 </body>
 <div class="content">
   <div class="minesweeper">
@@ -16,18 +22,24 @@
       <div class="settings">
         <div class="row_setting">
           <div class="setting">
-            <div class="pre_input" id="width_pre"></div>
-            <input class="input" id="width_input" type="number" value="15" min="2" max="40">
+            <div class="pre_input">W</div>
+            <input class="input" id="width_input" type="number" value="10" min="1" max="50">
           </div>
           <div class="divider">x</div>
           <div class="setting">
-            <div class="pre_input" id="height_pre"></div>
-            <input class="input" id="height_input" type="number" value="15" min="2" max="20">
+            <div class="pre_input">H</div>
+            <input class="input" id="height_input" type="number" value="10" min="1" max="50">
           </div>
         </div>
-        <div class="setting">
-          <div class="pre_input" id="bomb_pre">💣</div>
-          <input class="input" id="bombs_input" type="number" value="20" min="1" max="2500">
+        <div class="row_setting">
+          <div class="setting">
+            <div class="pre_input_bomb" id="bomb_pre">💣</div>
+            <input class="input" id="bombs_input" type="number" value="10" min="1" max="2500">
+          </div>
+          <select id="emojiset" class="input_select">
+            <option value="twemoji">Twemoji</option>
+            <option value="false">Native Emoji</option>
+          </select>
         </div>
       </div>
       <button type="button" name="button" class="confirm" onclick="saveAndRestart()">SAVE AND RESTART</button>
@@ -35,7 +47,7 @@
     <div class="topBar">
       <div class="mines" id="mines"></div>
       <div class="reset" onclick="reset()" id="state"></div>
-      <div class="time">TIME</div>
+      <div class="time" id="timer"></div>
     </div>
     <div class="grid" id="grid"></div>
     <div class="config_button" onclick="configOpenClose()">Config</div>

@@ -12,14 +12,15 @@ function shuffle(array) {
 }
 
 class Minesweeper {
-  constructor(width, height, mines) {
+  constructor(width, height, mines, twemoji = true) {
+    this.twemoji = twemoji;
     this.width = width;
     this.height = height;
     this.mines = mines;
     this.gridView = document.getElementById('grid');
     this.stateView = document.getElementById('state');
     this.minesView = document.getElementById('mines');
-
+    this.time = document.getElementById('timer');
     this.reset();
 
   }
@@ -30,7 +31,6 @@ class Minesweeper {
     this.iWin = false;
     this.grid = [];
     this.checkedCells = this.mines;
-
 
     let mines = [];
     let count = this.mines;
@@ -43,11 +43,12 @@ class Minesweeper {
     for (let i = 0; i < this.height; i++) {
       let row = [];
       for (let j = 0; j < this.width; j++) {
-        row.push(new Cell(j, i, mines[i * this.height + j]));
+        row.push(new Cell(j, i, mines[i * this.height + j], this.twemoji));
       }
       this.grid.push(row);
     }
 
+    this.resetTimer();
     this.updateMinesNearby();
     this.bindEvents();
     this.showGrid();
@@ -55,7 +56,26 @@ class Minesweeper {
 
   }
 
+  startTimer() {
+    this.startTime = new Date()
+    this.timer = setInterval(() => {
+      this.time.innerHTML = ((new Date() - game.startTime) / 1000).toFixed(2)
+    }, 100)
+  }
+
+  resetTimer() {
+    clearInterval(this.timer);
+    this.timer = false;
+    this.time.innerHTML = '0.00'
+  }
+
+  pauseTimer() {
+    clearInterval(this.timer);
+    this.timer = false;
+  }
+
   revealAll() {
+    //Reveals all the cells
     for (let row of this.grid) {
       for (let cell of row) {
         if (cell.isMine && this.iWin) {
@@ -97,17 +117,24 @@ class Minesweeper {
   }
 
   bindEvents() {
+    //Set DOM Events
     for (let i = 0; i < this.height; i++) {
       for (let j = 0; j < this.width; j++) {
 
         let cellView = this.grid[i][j].view;
 
         cellView.addEventListener('click', () => {
+          if (!this.timer) {
+            this.startTimer();
+          }
           let cell = this.getCellFromDOM(cellView);
           this.play(cell);
         });
         cellView.addEventListener('contextmenu', (e) => {
           e.preventDefault();
+          if (!this.timer) {
+            this.startTimer();
+          }
           let cell = this.getCellFromDOM(cellView);
           this.checkCell(cell);
         });
@@ -118,11 +145,13 @@ class Minesweeper {
 
   updateView() {
     //Update the DOM with the object data
+    let emoji;
     if (this.playing) {
-      this.stateView.innerHTML = twemoji.parse('😀');
+      emoji = '😀';
     } else {
-      this.stateView.innerHTML = this.iWin ? twemoji.parse('😎') : twemoji.parse('😵');
+      emoji = this.iWin ? '😎' : '😵';
     }
+    this.stateView.innerHTML = this.twemoji ? twemoji.parse(emoji) : emoji;
     this.minesView.innerHTML = `${this.checkedCells}/${this.mines}`;
   }
 
@@ -162,6 +191,7 @@ class Minesweeper {
   }
 
   play(cell) {
+    //Reveals neighboring cells, then check if the player won or not
     if (this.playing) {
       if (!cell.checked) {
         if (cell.isMine) {
@@ -201,14 +231,15 @@ class Minesweeper {
     return count == this.mines;
   }
 
-
   gameOver() {
+    this.pauseTimer();
     this.playing = false;
     this.iWin = false;
     this.revealAll();
   }
 
   gameWon() {
+    this.pauseTimer();
     this.playing = false;
     this.iWin = true;
     this.checkedCells = 0;
@@ -233,7 +264,8 @@ class Minesweeper {
 }
 
 class Cell {
-  constructor(x, y, isMine) {
+  constructor(x, y, isMine, twemoji = true) {
+    this.twemoji = twemoji;
     this.x = x;
     this.y = y;
     this.revealed = false;
@@ -259,14 +291,16 @@ class Cell {
 
   updateView() {
     //Update the DOM with the object data
+    let emoji;
     if (this.revealed) {
       this.view.classList.remove("no_revealed");
       this.view.classList.add("revealed");
-      this.view.innerHTML = this.isMine ? twemoji.parse('💣') : twemoji.parse(numbers[this.numberOfMinesNearby]);
+      emoji = this.isMine ? '💣' : numbers[this.numberOfMinesNearby];
     } else if (this.checked) {
-      this.view.innerHTML = twemoji.parse('🚩');
+      emoji = '🚩';
     } else {
-      this.view.innerHTML = '';
+      emoji = '';
     }
+    this.view.innerHTML = this.twemoji ? twemoji.parse(emoji) : emoji;
   }
 }
