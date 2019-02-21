@@ -1,0 +1,63 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#canvas_container {
+  width: 100%;
+  height: 100%;
+  background: #efefef;
+  overflow: hidden;
+}
+
+#canvas {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+
+.row {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  margin: 1rem 0;
+  justify-content: flex-end;
+}
+
+.button {
+  position: relative;
+  width: 5rem;
+  height: 2.5rem;
+  margin: 0.4rem 0.6rem;
+  font-size: 0.7rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  color: white;
+  font-family: monospace;
+  background-color: #cb99c5;
+  box-shadow: 0 0 0 1px #cb99c5 inset,
+    0 0 0 2px rgba(255, 255, 255, 0.15) inset,
+    0 8px 0 0 rgba(189, 142, 183, .7),
+    0 8px 0 1px rgba(0, 0, 0, .4),
+    0 8px 8px 1px rgba(0, 0, 0, 0.5);
+  font-weight: 800;
+}
+
+.button:active {
+  top: 9px;
+  background-color: #D19ECB;
+  box-shadow: 0 0 0 1px #cb99c5 inset,
+    0 0 0 2px rgba(255, 255, 255, 0.15) inset,
+    0 0 0 1px rgba(0, 0, 0, 0.4);
+}
