@@ -199,10 +199,10 @@ class Plinko {
     }
 
     //Borders
-    let wallLeft = new SquareWall(0, height * 0.5, 2, height);
-    let wallRight = new SquareWall(width, height * 0.5, 2, height);
-    let wallTop = new SquareWall(width * 0.5, 0, width, 2);
-    let wallBottom = new SquareWall(width * 0.5, height, width, 2);
+    let wallLeft = new SquareWall(0, height * 0.5, 8, height);
+    let wallRight = new SquareWall(width, height * 0.5, 8, height);
+    let wallTop = new SquareWall(width * 0.5, 0, width, 8);
+    let wallBottom = new SquareWall(width * 0.5, height, width, 8);
     this.walls.push(wallLeft);
     this.walls.push(wallRight);
     this.walls.push(wallTop);
