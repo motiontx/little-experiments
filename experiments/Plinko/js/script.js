@@ -18,7 +18,6 @@ window.addEventListener('resize', function() {
 
 // --------------------------------------------------------------------
 
-
 const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
@@ -34,11 +33,7 @@ canvas.addEventListener("click", (evt) => {
   game.addBall(x, y);
 });
 
-canvas.addEventListener('touchstart', () => {
-  let x = evt.touches[0].clientX - offSetLeft;
-  let y = evt.touches[0].clientY - offSetTop;
-  game.addBall(x, y);
-});
+/*---------- Ball ----------*/
 
 class Ball {
   constructor(x, y) {
@@ -48,7 +43,7 @@ class Ball {
       friction: 0,
       density: 1
     }
-    this.color = "#dd4024";
+    this.color = "#E63946";
     this.body = Matter.Bodies.circle(x, y, this.r, this.options);
     World.add(world, this.body);
   }
@@ -62,8 +57,7 @@ class Ball {
   }
 }
 
-
-
+/*---------- Walls ----------*/
 
 class circleWall {
   constructor(x, y) {
@@ -75,7 +69,7 @@ class circleWall {
       friction: 0,
       isStatic: true
     }
-    this.color = "#133f8a";
+    this.color = "#1D3557";
     this.body = Bodies.circle(this.x, this.y, this.r, this.options);
     World.add(world, this.body);
   }
@@ -95,10 +89,10 @@ class ShapeWall {
     this.options = {
       restitution: 1,
       friction: 0,
-      isStatic: true,
+      isStatic: true
     }
     this.vertices = vertices;
-    this.color = "#133f8a";
+    this.color = "#1D3557";
     this.body = Bodies.fromVertices(this.x, this.y, this.vertices, this.options);
     World.add(world, this.body);
   }
@@ -107,9 +101,8 @@ class ShapeWall {
     ctx.fillStyle = this.color;
     ctx.beginPath();
     let firstVertex = this.vertices[0];
-    ctx.moveTo(firstVertex.x + this.x , firstVertex.y + this.y);
-    for (let i = 0; i < this.vertices.length; i++) {
-      let vertex = this.vertices[i];
+    ctx.moveTo(firstVertex.x + this.x, firstVertex.y + this.y);
+    for (let vertex of this.vertices) {
       ctx.lineTo(vertex.x + this.x, vertex.y + this.y);
     }
     ctx.closePath();
@@ -124,20 +117,22 @@ class SquareWall {
     this.options = {
       restitution: 1,
       friction: 0,
-      isStatic: true,
+      isStatic: true
     }
     this.width = width;
     this.height = height;
-    this.color = "#133f8a";
+    this.color = "#1D3557";
     this.body = Bodies.rectangle(this.x, this.y, this.width, this.height, this.options);
     World.add(world, this.body);
   }
 
   draw() {
     ctx.fillStyle = this.color;
-    ctx.fillRect(this.x - this.width*0.5,this.y - this.height*0.5,this.width, this.height);
+    ctx.fillRect(this.x - this.width * 0.5, this.y - this.height * 0.5, this.width, this.height);
   }
 }
+
+/*---------- Checker ----------*/
 
 class Checker {
   constructor(x, y, width, height, left = true, right = true) {
@@ -145,13 +140,13 @@ class Checker {
     this.y = y;
     this.width = width;
     this.height = height;
-    this.color = "#133f8a";
+    this.color = "#1D3557";
     this.walls = []
     if (left) {
-      this.walls.push(new SquareWall(this.x - this.width/2, this.y, 4, height));
+      this.walls.push(new SquareWall(this.x - this.width / 2, this.y, 4, height));
     }
     if (right) {
-      this.walls.push(new SquareWall(this.x + this.width/2, this.y, 4, height));
+      this.walls.push(new SquareWall(this.x + this.width / 2, this.y, 4, height));
     }
   }
 
@@ -162,6 +157,8 @@ class Checker {
   }
 }
 
+/*---------- Game ----------*/
+
 class Plinko {
   constructor() {
     this.balls = [];
@@ -169,54 +166,62 @@ class Plinko {
   }
 
   generateWalls() {
+
     this.walls = [];
     let rows = 5;
     let cols = 8;
-    let offsetX = width / (rows+1);
-    let offsetY = height * 0.8 / (cols+1);
-    let offsetCol =  offsetY + height * 0.1;
-    let vertices = [{x:0 , y: -offsetY},{x: offsetX*0.5, y:0},{x: 0 , y: offsetY}, {x: -offsetX*0.5, y:0}];
+    let offsetX = width / (rows + 1);
+    let offsetY = height * 0.8 / (cols + 1);
+    let offsetYAbs = offsetY + height * 0.1;
+
+    let vertices = [{ x: 0, y: -offsetY }, { x: offsetX * 0.5, y: 0 }, { x: 0, y: offsetY }, { x: -offsetX * 0.5, y: 0 }];
     for (let i = 0; i < cols; i++) {
+
       let counter = rows - (i % 2);
       let offsetRow = offsetX + offsetX * (i % 2) * 0.5;
+
       if (i % 2) {
-        let y = offsetCol + offsetY * i;
-        this.walls.push(new ShapeWall(0 , y, vertices));
-        this.walls.push(new ShapeWall(width , y, vertices));
-        if (cols-i <=1) {
-          this.walls.push(new SquareWall(0, height-(height-y)*0.5, offsetX, height-y ));
-          this.walls.push(new SquareWall(width, height-(height-y)*0.5,  offsetX, height-y));
+        let y = offsetYAbs + offsetY * i;
+        this.walls.push(new ShapeWall(0, y, vertices));
+        this.walls.push(new ShapeWall(width, y, vertices));
+        if (cols - i <= 2) {
+          this.walls.push(new SquareWall(0, height - (height - y) * 0.5, offsetX, height - y));
+          this.walls.push(new SquareWall(width, height - (height - y) * 0.5, offsetX, height - y));
         }
       }
 
-
       for (let j = 0; j < counter; j++) {
         let x = offsetRow + offsetX * j;
-        let y = offsetCol + offsetY * i;
+        let y = offsetYAbs + offsetY * i;
         this.walls.push(new circleWall(x, y));
       }
+
     }
 
-    let wallLeft = new SquareWall(0, height/2, 4, height);
-    let wallRight = new SquareWall(width, height/2, 4, height);
-    let wallTop = new SquareWall(width/2, 0, width, 4);
-    let wallBottom = new SquareWall(width/2, height, width, 4);
+    //Borders
+    let wallLeft = new SquareWall(0, height * 0.5, 2, height);
+    let wallRight = new SquareWall(width, height * 0.5, 2, height);
+    let wallTop = new SquareWall(width * 0.5, 0, width, 2);
+    let wallBottom = new SquareWall(width * 0.5, height, width, 2);
     this.walls.push(wallLeft);
     this.walls.push(wallRight);
     this.walls.push(wallTop);
     this.walls.push(wallBottom);
 
+    //Checkers
     for (let i = 1; i <= rows; i++) {
       let left = i == 1 ? false : true;
       let right = i == rows ? false : true;
-      this.walls.push(new Checker(offsetX* i,height-height*0.05, offsetX, height * 0.1, left, right));
+      this.walls.push(new Checker(offsetX * i, height * 0.95, offsetX, height * 0.1, left, right));
     }
 
   }
 
   addBall(x, y) {
-    let ball = new Ball(x, y);
-    this.balls.push(ball);
+    if (y < height * 0.15) {
+      let ball = new Ball(x, y);
+      this.balls.push(ball);
+    }
   }
 
   step() {
@@ -225,7 +230,10 @@ class Plinko {
   }
 
   draw() {
-    ctx.clearRect(0, 0, width, height);
+    ctx.globalAlpha = 0.6;
+    ctx.fillStyle = "#A8DADC";
+    ctx.fillRect(0, 0, width, height);
+    ctx.globalAlpha = 1;
     for (let wall of this.walls) {
       wall.draw();
     }
