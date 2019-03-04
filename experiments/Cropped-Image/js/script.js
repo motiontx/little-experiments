@@ -21,7 +21,7 @@ let divisionsY = 50;
 let divisionsX = 50;
 
 let image = new Image();
-image.src = "../assets/example.png";
+image.src = "assets/example.png";
 image.onload = () => load();
 
 // --------------------------------------------------------------------
