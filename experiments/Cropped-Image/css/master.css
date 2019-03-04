@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   box-sizing: border-box;
 }
@@ -7,7 +7,7 @@ body {
   font-family: monospace;
 }
 
-.header{
+.header {
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -18,7 +18,7 @@ body {
   background-size: 16px 16px;
 }
 
-.app{
+.app {
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -29,8 +29,7 @@ body {
 }
 
 /*----------- Header -----------*/
-
-.title_section{
+.title_section {
   width: 30%;
   display: flex;
   flex-direction: column;
@@ -38,27 +37,26 @@ body {
   align-items: flex-end;
 }
 
-.video{
+.video {
   width: 30%;
   line-height: 1.2;
   border-radius: 1rem;
 }
 
-.title{
+.title {
   text-align: center;
   font-size: 3.4rem;
   font-weight: 600;
   color: #028090;
-
 }
-.subtitle{
+
+.subtitle {
   font-size: 1.4rem;
   font-weight: 100;
 }
 
 /*----------- App -----------*/
-
-.canvas_container{
+.canvas_container {
   width: 40%;
   height: 80vh;
   display: flex;
@@ -67,7 +65,7 @@ body {
   align-items: center;
 }
 
-.config{
+.config {
   width: 40%;
   height: 80vh;
   display: flex;
@@ -76,7 +74,6 @@ body {
   align-items: flex-start;
 }
 
-
 #canvas {
   max-width: 100%;
   max-height: 100%;
@@ -84,14 +81,14 @@ body {
   box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.6);
 }
 
-.title_settings{
+.title_settings {
   font-size: 2.4rem;
   font-weight: 600;
   color: #114B5F;
   padding-left: 1rem;
 }
 
-.options{
+.options {
   flex-grow: 100;
   width: 100%;
   padding: 5rem;
@@ -103,18 +100,19 @@ body {
   border-radius: 1rem;
 }
 
-.buttons{
+.buttons {
+  width: 90%;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-flow: row wrap;
   align-items: center;
+  justify-content: center;
 }
 
-#imageInput{
+#imageInput {
   display: none;
 }
 
-.button{
+.button {
   padding: 10px;
   border: none;
   border-radius: 5px;
@@ -127,11 +125,11 @@ body {
   box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.6);
 }
 
-.button:hover{
+.button:hover {
   background: #116B7C;
 }
 
-.slider_title{
+.slider_title {
   font-size: 1.2rem;
   padding-left: 0.5rem;
 }
@@ -157,7 +155,7 @@ body {
 
 .slider-range::-webkit-slider-thumb {
   -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -179,16 +177,18 @@ body {
 .slider-range:active::-webkit-slider-thumb {
   background: #F45B69;
 }
+
 .slider-range:active::-moz-range-thumb {
   background: #F45B69;
 }
+
 .slider-range::-webkit-slider-thumb:hover {
   background: #F45B69;
 }
+
 .slider-range::-moz-range-thumb:hover {
   background: #F45B69;
 }
-
 
 .slider-value {
   font-size: 1.2rem;
@@ -201,7 +201,6 @@ body {
   padding: 5px 10px;
 }
 
-
 ::-moz-range-track {
   background: #E0FCF8;
   border: 0;
@@ -213,57 +212,51 @@ input::-moz-focus-outer {
 }
 
 /*----------- Media Query -----------*/
-
 @media (max-width: 1365px) {
-  .app{
+  .app {
     flex-direction: column;
   }
 
-  .header{
+  .header {
     flex-direction: column;
   }
 
-  .title_section{
+  .title_section {
     width: 80%;
     height: 40vh;
     align-items: center;
   }
 
-  .video{
+  .video {
     width: auto;
     height: 40vh;
   }
 
-  .canvas_container{
+  .canvas_container {
     width: 80vw;
     height: 30vh;
   }
 
-  .config{
+  .config {
     width: 80vw;
     height: 60vh;
   }
 
-  .options{
+  .options {
     padding: 0;
-  }
-
-  .buttons{
-    flex-direction: column;
   }
 
 }
 
-
 @media (max-width: 479px) {
-  .title_settings{
+  .title_settings {
     font-size: 1.6rem;
     font-weight: 600;
     color: #114B5F;
     padding-left: 0.2rem;
   }
 
-  .slider_title{
+  .slider_title {
     font-size: 0.8rem;
     padding-left: 0.1rem;
   }
