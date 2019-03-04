@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+  <title>Cropped Image</title>
+  <!-- CSS files-->
+  <link rel="stylesheet" href="css/master.css">
+</head>
+
+<body>
+  <div class="content">
+
+    <div class="header">
+      <div class="title_section">
+        <h1 class="title">Cropped Image</h1>
+        <h2 class="subtitle">Based on:</h2>
+      </div>
+      <video class="video" autoplay controls>
+      <source src="assets/video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="app">
+        <div class="canvas_container">
+          <canvas id="canvas"></canvas>
+        </div>
+      <div class="config">
+        <h3 class="title_settings">Settings</h1>
+        <div class="options">
+            <div class="slider">
+              <p class="slider_title">Horizontal divisions: </p>
+              <input id="sliderH" class="slider-range" type="range" value="50" min="2" max="400" step="1">
+              <span id="sliderValueH" class="slider-value">50</span>
+            </div>
+            <div class="slider">
+              <p class="slider_title">Vertical divisions: </p>
+              <input id="sliderV" class="slider-range" type="range" value="50" min="2" max="400" step="1">
+              <span id="sliderValueV" class="slider-value">50</span>
+            </div>
+          <div class="buttons">
+            <input id="imageInput" type="file">
+            <span id='imageInput_button' class="button">Select File</span>
+            <div>
+              <button class="button" type="button" name="button" onclick="reset()">Reset</button>
+              <button class="button" type="button" name="button" onclick="crop()">Crop</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <!-- JavaScript files-->
+  <script src="js/script.js" charset="utf-8"></script>
+</body>
+
+</html>
