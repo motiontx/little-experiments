@@ -19,9 +19,10 @@ class Vector {
   };
 
   static mult(vec, n) {
-    vec.x *= n;
-    vec.y *= n;
-    return vec;
+    let vector = new  Vector(0,0);
+    vector.add(vec);
+    vector.mult(n);
+    return vector;
   };
 
   add(vec) {

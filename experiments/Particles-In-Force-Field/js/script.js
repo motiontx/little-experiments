@@ -55,7 +55,7 @@ class Particle {
     let speedY = 2 * Math.sin(angle);
     this.velocity = new Vector(speedX, speedY);
     this.aceleration = new Vector(0, 0);
-    this.radius = Math.random() * 10 + 5;
+    this.radius = Math.random() * 8 + 1;
     this.radius2 = 0;
     this.color = randomColor();
   }
@@ -136,7 +136,7 @@ class ParticleSystem {
 let system;
 
 function reset() {
-  let particles = Math.floor((width * height) / 8000);
+  let particles = Math.floor((width * height) / 6000);
   system = new ParticleSystem(particles);
 }
 
