@@ -25,22 +25,15 @@ body{
   text-align: center;
   font-size: 3.5rem;
   color: white;
-  height: 480px;
-  margin: 1rem;
+  height: 400px;
+  margin-left: 1rem;
 }
 
 #canvas_container{
   width: 640px;
-  height: 480px;
+  height: 400px;
   background-color: white;
-  border-radius: 1rem;
-  overflow: hidden;
-}
-
-#canvasMap_container{
-  margin-right: 1rem;
-  background-color: white;
-  border-radius: 1rem;
+  border-radius: 0.3rem;
   overflow: hidden;
 }
 
@@ -50,14 +43,8 @@ body{
 }
 
 #canvasMap{
-  width: 220px;
-  height: 220px;
-}
-
-.info{
-  box-sizing: border-box;
-  height: 480px;
-  background: #efefef;
-  margin: 1rem;
-  padding: 1rem;
+  margin-right: 1rem;
+  background-color: white;
+  border-radius: 0.3rem;
+  overflow: hidden;
 }
