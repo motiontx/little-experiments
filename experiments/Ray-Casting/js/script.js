@@ -130,7 +130,7 @@ let tileSize = 64;
 let player = {
   x: 640,
   y: 416,
-  angle: radians(270),
+  angle: radians(0),
   velocity: 3,
 }
 
