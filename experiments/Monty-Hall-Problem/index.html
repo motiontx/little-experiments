@@ -10,22 +10,30 @@
 </head>
 
 <body>
+  <div class="options">
+    <button class="button" type="button" name="button" onclick="game.reset()">Reset</button>
+    <button class="button" type="button" name="button" onclick="game.fullReset()">Full Reset</button>
+    <p>Intentos: <span id="i"> </span></p>
+    <p>Porcentaje de intentos ganados: <span id="p"> </span></p>
+    <p id="wol" ></p>
+  </div>
   <div class="doors">
     <div id="door_1" class="wrapper">
       <div class="door"></div>
-      <div class="bg"></div>
+      <div class="bg"><img class="image" id="door_1_img" src=""></div>
     </div>
     <div id="door_2" class="wrapper">
       <div class="door"></div>
-      <div class="bg"></div>
+      <div class="bg"><img class="image" id="door_2_img" src=""></div>
     </div>
     <div id="door_3" class="wrapper">
       <div class="door"></div>
-      <div class="bg"></div>
+      <div class="bg">  <img class="image" id="door_3_img" src=""></div>
     </div>
-
-
   </div>
+  <footer class="footer">
+    <p>Attribution of images: <a href="http://www.freepik.com">Designed by Freepik</a></p>
+  </footer>
   <!-- JavaScript files-->
   <script src="js/script.js" charset="utf-8"></script>
 </body>
