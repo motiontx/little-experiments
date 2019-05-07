@@ -20,7 +20,7 @@ window.addEventListener('resize', function() {
 // --------------------------------------------------------------------
 
 const colors = ["#E6207C", "#6DED4A", "#3518F2", "#03051C", "#8367C7", "#7218FF", "#F9C80E", "#F86624", "#87F7D2", "#FFFFFF"];
-randomColor = () => colors[Math.floor(Math.random() * colors.length)];
+const randomColor = () => colors[Math.floor(Math.random() * colors.length)];
 
 document.addEventListener('mousemove', (e) => {
   let mouseX = e.pageX - offSetLeft;
@@ -33,17 +33,6 @@ canvas.addEventListener('mousedown', () => {
 canvas.addEventListener('mouseup', () => {
   system.forceFieldActive = false;
 });
-
-function distanceBetween(p1, p2) {
-  let dx = p2.x - p1.x;
-  let dy = p2.y - p1.y;
-  return Math.sqrt(dx * dx + dy * dy);
-}
-
-function limit(number, limit) {
-  number = number > limit ? limit : number;
-  return number;
-}
 
 class Particle {
   constructor() {
@@ -94,7 +83,7 @@ class ParticleSystem {
     this.maxForce = 0.05;
     this.forceFieldRadius = 200;
     this.particles = [];
-    for (var i = 0; i < particles; i++) {
+    for (let i = 0; i < particles; i++) {
       this.particles.push(new Particle);
     }
   }
