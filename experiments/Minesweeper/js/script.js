@@ -1,3 +1,7 @@
+// ----------------------------------------------------------------- //
+// ------------- ►►► </> with ♥ by Vittorio Retrivi ◄◄◄ ------------ //
+// ----------------------------------------------------------------- //
+
 document.addEventListener('contextmenu', (e) => e.preventDefault());
 
 const width_input = document.getElementById('width_input');

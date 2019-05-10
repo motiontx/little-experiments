@@ -8,6 +8,11 @@ let offSetTop = canvas.offsetTop;
 let width = canvas.width = canvas_container.clientWidth;
 let height = canvas.height = canvas_container.clientHeight;
 
+const colors = ["#E6207C", "#6DED4A", "#3518F2", "#03051C", "#8367C7", "#7218FF", "#F9C80E", "#F86624", "#87F7D2", "#FFFFFF"];
+const randomColor = () => colors[Math.floor(Math.random() * colors.length)];
+
+let system;
+
 window.addEventListener('resize', function() {
   offSetLeft = canvas.offsetLeft;
   offSetTop = canvas.offsetTop;
@@ -18,9 +23,6 @@ window.addEventListener('resize', function() {
 });
 
 // --------------------------------------------------------------------
-
-const colors = ["#E6207C", "#6DED4A", "#3518F2", "#03051C", "#8367C7", "#7218FF", "#F9C80E", "#F86624", "#87F7D2", "#FFFFFF"];
-const randomColor = () => colors[Math.floor(Math.random() * colors.length)];
 
 document.addEventListener('mousemove', (e) => {
   let mouseX = e.pageX - offSetLeft;
@@ -115,14 +117,11 @@ class ParticleSystem {
   draw() {
     ctx.globalCompositeOperation = "lighter"
     ctx.clearRect(0, 0, width, height);
-    ctx.fillStyle = "#fff"
     for (let particle of this.particles) {
       particle.draw();
     }
   }
 }
-
-let system;
 
 function reset() {
   let particles = Math.floor((width * height) / 6000);
