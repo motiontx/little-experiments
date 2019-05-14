@@ -28,7 +28,7 @@ class Line {
   constructor(start, end) {
     this.start = start;
     this.end = end;
-  };
+  }
 
   graph() {
     ctx.beginPath();
@@ -36,7 +36,7 @@ class Line {
     ctx.lineTo(this.end.x, this.end.y);
     ctx.lineWidth = 2;
     ctx.stroke();
-  };
+  }
 
   children() {
     let children = [];
@@ -57,7 +57,7 @@ class Line {
 
     return children;
   }
-};
+}
 
 class KochCurve {
   constructor() {
