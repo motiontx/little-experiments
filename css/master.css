@@ -200,10 +200,12 @@ body{
 
 .star, .wip{
   border-radius: 50%;
-  width: 17px;
-  height: 17px;
+  width: 14px;
+  height: 14px;
   margin-bottom: 10px;
   margin-left: 3px;
+  padding: 2px;
+  color: white;
 }
 
 .star{
