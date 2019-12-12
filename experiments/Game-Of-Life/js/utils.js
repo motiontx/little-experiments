@@ -13,14 +13,33 @@ CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
   return this;
 }
 
-let newArray = (width, el) => {
+const newArray = (width, el) => {
     return Array(width).fill(el);
 }
 
-let newMatrix = (width, height, el) => {
+const newMatrix = (width, height, el) => {
   let matrix = [];
   for (let i = 0; i < height; i++) {
     matrix.push(newArray(width, el));
   }
   return matrix;
+}
+
+const optionsMenu = document.getElementById('options');
+
+const SaveSettings = () => {
+  dots = sizeInput.value;
+  fps = fpsInput.value;
+  bgColor = bgColorInput.value;
+  tileColor = tileColorInput.value;
+  reset();
+  closeOptions();
+}
+
+const openOptions = () => {
+  optionsMenu.classList.add('unfolded');
+}
+
+const closeOptions = () => {
+  optionsMenu.classList.remove('unfolded');
 }

@@ -36,8 +36,12 @@ body {
 .buttons{
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   margin: 1rem;
+}
+
+.tools, .state{
+  display: flex;
 }
 
 #canvas_container{
@@ -63,12 +67,117 @@ body {
   border-top-right-radius: 0.3rem;
 }
 
+.options{
+  position: absolute;
+  top: -100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, .95);;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  color: white;
+  transition: top 0.7s;
+}
+
+.options.unfolded{
+  top: 0;
+}
+
+
+.options-title{
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.options-save, .options-close{
+  font-size: 2rem;
+  border: none;
+  margin: 1rem;
+  background: none;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-family: monospace;
+  outline: none;
+  box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.6);
+}
+
+.options-save{
+  background: #116B7C;
+}
+
+.options-save:hover {
+  background: #114B5F;
+}
+
+.options-save:active {
+  background: #133e4d;
+}
+
+.options-close{
+  background: #F45B69;
+}
+
+.options-close:hover{
+  background: #be3845;
+}
+
+.options-close:active{
+  background: #ac2f3b;
+}
+
+.settings{
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid #114B5F;
+  border-radius: 1rem;
+  width: 70%;
+  max-width: 600px;
+}
+
+.setting{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.setting label{
+  font-size: 1.5rem;
+}
+
+.setting input{
+  font-size: 1.5rem;
+  border: none;
+  background: none;
+  color: white;
+  width: 4rem;
+}
+
+.setting input[type="color"] {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 1.8rem;
+  border-radius: 15%;
+  overflow: hidden;
+}
+
 .button{
   position: relative;
   margin-bottom: 1rem;
-  margin-left:  1rem;
-  width: 3rem;
-  height: 1.5rem;
+  margin-left:  0.3rem;
+  margin-right:  0.3rem;
+  width: 4rem;
+  height: 2rem;
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
@@ -83,10 +192,10 @@ body {
               0 8px 0 1px rgba(0,0,0,.4),
               0 8px 8px 1px rgba(0,0,0,0.5);
   font-weight: 800;
-  font-size: 10px;
+  font-size: 0.7rem;
 }
 
-.button:active{
+.button:active, .button.selected{
   top: 9px;
   background-color: #D19ECB;
   box-shadow: 0 0 0 1px #cb99c5 inset,
@@ -111,11 +220,36 @@ body {
 
 @media (max-width: 479px) {
 
-  .button{
+  .options-title{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .setting label{
+    font-size: 1rem;
+  }
+
+  .setting input{
+    font-size: 1rem;
+  }
+
+  .options-save, .options-close{
+    font-size: 1rem;
+    padding: 7px;
+  }
+
+  .buttons{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tools button{
+    margin-top: 1rem;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    margin-bottom: 4rem;
     width: 5rem;
-    height: 2.5rem;
-    margin: 0.4rem 0.6rem;
-    font-size: 0.7rem;
+    height: 3rem;
   }
 
   .firm {

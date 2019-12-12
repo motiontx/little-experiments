@@ -11,12 +11,44 @@
 
 <body>
   <div class="content">
+    <div id="options" class="options">
+      <p class="options-title">Settings</p>
+      <div class="settings">
+        <div class="setting">
+          <label for="size">Size:</label>
+          <input id="sizeInput" type="number" name="size" value="30">
+        </div>
+        <div class="setting">
+          <label for="fps">Frames Per Second:</label>
+          <input id="fpsInput" type="number" name="fps" value="30">
+        </div>
+        <div class="setting">
+          <label for="bg-color">Background Color:</label>
+          <input id="bgColorInput" type="color" name="bg-color" value="#ffffff">
+        </div>
+        <div class="setting">
+          <label for="tile-color">Tile Color:</label>
+          <input id="tileColorInput" type="color" name="tile-color" value="#000000">
+        </div>
+      </div>
+      <div class="">
+        <button class="options-save" type="button" name="save" onclick="SaveSettings()">Save</button>
+        <button class="options-close" type="button" name="close" onclick="closeOptions()">Close</button>
+      </div>
+    </div>
     <div id="canvas_container">
       <canvas id="canvas"></canvas>
     </div>
     <div class="buttons">
-      <button class="button" type="button" name="reset" onclick="playPause()">Play</button>
-      <button class="button" type="button" name="reset" onclick="reset()">Reset</button>
+      <div class="tools">
+        <button id="draw" class="button selected" type="button" name="draw" onclick="setToDraw()">Draw</button>
+        <button id="erase" class="button" type="button" name="erase" onclick="setToErase()">Erase</button>
+      </div>
+      <div class="state">
+        <button id="playPauseButton" class="button" type="button" name="playPause" onclick="playPause()">Play</button>
+        <button class="button" type="button" name="reset" onclick="reset()">Reset</button>
+        <button class="button" type="button" name="openOptions" onclick="openOptions()">Settings</button>
+      </div>
     </div>
     <p class="firm">Made with <span class="heart">♥</span> by Vittorio Retrivi</p>
   </div>
