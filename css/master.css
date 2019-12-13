@@ -79,6 +79,10 @@ body{
   align-items: center;
 }
 
+.link:hover{
+  font-style: italic;
+}
+
 .link::before, .link::after {
   content: "♦";
   display: flex;

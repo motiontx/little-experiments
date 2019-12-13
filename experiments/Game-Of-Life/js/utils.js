@@ -28,8 +28,8 @@ const newMatrix = (width, height, el) => {
 const optionsMenu = document.getElementById('options');
 
 const SaveSettings = () => {
-  dots = sizeInput.value;
-  fps = fpsInput.value;
+  dots = parseInt(sizeInput.value);
+  fps = parseInt(fpsInput.value);
   bgColor = bgColorInput.value;
   tileColor = tileColorInput.value;
   reset();

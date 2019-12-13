@@ -4,9 +4,9 @@ class Game {
 
   constructor(width, height) {
     this.running = false;
-    this.width = width;
-    this.height = height;
-    this.current = newMatrix(width, height, false);
+    this.width = parseInt(width);
+    this.height = parseInt(height);
+    this.current = newMatrix(this.width, this.height, false);
   }
 
   setRunningState(state) {

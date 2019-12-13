@@ -26,29 +26,25 @@ body {
   font-family: monospace;
 }
 
-.content{
+.content {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.buttons{
+.buttons {
   width: 100%;
   display: flex;
   justify-content: space-between;
   margin: 1rem;
 }
 
-.tools, .state{
+.tools, .state {
   display: flex;
 }
 
-#canvas_container{
-  width: 90vw;
-  height: 90vw;
-  max-width: 800px;
-  max-height: 800px;
+#canvas_container {
   background: #fff;
   border-radius: 4px;
   border: 1.5px solid #37353f;
@@ -56,43 +52,32 @@ body {
   overflow: hidden;
 }
 
-#canvas_container::after{
-  content: "Game Of Life";
-  position: relative;
-  padding: 0.3rem;
-  top: -1.70rem;
-  font-size: 1rem;
-  font-style: italic;
-  background-color: rgba(189, 142, 183, .5);
-  border-top-right-radius: 0.3rem;
-}
-
-.options{
+.options {
   position: absolute;
-  top: -100%;
+  top: -120%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, .95);;
+  background-color: rgba(0, 0, 0, .95);
   width: 100%;
   height: 100%;
   z-index: 100;
   color: white;
-  transition: top 0.7s;
+  transition: top 1.2s;
+  box-shadow: 0px 10px 50px -5px rgba(0, 0, 0, 0.6);
 }
 
-.options.unfolded{
+.options.unfolded {
   top: 0;
 }
 
-
-.options-title{
+.options-title {
   font-size: 3rem;
   margin-bottom: 1.5rem;
 }
 
-.options-save, .options-close{
+.options-save, .options-close {
   font-size: 2rem;
   border: none;
   margin: 1rem;
@@ -107,7 +92,7 @@ body {
   box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.6);
 }
 
-.options-save{
+.options-save {
   background: #116B7C;
 }
 
@@ -119,19 +104,19 @@ body {
   background: #133e4d;
 }
 
-.options-close{
+.options-close {
   background: #F45B69;
 }
 
-.options-close:hover{
+.options-close:hover {
   background: #be3845;
 }
 
-.options-close:active{
+.options-close:active {
   background: #ac2f3b;
 }
 
-.settings{
+.settings {
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -143,7 +128,7 @@ body {
   max-width: 600px;
 }
 
-.setting{
+.setting {
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -151,11 +136,11 @@ body {
   margin-bottom: 1rem;
 }
 
-.setting label{
+.setting label {
   font-size: 1.5rem;
 }
 
-.setting input{
+.setting input {
   font-size: 1.5rem;
   border: none;
   background: none;
@@ -167,15 +152,16 @@ body {
   width: 2rem;
   height: 2rem;
   margin-right: 1.8rem;
-  border-radius: 15%;
+  border-radius: 5%;
   overflow: hidden;
+  background-color: #114B5F;
 }
 
-.button{
+.button {
   position: relative;
   margin-bottom: 1rem;
-  margin-left:  0.3rem;
-  margin-right:  0.3rem;
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
   width: 4rem;
   height: 2rem;
   border: none;
@@ -187,20 +173,20 @@ body {
   font-family: monospace;
   background-color: #cb99c5;
   box-shadow: 0 0 0 1px #cb99c5 inset,
-              0 0 0 2px rgba(255,255,255,0.15) inset,
-              0 8px 0 0 rgba(189, 142, 183, .7),
-              0 8px 0 1px rgba(0,0,0,.4),
-              0 8px 8px 1px rgba(0,0,0,0.5);
+    0 0 0 2px rgba(255, 255, 255, 0.15) inset,
+    0 8px 0 0 rgba(189, 142, 183, .7),
+    0 8px 0 1px rgba(0, 0, 0, .4),
+    0 8px 8px 1px rgba(0, 0, 0, 0.5);
   font-weight: 800;
   font-size: 0.7rem;
 }
 
-.button:active, .button.selected{
+.button:active, .button.selected {
   top: 9px;
   background-color: #D19ECB;
   box-shadow: 0 0 0 1px #cb99c5 inset,
-              0 0 0 2px rgba(255,255,255,0.15) inset,
-              0 0 0 1px rgba(0,0,0,0.4);
+    0 0 0 2px rgba(255, 255, 255, 0.15) inset,
+    0 0 0 1px rgba(0, 0, 0, 0.4);
 }
 
 /*----------- Firm -----------*/
@@ -217,48 +203,45 @@ body {
   color: #ff1493;
 }
 
-
 @media (max-width: 479px) {
-
-  .options-title{
+  .options-title {
     font-size: 2rem;
     margin-bottom: 1rem;
   }
 
-  .setting label{
+  .setting label {
     font-size: 1rem;
   }
 
-  .setting input{
+  .setting input {
     font-size: 1rem;
   }
 
-  .options-save, .options-close{
+  .options-save, .options-close {
     font-size: 1rem;
     padding: 7px;
   }
 
-  .buttons{
+  .buttons {
     flex-direction: column;
     align-items: center;
   }
 
-  .tools button{
+  .tools button {
     margin-top: 1rem;
     margin-left: 1.5rem;
     margin-right: 1.5rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
     width: 5rem;
-    height: 3rem;
+    height: 2.5rem;
   }
 
   .firm {
     font-size: 10px;
   }
-
 }
 
-@media (max-height: 400px) {
+@media (max-height: 768px) {
   .firm {
     display: none;
   }

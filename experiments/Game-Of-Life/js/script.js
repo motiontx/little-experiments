@@ -26,7 +26,6 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const canvas_container = document.getElementById("canvas_container");
 
-
 const playPause = () => {
   running ? pause() : play();
 }
@@ -42,11 +41,15 @@ const pause = () => {
 }
 
 const resetCanvas = () => {
+  let cw = document.body.clientWidth;
+  let ch = document.body.clientHeight;
+  let canvasSize = (cw < ch ? cw : ch ) *0.9;
+  if (canvasSize > ch-150) canvasSize -= (canvasSize - (ch-150))
+  width = canvas.width = canvasSize;
+  height = canvas.height = canvasSize;
   offSetLeft = canvas.offsetLeft;
   offSetTop = canvas.offsetTop;
-  width = canvas.width = canvas_container.clientWidth;
-  height = canvas.height = canvas_container.clientHeight;
-  size = width / dots;
+  size = canvasSize / dots;
 }
 
 const reset = () => {
@@ -54,8 +57,6 @@ const reset = () => {
   resetCanvas();
 }
 reset();
-
-
 
 window.addEventListener('resize', function() {resetCanvas()});
 document.oncontextmenu = () => false;
@@ -150,7 +151,7 @@ const clearCanvas = () =>{
 
 const loop = () => {
   setTimeout(() => {
-    requestAnimationFrame(loop);
+    loop();
     game.step();
   }, 1000 / fps);
 }
