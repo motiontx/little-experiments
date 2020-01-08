@@ -17,6 +17,9 @@ window.addEventListener('resize', function() {
 
 // --------------------------------------------------------------------
 
+let color = "black";
+let lineWidth = 5;
+
 let DefaultPos = {x:0, y:0};
 
 // Mouse
@@ -45,9 +48,9 @@ function draw(e, touch){
   if(!touch && (e.buttons !== 1)) return;
 
 	ctx.beginPath();
-  ctx.lineWidth = 5;
+  ctx.lineWidth = lineWidth;
   ctx.lineCap = 'round';
-  ctx.strokeStyle = "black";
+  ctx.strokeStyle = color;
 
   ctx.moveTo(DefaultPos.x, DefaultPos.y);
 

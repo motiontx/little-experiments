@@ -6,16 +6,98 @@ html, body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: monospace;
 }
 
 #canvas_container {
   width: 100%;
   height: 100%;
-  background: #efefef;
+  background: #EDF2F4;
   overflow: hidden;
 }
 
 #canvas {
   width: 100%;
   height: 100%;
+}
+
+.tools{
+  background-color: #03444A;
+  padding: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+  z-index: 100;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.tool{
+  position: relative;
+  border-radius: 0.5rem;
+  margin: 0.5rem;
+  width: 50px;
+  height: 50px;
+  background-color: #00A9A8;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.speech-bubble {
+	position: relative;
+  top: -72px;
+	background: #03444A;
+	border-radius: .4em;
+  padding: 0.3rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border: 0.625em solid transparent;
+	border-top-color: #03444A;
+	border-bottom: 0;
+	margin-left: -0.625em;
+	margin-bottom: -0.625em;
+}
+
+.speech-bubble > button {
+  margin: 0.3rem;
+  border-radius: 0.3rem;
+  width: 25px;
+  height: 25px;
+  background-color: #F1BC52;
+  color: white;
+  border: none;
+}
+
+.speech-bubble > input {
+  margin: 0.3rem;
+  border-radius: 0.3rem;
+  width: 40px;
+  height: 25px;
+  padding-left: 0.5rem;
+  border: none;
+}
+
+.speech-bubble > input[type=color] {
+  padding: 0;
+  background: none;
+}
+
+.d-none{
+  display: none;
 }

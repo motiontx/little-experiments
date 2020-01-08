@@ -1,20 +1,42 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
 
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-    <title>Paint JS</title>
-    <!-- CSS files-->
-    <link rel="stylesheet" href="css/master.css">
-  </head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+  <title>Paint JS</title>
+  <!-- CSS files-->
+  <link rel="stylesheet" href="css/master.css">
+</head>
 
-  <body>
-    <div id="canvas_container">
-      <canvas id="canvas"></canvas>
+<body>
+  <div id="canvas_container">
+    <canvas id="canvas"></canvas>
+  </div>
+  <div class="tools">
+    <div class="tool" id="sizeButton">
+      <div class="speech-bubble" id="sizeBubble">
+        <button id="removeSize">-</button>
+        <input type="number" value="5" id="sizeInput" disabled>
+        <button id="addSize">+</button>
+      </div>
     </div>
-    <!-- JavaScript files-->
-    <script src="js/script.js" charset="utf-8"></script>
-  </body>
+    <div class="tool" id="colorButton">
+      <div class="speech-bubble" id="colorBubble">
+        <input type="color" id="colorInput">
+      </div>
+    </div>
+    <div class="tool" id="toolButton">
+      <div class="speech-bubble" id="toolBubble">
+        <button>W</button>
+        <button>I</button>
+        <button>P</button>
+      </div>
+    </div>
+  </div>
+  <!-- JavaScript files-->
+  <script src="js/script.js" charset="utf-8"></script>
+  <script src="js/controls.js" charset="utf-8"></script>
+</body>
 
 </html>
