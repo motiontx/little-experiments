@@ -29,30 +29,44 @@
     <div class="content">
       <h1 class="title">Little Experiments</h1>
       <div class="experiments">
-        <p onclick="setExperiment('10-PRINT')" class="link"> 10 PRINT </p>
-        <p onclick="setExperiment('Barnsley-Fern')" class="link"> Barnsley Fern </p>
-        <p onclick="setExperiment('Cantor-Set')" class="link"> Cantor Set </p>
-        <p onclick="setExperiment('Canvas')" class="link"> Canvas </p>
-        <p onclick="setExperiment('Chaos-Game')" class="link"> Chaos Game </p>
-        <p onclick="setExperiment('Clock-Of-Clocks')" class="link"> Clock Of Clocks </p>
-        <p onclick="setExperiment('Cropped-Image')" class="link"> Cropped Image </p>
-        <p onclick="setExperiment('Diffusion-Limited-Aggregation')" class="link"> Diffusion Limited Aggregation </p>
-        <p onclick="setExperiment('Flappy-Bird')" class="link"> Flappy Bird </p>
-        <p onclick="setExperiment('Fluid-Simulation')" class="link"> Fluid Simulation <span class="wip"></span></p>
-        <p onclick="setExperiment('Fractal-Tree')" class="link"> Fractal Tree </p>
-        <p onclick="setExperiment('Game-Of-Life')" class="link"> Game Of Life <span class="star"></span></p>
-        <p onclick="setExperiment('Isometric-Snake')" class="link"> Isometric Snake </p>
-        <p onclick="setExperiment('Koch-Curve')" class="link"> Koch Curve </p>
-        <p onclick="setExperiment('Lorenz-Attractor')" class="link"> Lorenz Attractor </p>
-        <p onclick="setExperiment('Minesweeper')" class="link"> Minesweeper <span class="star"></span></p>
-        <p onclick="setExperiment('Moving-Particles')" class="link"> Moving Particles </p>
-        <p onclick="setExperiment('Paint-JS')" class="link"> Paint JS <span class="wip"></span></p>
-        <p onclick="setExperiment('Particles-In-Force-Field')" class="link"> Particles In Force Field </p>
-        <p onclick="setExperiment('Phyllotaxis')" class="link"> Phyllotaxis </p>
-        <p onclick="setExperiment('Piano')" class="link"> Piano <span class="star"></span></p>
-        <p onclick="setExperiment('Plinko')" class="link"> Plinko </p>
-        <p onclick="setExperiment('Ray-Casting')" class="link"> Ray Casting <span class="wip"></span></p>
-        <p onclick="setExperiment('Sliding-Puzzle')" class="link"> Sliding Puzzle <span class="wip"></span></p>
+        <div class="categories">
+          <label class="container" onclick="updateCategories()">
+            <input type="checkbox" id="star-input" checked>
+            <span class="category c-star"></span>
+          </label>
+          <label class="container" onclick="updateCategories()">
+            <input type="checkbox" id="wip-input" checked>
+            <span class="category c-wip"></span>
+          </label>
+          <label class="container" onclick="updateCategories()">
+            <input type="checkbox" id="others-input" checked>
+            <span class="category c-others"></span>
+          </label>
+        </div>
+        <p onclick="setExperiment('10-PRINT')" class="link others-link"> 10 PRINT </p>
+        <p onclick="setExperiment('Barnsley-Fern')" class="link others-link"> Barnsley Fern </p>
+        <p onclick="setExperiment('Cantor-Set')" class="link others-link"> Cantor Set </p>
+        <p onclick="setExperiment('Canvas')" class="link others-link"> Canvas </p>
+        <p onclick="setExperiment('Chaos-Game')" class="link others-link"> Chaos Game </p>
+        <p onclick="setExperiment('Clock-Of-Clocks')" class="link others-link"> Clock Of Clocks </p>
+        <p onclick="setExperiment('Cropped-Image')" class="link others-link"> Cropped Image </p>
+        <p onclick="setExperiment('Diffusion-Limited-Aggregation')" class="link others-link"> Diffusion Limited Aggregation </p>
+        <p onclick="setExperiment('Flappy-Bird')" class="link others-link"> Flappy Bird </p>
+        <p onclick="setExperiment('Fluid-Simulation')" class="link wip-link"> Fluid Simulation <span class="wip"></span></p>
+        <p onclick="setExperiment('Fractal-Tree')" class="link others-link"> Fractal Tree </p>
+        <p onclick="setExperiment('Game-Of-Life')" class="link star-link"> Game Of Life <span class="star"></span></p>
+        <p onclick="setExperiment('Isometric-Snake')" class="link others-link"> Isometric Snake </p>
+        <p onclick="setExperiment('Koch-Curve')" class="link others-link"> Koch Curve </p>
+        <p onclick="setExperiment('Lorenz-Attractor')" class="link others-link"> Lorenz Attractor </p>
+        <p onclick="setExperiment('Minesweeper')" class="link star-link"> Minesweeper <span class="star"></span></p>
+        <p onclick="setExperiment('Moving-Particles')" class="link others-link"> Moving Particles </p>
+        <p onclick="setExperiment('Paint-JS')" class="link wip-link"> Paint JS <span class="wip"></span></p>
+        <p onclick="setExperiment('Particles-In-Force-Field')" class="link others-link"> Particles In Force Field </p>
+        <p onclick="setExperiment('Phyllotaxis')" class="link others-link"> Phyllotaxis </p>
+        <p onclick="setExperiment('Piano')" class="link star-link"> Piano <span class="star"></span></p>
+        <p onclick="setExperiment('Plinko')" class="link others-link"> Plinko </p>
+        <p onclick="setExperiment('Ray-Casting')" class="link wip-link"> Ray Casting <span class="wip"></span></p>
+        <p onclick="setExperiment('Sliding-Puzzle')" class="link wip-link"> Sliding Puzzle <span class="wip"></span></p>
       </div>
     </div>
   </div>
