@@ -54,4 +54,4 @@
 
 ---
 
-<p style="text-align:right">Made with <span style="color: #ff1493">♥</span> by <span style="font-weight: bold">Vittorio Retrivi</span></p>
+Made with ♥ by Vittorio Retrivi
