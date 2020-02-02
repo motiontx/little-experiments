@@ -62,13 +62,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  border: 1px solid #03BB85;
   border-collapse: separate;
   border-radius: 3%;
   box-sizing: border-box;
   background-color: #eee;
+  background-size: cover;
   transition: all 0.2s;
-
 }
 
 /*----------- Top Bar -----------*/
@@ -159,4 +159,8 @@ body {
   background: #aaa;
   border-bottom-width: 0;
   top: 5px;
+}
+
+.d-none{
+  display: none;
 }
