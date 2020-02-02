@@ -19,7 +19,8 @@ class Game {
     this.matrix = [];
     this.boardPieces;
     this.image = new Image();
-    this.image.src = "../assets/photo.jpg"
+    this.image.src = "~/../assets/photo.jpg"
+
     this.image.onload = () => {
       game.showPhoto();
     }
@@ -102,9 +103,6 @@ class Game {
       reader.onload = function(e) {
         if (e.target.readyState == FileReader.DONE) {
           game.image.src = e.target.result;
-          game.image.onload = () => {
-            game.showPhoto();
-          }
         }
       }
     } else {
