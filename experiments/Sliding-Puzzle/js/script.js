@@ -16,13 +16,18 @@ class Game {
     this.size = 5;
     this.movements = 0;
     this.playing = false;
-
     this.matrix = [];
-    this.pieceBoards;
+    this.boardPieces;
+    this.image = new Image();
+    this.image.src = "../assets/photo.jpg"
+    this.image.onload = () => {
+      game.showPhoto();
+    }
 
     this.board = document.getElementById('pieces');
     this.boardMovements = document.getElementById('movements');
     this.boardTime = document.getElementById('timer');
+    this.photoCheckbox = document.getElementById('photoCheckbox');
 
     this.imageInput = document.getElementById('imageInput');
     this.imageInput.addEventListener('change', (el) => {
@@ -30,6 +35,13 @@ class Game {
     });
     document.getElementById('imageInputButton').addEventListener('click', (el) => {
       this.imageInput.click();
+    });
+    this.photoCheckbox.addEventListener('click', (el) => {
+      if (el.target.checked) {
+        this.showPhoto();
+      } else {
+        this.hidePhoto();
+      }
     });
 
     document.getElementById('reset').addEventListener('click', (el) => {
@@ -52,42 +64,76 @@ class Game {
 
     this.resetMatrix();
     this.resetBoard();
+
+    if (this.photoCheckbox.checked) {
+      this.showPhoto();
+    }
+
   }
 
   shuffle() {
     alert("todo")
   }
 
-  uploadPhoto(e){
+  showBoardPiecesNumbers() {
+    for (let row of this.boardPieces) {
+      for (let div of row) {
+        div.firstChild.classList.remove('d-none');
+      }
+    }
+  }
+
+  hideBoardPiecesNumbers() {
+    for (let row of this.boardPieces) {
+      for (let div of row) {
+        div.firstChild.classList.add('d-none');
+      }
+    }
+  }
+
+  uploadPhoto(e) {
     let files = e.target.files; // FileList object
     let file = files[0];
     if (file.type.match('image.*')) {
-      let pieceBoards = this.pieceBoards;
-      let gameSize = this.size;
+      let game = this;
       let reader = new FileReader();
       // Read in the image file as a data URL.
       reader.readAsDataURL(file);
       reader.onload = function(e) {
         if (e.target.readyState == FileReader.DONE) {
-          let image = new Image();
-          image.src = e.target.result;
-          image.onload = () => {
-            let size = image.width < image.height ? image.width : image.height;
-
-            size = Math.floor(size/gameSize);
-            console.log(size);
-            for (let i = 0; i < pieceBoards.length; i++) {
-              for (let j = 0; j < pieceBoards[i].length; j++) {
-                let div = pieceBoards[i][j];
-                div.style.backgroundImage='url(' + crop(image,j*size,i*size,size,size) + ')';
-              }
-            }
+          game.image.src = e.target.result;
+          game.image.onload = () => {
+            game.showPhoto();
           }
         }
       }
     } else {
       alert("not an image");
     }
+  }
+
+  showPhoto(){
+    this.hideBoardPiecesNumbers();
+    let size = this.image.width < this.image.height ? this.image.width : this.image.height;
+    size = Math.floor(size / this.size);
+    for (let i = 0; i < this.boardPieces.length; i++) {
+      for (let j = 0; j < this.boardPieces[i].length; j++) {
+        let div = this.boardPieces[i][j];
+        div.style.backgroundImage = 'url(' + crop(this.image, j * size, i * size, size, size) + ')';
+      }
+    }
+    this.photoCheckbox.checked = true;
+  }
+
+  hidePhoto() {
+    this.showBoardPiecesNumbers();
+    for (let i = 0; i < this.boardPieces.length; i++) {
+      for (let j = 0; j < this.boardPieces[i].length; j++) {
+        let div = this.boardPieces[i][j];
+        div.style.backgroundImage = '';
+      }
+    }
+    this.photoCheckbox.checked = false;
   }
 
   // Timer ----------------------------------------------------------- //
@@ -138,7 +184,7 @@ class Game {
 
     this.board.innerHTML = "";
     let pieceLength = 100 / this.size;
-    this.pieceBoards = [];
+    this.boardPieces = [];
     for (let i = 0; i < this.matrix.length; i++) {
 
       let row = [];
@@ -148,7 +194,15 @@ class Game {
         if (number != -1) {
 
           let div = document.createElement('div');
-          div.innerHTML = number;
+
+          let p = document.createElement('p');
+          p.className = "number";
+          p.innerHTML = number;
+          p.onclick = function() {
+            this.parentNode.click()
+          };
+          div.appendChild(p);
+
           div.className = "piece";
           div.style.width = div.style.height = `${pieceLength}%`
           div.style.top = `${i*pieceLength}%`;
@@ -160,13 +214,13 @@ class Game {
           div.addEventListener('click', (el) => {
             this.movePiece(el.target);
           });
+
           row.push(div);
           this.board.appendChild(div);
         }
       }
-      this.pieceBoards.push(row);
+      this.boardPieces.push(row);
     }
-
     this.updateBoardMovements();
   }
 

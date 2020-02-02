@@ -17,15 +17,18 @@
           <h1 class="title">Sliding Puzzle</h1>
           <div class="options">
             <div class="row-options">
+              <button type="button" class="button" id="shuffle">Shuffle</button>
               <div class="info">Movements: <span id="movements"></span></div>
               <div class="info">Time: <span id="timer"></span>s</div>
-
             </div>
             <div class="row-options">
-              <button type="button" class="button" id="imageInputButton">Upload Photo</button>
+                            <button type="button" class="button" id="reset">Reset</button>
               <input type="file" class="d-none" id="imageInput">
-              <button type="button" class="button" id="shuffle">Shuffle</button>
-              <button type="button" class="button" id="reset">Reset</button>
+              <button type="button" class="button" id="imageInputButton">Upload Photo</button>
+              <div class="checkboxDiv">
+                <input class="d-none" type="checkbox" id="photoCheckbox">
+                <label  class="button" for="photoCheckbox">Show Photo</label>
+              </div>
             </div>
           </div>
       </div>
