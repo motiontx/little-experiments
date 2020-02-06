@@ -11,7 +11,21 @@
 
 <body>
   <div class="content">
-
+    <div class="winScreen d-none" id="winScreen">
+      <div class="winData">
+        <h1 class="winText">You Win!</h1>
+        <div class="winInfo">
+          <div class="winButtons">
+          <button type="button" class="button" id="closeWinScreen">Exit</button>
+          <button type="button" class="button" id="winShuffle">Shuffle</button>
+          </div>
+          <div class="score">
+            <div class="info">Movements: <span id="winMovements"></span></div>
+            <div class="info">Time: <span id="winTime"></span>s</div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="game">
       <div class="topBar">
           <h1 class="title">Sliding Puzzle</h1>
@@ -22,12 +36,12 @@
               <div class="info">Time: <span id="timer"></span>s</div>
             </div>
             <div class="row-options">
-                            <button type="button" class="button" id="reset">Reset</button>
+              <button type="button" class="button" id="reset">Reset</button>
               <input type="file" class="d-none" id="imageInput">
               <button type="button" class="button" id="imageInputButton">Upload Photo</button>
               <div class="checkboxDiv">
                 <input class="d-none" type="checkbox" id="photoCheckbox">
-                <label  class="button" for="photoCheckbox">Show Photo</label>
+                <label  class="button" for="photoCheckbox" id="photoCheckboxLabel">Show Photo</label>
               </div>
             </div>
           </div>
