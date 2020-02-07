@@ -47,7 +47,7 @@ body {
   box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.8);
 }
 
-.pieces{
+.pieces {
   position: relative;
   overflow: hidden;
   border-radius: 6px;
@@ -57,7 +57,7 @@ body {
   height: 70vmin;
 }
 
-.piece{
+.piece {
   position: absolute;
   display: flex;
   justify-content: center;
@@ -93,6 +93,7 @@ body {
   border-bottom-width: 5px;
   display: none;
 }
+
 .winScreen {
   position: absolute;
   width: 100vw;
@@ -102,7 +103,8 @@ body {
   align-items: center;
   z-index: 100;
 }
-.winData{
+
+.winData {
   background: #03BB85;
   display: flex;
   flex-direction: column;
@@ -112,7 +114,8 @@ body {
   border-radius: 6px;
   border: 2px #02835D solid;
 }
-.winText{
+
+.winText {
   color: white;
   font-size: 5rem;
   background-color: #02835D;
@@ -123,35 +126,34 @@ body {
   border-bottom-width: 5px;
   margin: 0;
 }
-.winInfo{
+
+.winInfo {
   margin: 0.5rem;
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
 
-.score, .winButtons{
+.score, .winButtons {
   display: flex;
 }
 
-#closeWinScreen, #reset{
+#closeWinScreen, #reset {
   color: white;
   background: #bb0339;
 }
 
-#winShuffle, #shuffle{
+#winShuffle, #shuffle {
   color: white;
   background: #bb8503
 }
 
 #imageInputButton, #photoCheckboxLabel {
-    color: white;
+  color: white;
   background: #027653;
 }
 
-
 /*----------- Firm -----------*/
-
 .firm {
   position: absolute;
   bottom: 0;
@@ -166,7 +168,6 @@ body {
 }
 
 /*----------- Media Query -----------*/
-
 @media (max-height: 1079px) {
   .firm {
     display: none;
@@ -177,37 +178,41 @@ body {
   .winText {
     font-size: 2rem;
   }
-  .winInfo{
-   flex-direction: column;
-   align-items: center;
-   margin-bottom: 0;
+
+  .winInfo {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0;
   }
-  .winText{
+
+  .winText {
     text-align: center;
     width: 90%;
   }
-  .score, .winButtons{
+
+  .score, .winButtons {
     margin: 0.2rem;
   }
-  .winButtons{
+
+  .winButtons {
     order: 1;
     margin-bottom: 0;
   }
 }
 
-.options{
+.options {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
 }
 
-.row-options{
+.row-options {
   display: flex;
   margin-top: 3px;
 }
 
-.checkboxDiv{
+.checkboxDiv {
   display: flex;
 }
 
@@ -227,15 +232,14 @@ body {
 }
 
 .button:active, #photoCheckbox:checked+label {
-
   border-bottom-width: 0;
   top: 5px;
 }
 
-.number{
+.number {
   font-style: italic;
 }
 
-.d-none{
+.d-none {
   display: none;
 }
