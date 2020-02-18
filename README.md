@@ -21,13 +21,13 @@
 * 🌱 *Game Of Life* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Game-Of-Life)
 * 💣 *Minesweeper* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Minesweeper)
 * 🎹 *Piano* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Piano)
+* 🎮 *Sliding Puzzle* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Sliding-Puzzle)
 
 ### 🚧 Work in Progress 🚧
 
 * 💦 *Fluid Simulation* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Fluid-Simulation)
 * ✒️ *Paint JS* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Paint-JS)
 * ◻️ *Ray Casting* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Ray-Casting)
-* 🎮 *Sliding Puzzle* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Sliding-Puzzle)
 
 ### 🔶 Others 🔶
 

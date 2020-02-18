@@ -16,12 +16,12 @@
         <h1 class="winText">You Win!</h1>
         <div class="winInfo">
           <div class="winButtons">
-            <button type="button" class="button" id="closeWinScreen">Exit</button>
-            <button type="button" class="button" id="winShuffle">Shuffle</button>
+            <button type="button" class="button-win" id="closeWinScreen">Exit</button>
+            <button type="button" class="button-win" id="winShuffle">Shuffle</button>
           </div>
           <div class="score">
-            <div class="info">Movements: <span id="winMovements"></span></div>
-            <div class="info">Time: <span id="winTime"></span>s</div>
+            <div class="info-win">Movements: <span id="winMovements"></span></div>
+            <div class="info-win">Time: <span id="winTime"></span>s</div>
           </div>
         </div>
       </div>
@@ -31,17 +31,30 @@
         <h1 class="title">Sliding Puzzle</h1>
         <div class="options">
           <div class="row-options">
+            <button type="button" class="button" id="reset">Reset</button>
             <button type="button" class="button" id="shuffle">Shuffle</button>
             <div class="info">Movements: <span id="movements"></span></div>
             <div class="info">Time: <span id="timer"></span>s</div>
           </div>
           <div class="row-options">
-            <button type="button" class="button" id="reset">Reset</button>
-            <input type="file" class="d-none" id="imageInput">
-            <button type="button" class="button" id="imageInputButton">Upload Photo</button>
             <div class="checkboxDiv">
               <input class="d-none" type="checkbox" id="photoCheckbox">
               <label class="button" for="photoCheckbox" id="photoCheckboxLabel">Show Photo</label>
+            </div>
+            <input type="file" class="d-none" id="imageInput">
+            <button type="button" class="button" id="imageInputButton">Upload Photo</button>
+            <div class="button" id="difficultyDiv">
+              <label for="difficultyInput">Difficulty</label>
+              <select name="difficultyInput" id="difficultyInput">
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5" selected>5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
             </div>
           </div>
         </div>

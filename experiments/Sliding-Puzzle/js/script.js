@@ -15,10 +15,12 @@ Array.prototype.random = function() {
   return this[Math.floor(Math.random() * this.length)];
 }
 
+// ----------------------------------------------------------------- //
+
 class Game {
   constructor() {
     this.size = 5;
-    this.pieceLength = 100 / this.size;
+    this.pieceLength;
     this.movements = 0;
     this.time;
     this.timerActive = false;
@@ -41,8 +43,9 @@ class Game {
     this.winMovements = document.getElementById('winMovements');
     this.winTime = document.getElementById('winTime');
 
-    this.photoCheckbox = document.getElementById('photoCheckbox');
     this.winScreen = document.getElementById('winScreen');
+
+    this.photoCheckbox = document.getElementById('photoCheckbox');
 
     this.imageInput = document.getElementById('imageInput');
     this.imageInput.addEventListener('change', (el) => {
@@ -59,9 +62,15 @@ class Game {
       }
     });
 
+    this.difficultyInput = document.getElementById('difficultyInput');
+    this.difficultyInput.addEventListener('change', (el) => {
+      this.updateDifficulty(el.target.value);
+    });
+
     document.getElementById('reset').addEventListener('click', (el) => {
       this.reset();
     });
+
     document.getElementById('shuffle').addEventListener('click', (el) => {
       this.shuffle();
     });
@@ -76,23 +85,10 @@ class Game {
     });
 
     this.reset();
-
-  }
-
-  openWinScreen() {
-    this.winScreen.classList.remove('d-none');
-  }
-
-  closeWinScreen() {
-    this.winScreen.classList.add('d-none');
-  }
-
-  updateWinScreen() {
-    this.winMovements.innerHTML = this.movements;
-    this.winTime.innerHTML = this.time;
   }
 
   reset() {
+    this.pieceLength = 100 / this.size;
     this.playing = false;
     this.shuffled = false;
     this.timerActive = false;
@@ -108,13 +104,37 @@ class Game {
 
   }
 
+  // Win Screen ------------------------------------------------------ //
+
+  openWinScreen() {
+    this.winScreen.classList.remove('d-none');
+  }
+
+  closeWinScreen() {
+    this.winScreen.classList.add('d-none');
+  }
+
+  updateWinScreen() {
+    this.winMovements.innerHTML = this.movements;
+    this.winTime.innerHTML = this.time;
+  }
+
+  // Difficulty ------------------------------------------------------ //
+
+  updateDifficulty(size) {
+    this.size = size;
+    this.reset();
+  }
+
+  // Shuffle --------------------------------------------------------- //
+
   shuffle() {
     if (!this.shuffled) {
 
       let pivot = {
         x: this.size - 1,
         y: this.size - 1
-      }
+      };
       for (var i = 0; i < 999; i++) {
         let next = this.neighbors(pivot.x, pivot.y).random();
         this.matrix[pivot.y][pivot.x] = this.matrix[next.y][next.x];
@@ -128,7 +148,7 @@ class Game {
           if (number != -1) {
             let x = ((number - 1) % this.size);
             let y = Math.floor((number - x) / this.size);
-            this.updatePiecePosition(this.boardPieces[y][x], j, i)
+            this.updatePiecePosition(this.boardPieces[y][x], j, i);
           }
         }
       }
@@ -137,6 +157,8 @@ class Game {
     }
     this.startPlaying();
   }
+
+  // Numbers --------------------------------------------------------- //
 
   showBoardPiecesNumbers() {
     for (let row of this.boardPieces) {
@@ -153,6 +175,8 @@ class Game {
       }
     }
   }
+
+  // Photo ----------------------------------------------------------- //
 
   uploadPhoto(e) {
     let files = e.target.files; // FileList object
@@ -199,7 +223,8 @@ class Game {
   // Timer ----------------------------------------------------------- //
 
   startTimer() {
-    this.startTime = new Date()
+    this.time = "0.00";
+    this.startTime = new Date();
     this.timer = setInterval(() => {
       this.time = ((new Date() - this.startTime) / 1000).toFixed(2);
       this.boardTimer.innerHTML = this.time;
@@ -218,7 +243,7 @@ class Game {
     this.timer = false;
   }
 
-  // Movements-------------------------------------------------------- //
+  // Movements ------------------------------------------------------- //
 
   resetMovements() {
     this.movements = 0;
@@ -229,6 +254,8 @@ class Game {
     this.boardMovements.innerHTML = this.movements;
   }
 
+  // Others ---------------------------------------------------------- //
+
   resetMatrix() {
     let matrix = [];
     for (let i = 0; i < this.size; i++) {
@@ -238,20 +265,21 @@ class Game {
       }
       matrix.push(row);
     }
-    matrix[this.size - 1][this.size - 1] = -1
+    matrix[this.size - 1][this.size - 1] = -1;
     this.matrix = matrix;
   }
 
   resetBoard() {
     this.board.innerHTML = "";
-    let pieceLength = 100 / this.size;
     this.boardPieces = [];
     for (let i = 0; i < this.matrix.length; i++) {
 
       let row = [];
 
       for (let j = 0; j < this.matrix[i].length; j++) {
+
         let number = this.matrix[i][j];
+
         if (number != -1) {
 
           let div = document.createElement('div');
@@ -265,12 +293,8 @@ class Game {
           div.appendChild(p);
 
           div.className = "piece";
-          div.style.width = div.style.height = `${pieceLength}%`
-          div.style.top = `${i*pieceLength}%`;
-          div.style.left = `${j*pieceLength}%`;
-
-          div.setAttribute('x', j);
-          div.setAttribute('y', i);
+          div.style.width = div.style.height = `${ this.pieceLength }%`;
+          this.updatePiecePosition(div, j, i);
 
           div.addEventListener('click', (el) => {
             this.movePiece(el.target);
@@ -279,9 +303,12 @@ class Game {
           row.push(div);
           this.board.appendChild(div);
         }
+
       }
+
       this.boardPieces.push(row);
     }
+
     this.updateBoardMovements();
   }
 
@@ -295,8 +322,8 @@ class Game {
       let x = parseInt(piece.getAttribute('x'));
       let y = parseInt(piece.getAttribute('y'));
       let newPos = this.neighborIsEmpty(x, y);
-      if (newPos) {
 
+      if (newPos) {
         let n = this.matrix[y][x];
         this.matrix[newPos.y][newPos.x] = n;
         this.matrix[y][x] = -1;
@@ -306,9 +333,9 @@ class Game {
         this.updateBoardMovements();
 
         if (this.checkIfIWin()) {
+          console.log("b");
           this.gameWon();
         }
-
       }
     }
   }
@@ -391,7 +418,7 @@ class Game {
   }
 
 }
-let game = new Game();
-window.onload = () => {
 
+window.onload = () => {
+  let game = new Game();
 }
