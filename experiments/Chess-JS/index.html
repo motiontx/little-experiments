@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+  <title>Chess JS</title>
+  <!-- CSS files-->
+  <link rel="stylesheet" href="css/master.css">
+</head>
+
+<body>
+  <div class="content">
+    <div class="game">
+      <div class="column-numbers-left">
+        <div class="n-info">8</div>
+        <div class="n-info">7</div>
+        <div class="n-info">6</div>
+        <div class="n-info">5</div>
+        <div class="n-info">4</div>
+        <div class="n-info">3</div>
+        <div class="n-info">2</div>
+        <div class="n-info">1</div>
+      </div>
+      <div>
+        <div class="row-letters-top">
+          <div class="l-info">A</div>
+          <div class="l-info">B</div>
+          <div class="l-info">C</div>
+          <div class="l-info">D</div>
+          <div class="l-info">E</div>
+          <div class="l-info">F</div>
+          <div class="l-info">G</div>
+          <div class="l-info">H</div>
+        </div>
+        <div class="pieces" id="pieces">
+          <div class="piece"><img src="assets/default/rook-black.svg"></div>
+          <div class="piece"><img src="assets/default/knight-black.svg"></div>
+          <div class="piece"><img src="assets/default/bishop-black.svg"></div>
+          <div class="piece"><img src="assets/default/queen-black.svg"></div>
+          <div class="piece"><img src="assets/default/king-black.svg"></div>
+          <div class="piece"><img src="assets/default/bishop-black.svg"></div>
+          <div class="piece"><img src="assets/default/knight-black.svg"></div>
+          <div class="piece"><img src="assets/default/rook-black.svg"></div>
+          <div class="piece"><img src="assets/default/pawn-black.svg"></div>
+          <div class="piece"><img src="assets/default/pawn-black.svg"></div>
+          <div class="piece"><img src="assets/default/pawn-black.svg"></div>
+          <div class="piece"><img src="assets/default/pawn-black.svg"></div>
+          <div class="piece"><img src="assets/default/pawn-black.svg"></div>
+          <div class="piece"><img src="assets/default/pawn-black.svg"></div>
+          <div class="piece"><img src="assets/default/pawn-black.svg"></div>
+          <div class="piece"><img src="assets/default/pawn-black.svg"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"></div>
+          <div class="piece"><img src="assets/default/pawn-white.svg"></div>
+          <div class="piece"><img src="assets/default/pawn-white.svg"></div>
+          <div class="piece"><img src="assets/default/pawn-white.svg"></div>
+          <div class="piece"><img src="assets/default/pawn-white.svg"></div>
+          <div class="piece"><img src="assets/default/pawn-white.svg"></div>
+          <div class="piece"><img src="assets/default/pawn-white.svg"></div>
+          <div class="piece"><img src="assets/default/pawn-white.svg"></div>
+          <div class="piece"><img src="assets/default/pawn-white.svg"></div>
+          <div class="piece"><img src="assets/default/rook-white.svg"></div>
+          <div class="piece"><img src="assets/default/knight-white.svg"></div>
+          <div class="piece"><img src="assets/default/bishop-white.svg"></div>
+          <div class="piece"><img src="assets/default/queen-white.svg"></div>
+          <div class="piece"><img src="assets/default/king-white.svg"></div>
+          <div class="piece"><img src="assets/default/bishop-white.svg"></div>
+          <div class="piece"><img src="assets/default/knight-white.svg"></div>
+          <div class="piece"><img src="assets/default/rook-white.svg"></div>
+        </div>
+        <div class="row-letters-bottom">
+          <div class="l-info">A</div>
+          <div class="l-info">B</div>
+          <div class="l-info">C</div>
+          <div class="l-info">D</div>
+          <div class="l-info">E</div>
+          <div class="l-info">F</div>
+          <div class="l-info">G</div>
+          <div class="l-info">H</div>
+        </div>
+      </div>
+      <div class="column-numbers-right">
+        <div class="n-info">8</div>
+        <div class="n-info">7</div>
+        <div class="n-info">6</div>
+        <div class="n-info">5</div>
+        <div class="n-info">4</div>
+        <div class="n-info">3</div>
+        <div class="n-info">2</div>
+        <div class="n-info">1</div>
+      </div>
+    </div>
+
+    <p class="firm">Made with <span class="heart">♥</span> by Vittorio Retrivi</p>
+
+  </div>
+  <!-- JavaScript files-->
+  <script src="js/pieces.js" charset="utf-8"></script>
+  <script src="js/game.js" charset="utf-8"></script>
+</body>
+
+</html>

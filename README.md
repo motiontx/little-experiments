@@ -25,6 +25,7 @@
 
 ### 🚧 Work in Progress 🚧
 
+* 🔲 *Chess* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Chess-JS)
 * 💦 *Fluid Simulation* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Fluid-Simulation)
 * ✒️ *Paint JS* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Paint-JS)
 * ◻️ *Ray Casting* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Ray-Casting)
@@ -57,7 +58,6 @@
 * 🔴 *Connect Four*
 * ❌ *Tic Tac Toe*
 * 🎲 *Rubic's Cube*
-* 🔲 *Chess*
 * 🐍 *Snake 2D*
 * 🌆 *Image To Ascii*
 * 🔍 *Labyrinth*
