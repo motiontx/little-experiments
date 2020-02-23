@@ -1,12 +1,9 @@
 :root {
-
   --lightest: #fffaf0;
   --darker: #2a2a2a;
-
   --border: #0c0c0c;
-
+  --gameSize: 70vmin;
   --heartPink: #ff1493;
-
 }
 
 html {
@@ -53,18 +50,17 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
   background: var(--darker);
   border-radius: 6px;
   border: 1px solid;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.15);
-  border-bottom-width: 1rem;
+  border-bottom-width: 2vmin;
   box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.8);
 }
 
 /*----------- Pieces -----------*/
 
-.pieces {
+.cells {
   position: relative;
   display: flex;
   justify-content: center;
@@ -75,11 +71,11 @@ body {
   background-color: var(--lightest);
   border: 1px solid var(--border);
   box-shadow: inset 0 0 20px -5px rgba(0, 0, 0, 0.8);
-  width: 70vmin;
-  height: 70vmin;
+  width: var(--gameSize);
+  height: var(--gameSize);
 }
 
-.piece {
+cell {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -88,22 +84,62 @@ body {
   box-sizing: border-box;
   transition: all 0.2s;
   border: 1px solid var(--border);
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.piece:nth-child(-2n+8),
-.piece:nth-child(8) ~ .piece:nth-child(-2n+15),
-.piece:nth-child(16) ~ .piece:nth-child(-2n+24),
-.piece:nth-child(24) ~ .piece:nth-child(-2n+31),
-.piece:nth-child(32) ~ .piece:nth-child(-2n+40),
-.piece:nth-child(40) ~ .piece:nth-child(-2n+47),
-.piece:nth-child(48) ~ .piece:nth-child(-2n+56),
-.piece:nth-child(56) ~ .piece:nth-child(-2n+63) {
+cell:nth-child(-2n+8),
+cell:nth-child(8) ~ cell:nth-child(-2n+15),
+cell:nth-child(16) ~ cell:nth-child(-2n+24),
+cell:nth-child(24) ~ cell:nth-child(-2n+31),
+cell:nth-child(32) ~ cell:nth-child(-2n+40),
+cell:nth-child(40) ~ cell:nth-child(-2n+47),
+cell:nth-child(48) ~ cell:nth-child(-2n+56),
+cell:nth-child(56) ~ cell:nth-child(-2n+63) {
    background-color: var(--darker);
 }
 
-.piece > img {
-  width: 90%;
-  height: 90%;
+cell.queen.white {
+  background-image: url("../assets/default/queen-white.svg");
+}
+cell.queen.black {
+  background-image: url("../assets/default/queen-black.svg");
+}
+
+cell.king.white {
+  background-image: url("../assets/default/king-white.svg");
+}
+cell.king.black {
+  background-image: url("../assets/default/king-black.svg");
+}
+
+cell.rook.white {
+  background-image: url("../assets/default/rook-white.svg");
+}
+cell.rook.black {
+  background-image: url("../assets/default/rook-black.svg");
+}
+
+cell.knight.white {
+  background-image: url("../assets/default/knight-white.svg");
+}
+cell.knight.black {
+  background-image: url("../assets/default/knight-black.svg");
+}
+
+cell.bishop.white {
+  background-image: url("../assets/default/bishop-white.svg");
+}
+cell.bishop.black {
+  background-image: url("../assets/default/bishop-black.svg");
+}
+
+cell.pawn.white {
+  background-image: url("../assets/default/pawn-white.svg");
+}
+cell.pawn.black {
+  background-image: url("../assets/default/pawn-black.svg");
 }
 
 /*----------------------------*/
@@ -111,36 +147,28 @@ body {
 .row-letters-top, .row-letters-bottom {
   display: flex;
   justify-content: space-around;
-  width: 70vmin;
+  align-items: center;
+  width: var(--gameSize);
   color: var(--lightest);
-}
-
-.row-letters-top {
-  margin-bottom: 0.5rem;
-}
-
-.row-letters-bottom {
-  margin-top: 0.5rem;
 }
 
 .column-numbers-left, .column-numbers-right {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 70vmin;
+  align-items: center;
+  height: var(--gameSize);
   color: var(--lightest);
 }
 
-.column-numbers-left {
-    margin-right: 0.5rem;
-}
-
-.column-numbers-right{
-    margin-left: 0.5rem;
-}
-
-.letter-info, .number-info {
+.l-info, .n-info {
   font-style: italic;
+  font-size: 2vmin;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3.4vmin;
+  height: 3.4vmin;
 }
 
 /*----------------------------*/
@@ -158,6 +186,12 @@ body {
   color: #333;
   font-size: 16px;
   text-align: center;
+  opacity: 0.3;
+  transition: all 0.3s;
+}
+
+.firm:hover{
+  opacity: 1
 }
 
 .heart {
@@ -166,7 +200,10 @@ body {
 
 /*----------- Media Query -----------*/
 
-@media (max-height: 599px) {
+@media (max-height: 767px), (max-width: 767px) {
+  :root {
+    --gameSize : 80vmin;
+  }
   .firm {
     display: none;
   }
