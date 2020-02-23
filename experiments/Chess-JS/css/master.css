@@ -1,6 +1,8 @@
 :root {
   --lightest: #fffaf0;
   --darker: #2a2a2a;
+  --blue: #4a9ca4;
+  --orange: #c87331;
   --border: #0c0c0c;
   --gameSize: 70vmin;
   --heartPink: #ff1493;
@@ -142,6 +144,15 @@ cell.pawn.black {
   background-image: url("../assets/default/pawn-black.svg");
 }
 
+cell.legalMove::after {
+  content: "";
+  width: 1.7vmin;
+  height: 1.7vmin;
+  background-color: var(--orange);
+  border-radius: 50%;
+  animation: pulse-dot 1.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite;
+}
+
 /*----------------------------*/
 
 .row-letters-top, .row-letters-bottom {
@@ -206,5 +217,22 @@ cell.pawn.black {
   }
   .firm {
     display: none;
+  }
+}
+
+/*----------- Key Frames -----------*/
+
+@keyframes pulse-dot {
+  0% {
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
+  }
+  50% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
   }
 }

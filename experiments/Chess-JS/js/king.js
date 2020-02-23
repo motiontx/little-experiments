@@ -7,4 +7,10 @@ class King extends Piece {
     super(...args);
     this.type = "king";
   }
+
+  getLegalMoves(otherPieces) {
+    let listOfLegalMoves = [];
+    return listOfLegalMoves;
+  }
+
 }

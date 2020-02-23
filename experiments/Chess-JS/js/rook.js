@@ -7,4 +7,10 @@ class Rook extends Piece {
     super(...args);
     this.type = "rook";
   }
+
+  getLegalMoves(otherPieces) {
+    let listOfLegalMoves = [];
+    return listOfLegalMoves;
+  }
+
 }

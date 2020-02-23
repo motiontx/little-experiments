@@ -7,4 +7,10 @@ class Queen extends Piece {
     super(...args);
     this.type = "queen";
   }
+
+  getLegalMovements(otherPieces) {
+    let listOfLegalMoves = [];
+    return listOfLegalMoves;
+  }
+
 }

@@ -7,4 +7,10 @@ class Bishop extends Piece {
     super(...args);
     this.type = "bishop";
   }
+
+  getLegalMoves(otherPieces) {
+    let listOfLegalMoves = [];
+    return listOfLegalMoves;
+  }
+
 }
