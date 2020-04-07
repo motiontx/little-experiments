@@ -1,0 +1,22 @@
+{
+  "name": "little-experiments",
+  "version": "1.0.0",
+  "description": "A collection of small experiments programmed in javascript.",
+  "main": "",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "live-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/motiontx/Little-Experiments.git"
+  },
+  "author": "Retrivi Vittorio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/motiontx/Little-Experiments/issues"
+  },
+  "homepage": "https://github.com/motiontx/Little-Experiments#readme"
+}
