@@ -5,12 +5,11 @@
 class Bishop extends Piece {
   constructor(...args) {
     super(...args);
-    this.type = "bishop";
+    this.type = 'bishop';
   }
 
   getLegalMoves(otherPieces) {
-    let listOfLegalMoves = [];
+    const listOfLegalMoves = [];
     return listOfLegalMoves;
   }
-
 }

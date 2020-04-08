@@ -5,12 +5,11 @@
 class King extends Piece {
   constructor(...args) {
     super(...args);
-    this.type = "king";
+    this.type = 'king';
   }
 
   getLegalMoves(otherPieces) {
-    let listOfLegalMoves = [];
+    const listOfLegalMoves = [];
     return listOfLegalMoves;
   }
-
 }

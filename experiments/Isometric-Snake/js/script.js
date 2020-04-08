@@ -5,14 +5,14 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
-const canvas_container = document.getElementById("canvas_container");
+const canvas_container = document.getElementById('canvas_container');
 
 let offSetLeft = canvas.offsetLeft;
 let offSetTop = canvas.offsetTop;
 let width = canvas.width = canvas_container.clientWidth;
 let height = canvas.height = canvas_container.clientHeight;
 
-window.addEventListener('resize', function() {
+window.addEventListener('resize', () => {
   offSetLeft = canvas.offsetLeft;
   offSetTop = canvas.offsetTop;
   width = canvas.width = canvas_container.clientWidth;
@@ -32,16 +32,16 @@ const imageSnake = new Image();
 const imageGround = new Image();
 const imageWall = new Image();
 
-imageFood.src = "assets/food.png";
-imageSnake.src = "assets/snake.png";
-imageGround.src = "assets/ground.png";
-imageWall.src = "assets/wall.png";
+imageFood.src = 'assets/food.png';
+imageSnake.src = 'assets/snake.png';
+imageGround.src = 'assets/ground.png';
+imageWall.src = 'assets/wall.png';
 
 let lastPress;
 let waitNextFrame = false;
 
-let tileWidth = 32;
-let tileHeight = 16;
+const tileWidth = 32;
+const tileHeight = 16;
 
 document.addEventListener('keydown', (evt) => {
   if (!waitNextFrame) {
@@ -72,7 +72,6 @@ document.addEventListener('keydown', (evt) => {
         break;
     }
   }
-
 });
 
 function drawIsometric(image, x, y, offY = 0) {
@@ -81,12 +80,11 @@ function drawIsometric(image, x, y, offY = 0) {
 
 function compare(a, b) {
   if (a.x > b.x) return 1;
-  else if (a.x < b.x) return -1;
-  else {
-    if (a.y > b.y) return 1;
-    else if (a.y < b.y) return -1;
-    return 0;
-  }
+  if (a.x < b.x) return -1;
+
+  if (a.y > b.y) return 1;
+  if (a.y < b.y) return -1;
+  return 0;
 }
 
 class Food {
@@ -110,7 +108,6 @@ class BodySection {
     }
     return false;
   }
-
 }
 
 class Wall {
@@ -124,15 +121,15 @@ class Wall {
 class Snake {
   constructor(x, y) {
     this.tail = [];
-    this.head = new BodySection(x, y)
+    this.head = new BodySection(x, y);
   }
 
   step(dx, dy) {
     this.tail.unshift(this.head);
     this.tail.pop();
-    let x = this.head.x;
-    let y = this.head.y;
-    this.head = new BodySection(x + dx, y + dy)
+    const { x } = this.head;
+    const { y } = this.head;
+    this.head = new BodySection(x + dx, y + dy);
   }
 
   checkCollision(obj) {
@@ -143,7 +140,7 @@ class Snake {
   }
 
   checkTailCollision() {
-    for (let section of this.tail) {
+    for (const section of this.tail) {
       if (this.checkCollision(section)) {
         return true;
       }
@@ -162,13 +159,12 @@ class Game {
     this.food = new Food(10, 10);
 
     this.createWorld(25, 25);
-
   }
 
   createWorld(x, y) {
     this.world = {
-      x: x,
-      y: y
+      x,
+      y,
     };
 
     this.walls = [];
@@ -176,7 +172,7 @@ class Game {
     for (let i = -1; i < x + 1; i++) {
       for (let j = -1; j < y + 1; j++) {
         if (i == -1 || i == x || j == -1 || j == y) {
-          let wall = new Wall(i, j);
+          const wall = new Wall(i, j);
           this.walls.push(wall);
         }
       }
@@ -185,10 +181,10 @@ class Game {
 
   setFood() {
     let ok = true;
-    let x = Math.floor(Math.random() * this.world.x);
-    let y = Math.floor(Math.random() * this.world.x);
+    const x = Math.floor(Math.random() * this.world.x);
+    const y = Math.floor(Math.random() * this.world.x);
     this.food = new Food(x, y);
-    for (let section of this.snake.tail) {
+    for (const section of this.snake.tail) {
       if (section.checkCollision(this.food)) {
         ok = false;
       }
@@ -203,7 +199,7 @@ class Game {
 
   restart() {
     this.snake = new Snake(5, 5);
-    this.setFood()
+    this.setFood();
     lastPress = null;
   }
 
@@ -227,12 +223,12 @@ class Game {
 
     if (this.snake.checkCollision(this.food)) {
       this.snake.eat();
-      this.setFood()
+      this.setFood();
     }
 
     this.snake.step(dx, dy);
 
-    let head = this.snake.head;
+    const { head } = this.snake;
     if (this.snake.checkTailCollision()) {
       this.restart();
     } else if (head.x == -1 || head.x == this.world.x) {
@@ -240,23 +236,22 @@ class Game {
     } else if (head.y == -1 || head.y == this.world.y) {
       this.restart();
     }
-
   }
 
   graph() {
-    let map = this.walls.concat(this.snake.tail);
+    const map = this.walls.concat(this.snake.tail);
     map.push(this.food);
     map.push(this.snake.head);
     map.sort(compare);
 
-    ctx.fillStyle = "#555";
+    ctx.fillStyle = '#555';
     ctx.fillRect(0, 0, width, height);
     for (let i = -1; i <= this.world.x; i++) {
       for (let j = -1; j <= this.world.y; j++) {
         drawIsometric(imageGround, i, j, 1);
       }
     }
-    for (let obj of map) {
+    for (const obj of map) {
       drawIsometric(obj.image, obj.x, obj.y);
     }
   }

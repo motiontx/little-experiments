@@ -4,9 +4,9 @@
 
 document.addEventListener('contextmenu', (e) => e.preventDefault());
 
-const width_input = document.getElementById('width_input');
-const height_input = document.getElementById('height_input');
-const bombs_input = document.getElementById('bombs_input');
+const widthInput = document.getElementById('width_input');
+const heightInput = document.getElementById('height_input');
+const bombsInput = document.getElementById('bombs_input');
 const emojiset = document.getElementById('emojiset');
 
 const config = document.getElementById('config');
@@ -24,15 +24,15 @@ function reset() {
 }
 
 function saveAndRestart() {
-  let width = width_input.value;
-  let height = height_input.value;
-  let bombs = bombs_input.value;
-  let twemoji = emojiset.value == "twemoji";
+  const width = widthInput.value;
+  const height = heightInput.value;
+  const bombs = bombsInput.value;
+  const twemoji = emojiset.value === 'twemoji';
 
   if (width > 50 || height > 50) {
-    alert("Max width: 50 | Max height: 50");
+    alert('Max width: 50 | Max height: 50');
   } else if (bombs > width * height) {
-    alert("More bombs than cells!");
+    alert('More bombs than cells!');
   } else {
     game.reset(width, height, bombs, twemoji);
     configOpenClose();

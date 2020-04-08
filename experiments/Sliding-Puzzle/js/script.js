@@ -2,18 +2,18 @@
 // ------------- ►►► </> with ♥ by Vittorio Retrivi ◄◄◄ ------------ //
 // ----------------------------------------------------------------- //
 
-const crop = function(canvas, offsetX, offsetY, width, height) {
-  var buffer = document.createElement('canvas');
-  var b_ctx = buffer.getContext('2d');
+const crop = (canvas, offsetX, offsetY, width, height) => {
+  const buffer = document.createElement('canvas');
+  const bCtx = buffer.getContext('2d');
   buffer.width = width;
   buffer.height = height;
-  b_ctx.drawImage(canvas, offsetX, offsetY, width, height, 0, 0, buffer.width, buffer.height);
+  bCtx.drawImage(canvas, offsetX, offsetY, width, height, 0, 0, buffer.width, buffer.height);
   return buffer.toDataURL();
 };
 
-Array.prototype.random = function() {
+Array.prototype.random = function () {
   return this[Math.floor(Math.random() * this.length)];
-}
+};
 
 // ----------------------------------------------------------------- //
 
@@ -29,11 +29,11 @@ class Game {
     this.matrix = [];
     this.boardPieces;
     this.image = new Image();
-    this.image.src = "assets/photo.jpg";
+    this.image.src = 'assets/photo.jpg';
 
     this.image.onload = () => {
       this.showPhoto();
-    }
+    };
 
     this.board = document.getElementById('pieces');
 
@@ -51,7 +51,7 @@ class Game {
     this.imageInput.addEventListener('change', (el) => {
       this.uploadPhoto(el);
     });
-    document.getElementById('imageInputButton').addEventListener('click', (el) => {
+    document.getElementById('imageInputButton').addEventListener('click', () => {
       this.imageInput.click();
     });
     this.photoCheckbox.addEventListener('click', (el) => {
@@ -67,19 +67,19 @@ class Game {
       this.updateDifficulty(el.target.value);
     });
 
-    document.getElementById('reset').addEventListener('click', (el) => {
+    document.getElementById('reset').addEventListener('click', () => {
       this.reset();
     });
 
-    document.getElementById('shuffle').addEventListener('click', (el) => {
+    document.getElementById('shuffle').addEventListener('click', () => {
       this.shuffle();
     });
 
-    document.getElementById('closeWinScreen').addEventListener('click', (el) => {
+    document.getElementById('closeWinScreen').addEventListener('click', () => {
       this.closeWinScreen();
     });
 
-    document.getElementById('winShuffle').addEventListener('click', (el) => {
+    document.getElementById('winShuffle').addEventListener('click', () => {
       this.closeWinScreen();
       this.shuffle();
     });
@@ -93,7 +93,7 @@ class Game {
     this.shuffled = false;
     this.timerActive = false;
     this.resetTimer();
-    this.resetMovements()
+    this.resetMovements();
 
     this.resetMatrix();
     this.resetBoard();
@@ -101,7 +101,6 @@ class Game {
     if (this.photoCheckbox.checked) {
       this.showPhoto();
     }
-
   }
 
   // Win Screen ------------------------------------------------------ //
@@ -130,24 +129,23 @@ class Game {
 
   shuffle() {
     if (!this.shuffled) {
-
       let pivot = {
         x: this.size - 1,
-        y: this.size - 1
+        y: this.size - 1,
       };
-      for (var i = 0; i < 999; i++) {
-        let next = this.neighbors(pivot.x, pivot.y).random();
+      for (let i = 0; i < 999; i += 1) {
+        const next = this.neighbors(pivot.x, pivot.y).random();
         this.matrix[pivot.y][pivot.x] = this.matrix[next.y][next.x];
         pivot = next;
       }
       this.matrix[pivot.y][pivot.x] = -1;
 
-      for (let i = 0; i < this.matrix.length; i++) {
-        for (let j = 0; j < this.matrix[i].length; j++) {
-          let number = this.matrix[i][j];
-          if (number != -1) {
-            let x = ((number - 1) % this.size);
-            let y = Math.floor((number - x) / this.size);
+      for (let i = 0; i < this.matrix.length; i += 1) {
+        for (let j = 0; j < this.matrix[i].length; j += 1) {
+          const number = this.matrix[i][j];
+          if (number !== -1) {
+            const x = ((number - 1) % this.size);
+            const y = Math.floor((number - x) / this.size);
             this.updatePiecePosition(this.boardPieces[y][x], j, i);
           }
         }
@@ -161,16 +159,16 @@ class Game {
   // Numbers --------------------------------------------------------- //
 
   showBoardPiecesNumbers() {
-    for (let row of this.boardPieces) {
-      for (let div of row) {
+    for (const row of this.boardPieces) {
+      for (const div of row) {
         div.firstChild.classList.remove('d-none');
       }
     }
   }
 
   hideBoardPiecesNumbers() {
-    for (let row of this.boardPieces) {
-      for (let div of row) {
+    for (const row of this.boardPieces) {
+      for (const div of row) {
         div.firstChild.classList.add('d-none');
       }
     }
@@ -179,20 +177,20 @@ class Game {
   // Photo ----------------------------------------------------------- //
 
   uploadPhoto(e) {
-    let files = e.target.files; // FileList object
-    let file = files[0];
+    const { files } = e.target; // FileList object
+    const file = files[0];
     if (file.type.match('image.*')) {
-      let game = this;
-      let reader = new FileReader();
+      const game = this;
+      const reader = new FileReader();
       // Read in the image file as a data URL.
       reader.readAsDataURL(file);
-      reader.onload = function(e) {
+      reader.onload = function (e) {
         if (e.target.readyState == FileReader.DONE) {
           game.image.src = e.target.result;
         }
-      }
+      };
     } else {
-      alert("Not an image");
+      alert('Not an image');
     }
   }
 
@@ -200,10 +198,10 @@ class Game {
     this.hideBoardPiecesNumbers();
     let size = this.image.width < this.image.height ? this.image.width : this.image.height;
     size = Math.floor(size / this.size);
-    for (let i = 0; i < this.boardPieces.length; i++) {
-      for (let j = 0; j < this.boardPieces[i].length; j++) {
-        let div = this.boardPieces[i][j];
-        div.style.backgroundImage = 'url(' + crop(this.image, j * size, i * size, size, size) + ')';
+    for (let i = 0; i < this.boardPieces.length; i += 1) {
+      for (let j = 0; j < this.boardPieces[i].length; j += 1) {
+        const div = this.boardPieces[i][j];
+        div.style.backgroundImage = `url(${crop(this.image, j * size, i * size, size, size)})`;
       }
     }
     this.photoCheckbox.checked = true;
@@ -211,9 +209,9 @@ class Game {
 
   hidePhoto() {
     this.showBoardPiecesNumbers();
-    for (let i = 0; i < this.boardPieces.length; i++) {
-      for (let j = 0; j < this.boardPieces[i].length; j++) {
-        let div = this.boardPieces[i][j];
+    for (let i = 0; i < this.boardPieces.length; i += 1) {
+      for (let j = 0; j < this.boardPieces[i].length; j += 1) {
+        const div = this.boardPieces[i][j];
         div.style.backgroundImage = '';
       }
     }
@@ -223,7 +221,7 @@ class Game {
   // Timer ----------------------------------------------------------- //
 
   startTimer() {
-    this.time = "0.00";
+    this.time = '0.00';
     this.startTime = new Date();
     this.timer = setInterval(() => {
       this.time = ((new Date() - this.startTime) / 1000).toFixed(2);
@@ -235,7 +233,7 @@ class Game {
   resetTimer() {
     clearInterval(this.timer);
     this.timer = false;
-    this.boardTimer.innerHTML = '0.00'
+    this.boardTimer.innerHTML = '0.00';
   }
 
   pauseTimer() {
@@ -257,10 +255,10 @@ class Game {
   // Others ---------------------------------------------------------- //
 
   resetMatrix() {
-    let matrix = [];
-    for (let i = 0; i < this.size; i++) {
-      let row = [];
-      for (let j = 0; j < this.size; j++) {
+    const matrix = [];
+    for (let i = 0; i < this.size; i += 1) {
+      const row = [];
+      for (let j = 0; j < this.size; j += 1) {
         row.push(j + (i * this.size) + 1);
       }
       matrix.push(row);
@@ -270,30 +268,27 @@ class Game {
   }
 
   resetBoard() {
-    this.board.innerHTML = "";
+    this.board.innerHTML = '';
     this.boardPieces = [];
-    for (let i = 0; i < this.matrix.length; i++) {
+    for (let i = 0; i < this.matrix.length; i += 1) {
+      const row = [];
 
-      let row = [];
+      for (let j = 0; j < this.matrix[i].length; j += 1) {
+        const number = this.matrix[i][j];
 
-      for (let j = 0; j < this.matrix[i].length; j++) {
+        if (number !== -1) {
+          const div = document.createElement('div');
 
-        let number = this.matrix[i][j];
-
-        if (number != -1) {
-
-          let div = document.createElement('div');
-
-          let p = document.createElement('p');
-          p.className = "number";
+          const p = document.createElement('p');
+          p.className = 'number';
           p.innerHTML = number;
-          p.onclick = function() {
-            this.parentNode.click()
+          p.onclick = function () {
+            this.parentNode.click();
           };
           div.appendChild(p);
 
-          div.className = "piece";
-          div.style.width = div.style.height = `${ this.pieceLength }%`;
+          div.className = 'piece';
+          div.style.width = div.style.height = `${this.pieceLength}%`;
           this.updatePiecePosition(div, j, i);
 
           div.addEventListener('click', (el) => {
@@ -303,7 +298,6 @@ class Game {
           row.push(div);
           this.board.appendChild(div);
         }
-
       }
 
       this.boardPieces.push(row);
@@ -314,17 +308,16 @@ class Game {
 
   movePiece(piece) {
     if (this.playing) {
-
       if (!this.timerActive) {
         this.startTimer();
       }
 
-      let x = parseInt(piece.getAttribute('x'));
-      let y = parseInt(piece.getAttribute('y'));
-      let newPos = this.neighborIsEmpty(x, y);
+      const x = parseInt(piece.getAttribute('x'));
+      const y = parseInt(piece.getAttribute('y'));
+      const newPos = this.neighborIsEmpty(x, y);
 
       if (newPos) {
-        let n = this.matrix[y][x];
+        const n = this.matrix[y][x];
         this.matrix[newPos.y][newPos.x] = n;
         this.matrix[y][x] = -1;
         this.updatePiecePosition(piece, newPos.x, newPos.y);
@@ -333,7 +326,6 @@ class Game {
         this.updateBoardMovements();
 
         if (this.checkIfIWin()) {
-          console.log("b");
           this.gameWon();
         }
       }
@@ -343,48 +335,64 @@ class Game {
   updatePiecePosition(piece, x, y) {
     piece.setAttribute('x', x);
     piece.setAttribute('y', y);
-    piece.style.top = `${y*this.pieceLength}%`;
-    piece.style.left = `${x*this.pieceLength}%`;
+    piece.style.top = `${y * this.pieceLength}%`;
+    piece.style.left = `${x * this.pieceLength}%`;
   }
 
   neighborIsEmpty(x, y) {
-    if (y - 1 >= 0 && this.matrix[y - 1][x] == -1) return {
-      x: x,
-      y: y - 1
-    };
-    else if (x + 1 < this.size && this.matrix[y][x + 1] == -1) return {
-      x: x + 1,
-      y: y
-    };
-    else if (y + 1 < this.size && this.matrix[y + 1][x] == -1) return {
-      x: x,
-      y: y + 1
-    };
-    else if (x - 1 >= 0 && this.matrix[y][x - 1] == -1) return {
-      x: x - 1,
-      y: y
-    };
+    if (y - 1 >= 0 && this.matrix[y - 1][x] === -1) {
+      return {
+        x,
+        y: y - 1,
+      };
+    }
+    if (x + 1 < this.size && this.matrix[y][x + 1] === -1) {
+      return {
+        x: x + 1,
+        y,
+      };
+    }
+    if (y + 1 < this.size && this.matrix[y + 1][x] === -1) {
+      return {
+        x,
+        y: y + 1,
+      };
+    }
+    if (x - 1 >= 0 && this.matrix[y][x - 1] === -1) {
+      return {
+        x: x - 1,
+        y,
+      };
+    }
     return false;
   }
 
   neighbors(x, y) {
-    let neighbors = [];
-    if (y - 1 >= 0) neighbors.push({
-      x: x,
-      y: y - 1
-    });
-    if (x + 1 < this.size) neighbors.push({
-      x: x + 1,
-      y: y
-    });
-    if (y + 1 < this.size) neighbors.push({
-      x: x,
-      y: y + 1
-    });
-    if (x - 1 >= 0) neighbors.push({
-      x: x - 1,
-      y: y
-    });
+    const neighbors = [];
+    if (y - 1 >= 0) {
+      neighbors.push({
+        x,
+        y: y - 1,
+      });
+    }
+    if (x + 1 < this.size) {
+      neighbors.push({
+        x: x + 1,
+        y,
+      });
+    }
+    if (y + 1 < this.size) {
+      neighbors.push({
+        x,
+        y: y + 1,
+      });
+    }
+    if (x - 1 >= 0) {
+      neighbors.push({
+        x: x - 1,
+        y,
+      });
+    }
     return neighbors;
   }
 
@@ -395,13 +403,13 @@ class Game {
   }
 
   checkIfIWin() {
-    for (let i = 0; i < this.size; i++) {
-      for (let j = 0; j < this.size; j++) {
-        if (i == this.size - 1 && j == this.size - 1) {
-          if (this.matrix[i][j] != -1) {
+    for (let i = 0; i < this.size; i += 1) {
+      for (let j = 0; j < this.size; j += 1) {
+        if (i === this.size - 1 && j === this.size - 1) {
+          if (this.matrix[i][j] !== -1) {
             return false;
           }
-        } else if (this.matrix[i][j] != j + (i * this.size) + 1) {
+        } else if (this.matrix[i][j] !== j + (i * this.size) + 1) {
           return false;
         }
       }
@@ -416,9 +424,8 @@ class Game {
     this.openWinScreen();
     this.reset();
   }
-
 }
 
 window.onload = () => {
-  let game = new Game();
-}
+  const game = new Game();
+};

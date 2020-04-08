@@ -39,7 +39,7 @@ class flappyBird {
 
       this.bird.step();
       this.background.step();
-      for (let wall of this.walls) {
+      for (const wall of this.walls) {
         wall.step();
       }
 
@@ -51,14 +51,14 @@ class flappyBird {
         this.counter = 0;
         this.walls.push(new Wall());
       }
-      this.counter++;
+      this.counter += 1;
     }
   }
 
   draw() {
     this.background.draw();
     this.bird.draw();
-    for (let wall of this.walls) {
+    for (const wall of this.walls) {
       wall.draw();
     }
   }

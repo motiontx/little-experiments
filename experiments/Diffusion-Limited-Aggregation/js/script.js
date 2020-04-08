@@ -5,14 +5,14 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
-const canvas_container = document.getElementById("canvas_container");
+const canvas_container = document.getElementById('canvas_container');
 
 let offSetLeft = canvas.offsetLeft;
 let offSetTop = canvas.offsetTop;
 let width = canvas.width = canvas_container.clientWidth;
 let height = canvas.height = canvas_container.clientHeight;
 
-window.addEventListener('resize', function() {
+window.addEventListener('resize', () => {
   offSetLeft = canvas.offsetLeft;
   offSetTop = canvas.offsetTop;
   width = canvas.width = canvas_container.clientWidth;
@@ -27,7 +27,7 @@ function randomIntFromInterval(min, max) {
 
 class Walker {
   constructor(x, y) {
-    if (typeof x !== "undefined" && typeof y !== "undefined") {
+    if (typeof x !== 'undefined' && typeof y !== 'undefined') {
       this.x = Math.floor(x);
       this.y = Math.floor(y);
     } else {
@@ -38,7 +38,7 @@ class Walker {
   }
 
   randomizePosition() {
-    let angle = Math.random() * 2 * Math.PI;
+    const angle = Math.random() * 2 * Math.PI;
     this.x = Math.floor(Math.cos(angle) * 180 + width * 0.5);
     this.y = Math.floor(Math.sin(angle) * 180 + height * 0.5);
   }
@@ -61,10 +61,10 @@ class Walker {
   }
 
   checkCollision(others) {
-    for (let stuckWalker of others) {
-      let dx = stuckWalker.x - this.x;
-      let dy = stuckWalker.y - this.y;
-      let squareDis = dx * dx + dy * dy;
+    for (const stuckWalker of others) {
+      const dx = stuckWalker.x - this.x;
+      const dy = stuckWalker.y - this.y;
+      const squareDis = dx * dx + dy * dy;
       if (squareDis <= this.r * this.r * 4 + this.separation) {
         return true;
       }
@@ -82,7 +82,7 @@ class Walker {
 class World {
   constructor(walkers) {
     this.walkers = [];
-    for (var i = 0; i < walkers; i++) {
+    for (let i = 0; i < walkers; i++) {
       this.walkers.push(new Walker());
     }
     this.stuckWalkers = [new Walker(width * 0.5, height * 0.5)];
@@ -90,11 +90,11 @@ class World {
 
   step(iterations) {
     for (let i = 0; i < iterations; i++) {
-      for (let walker of this.walkers) {
+      for (const walker of this.walkers) {
         walker.step();
       }
-      let toMove = this.walkers.filter(el => el.checkCollision(this.stuckWalkers));
-      for (let el of toMove) {
+      const toMove = this.walkers.filter((el) => el.checkCollision(this.stuckWalkers));
+      for (const el of toMove) {
         this.walkers.splice(this.walkers.indexOf(el), 1);
         this.stuckWalkers.push(el);
       }
@@ -103,12 +103,12 @@ class World {
 
   draw() {
     ctx.clearRect(0, 0, width, height);
-    ctx.fillStyle = "#ff1493";
-    for (let walker of this.walkers) {
+    ctx.fillStyle = '#ff1493';
+    for (const walker of this.walkers) {
       walker.draw();
     }
-    ctx.fillStyle = "#000";
-    for (let walker of this.stuckWalkers) {
+    ctx.fillStyle = '#000';
+    for (const walker of this.stuckWalkers) {
       walker.draw();
     }
   }

@@ -5,12 +5,11 @@
 class Knight extends Piece {
   constructor(...args) {
     super(...args);
-    this.type = "knight";
+    this.type = 'knight';
   }
 
   getLegalMoves(otherPieces) {
-    let listOfLegalMoves = [];
+    const listOfLegalMoves = [];
     return listOfLegalMoves;
   }
-
 }

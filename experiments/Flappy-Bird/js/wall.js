@@ -1,8 +1,8 @@
 const imageWallUp = new Image();
-imageWallUp.src = "assets/up.png";
+imageWallUp.src = 'assets/up.png';
 
 const imageWallDown = new Image();
-imageWallDown.src = "assets/down.png";
+imageWallDown.src = 'assets/down.png';
 
 class Wall {
   constructor() {
@@ -14,7 +14,7 @@ class Wall {
   }
 
   step() {
-    this.x--;
+    this.x-=1;
   }
 
   draw() {

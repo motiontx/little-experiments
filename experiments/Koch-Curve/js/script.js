@@ -5,21 +5,20 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
-const canvas_container = document.getElementById("canvas_container");
+const canvas_container = document.getElementById('canvas_container');
 
 let offSetLeft = canvas.offsetLeft;
 let offSetTop = canvas.offsetTop;
 let width = canvas.width = canvas_container.clientWidth;
 let height = canvas.height = canvas_container.clientHeight;
 
-window.addEventListener('resize', function() {
+window.addEventListener('resize', () => {
   offSetLeft = canvas.offsetLeft;
   offSetTop = canvas.offsetTop;
   width = canvas.width = canvas_container.clientWidth;
   height = canvas.height = canvas_container.clientHeight;
 
-  resetToStep()
-
+  resetToStep();
 });
 
 // --------------------------------------------------------------------
@@ -28,7 +27,7 @@ class Line {
   constructor(start, end) {
     this.start = start;
     this.end = end;
-  };
+  }
 
   graph() {
     ctx.beginPath();
@@ -36,19 +35,19 @@ class Line {
     ctx.lineTo(this.end.x, this.end.y);
     ctx.lineWidth = 2;
     ctx.stroke();
-  };
+  }
 
   children() {
-    let children = [];
+    const children = [];
 
-    let v = Vector.sub(this.end, this.start);
+    const v = Vector.sub(this.end, this.start);
     v.mult(1 / 3);
 
-    let b = Vector.add(this.start, v);
-    let d = Vector.sub(this.end, v);
+    const b = Vector.add(this.start, v);
+    const d = Vector.sub(this.end, v);
 
     v.rotate(-1.0472);
-    let c = Vector.add(b, v);
+    const c = Vector.add(b, v);
 
     children.push(new Line(this.start, b));
     children.push(new Line(b, c));
@@ -57,16 +56,16 @@ class Line {
 
     return children;
   }
-};
+}
 
 class KochCurve {
   constructor() {
     this.limit = 7;
     this.iteration = 0;
     this.lines = [];
-    let start = new Vector(0, height * 0.9);
-    let end = new Vector(width, height * 0.9);
-    let firstLine = new Line(start, end);
+    const start = new Vector(0, height * 0.9);
+    const end = new Vector(width, height * 0.9);
+    const firstLine = new Line(start, end);
     this.lines.push(firstLine);
 
     this.graph();
@@ -74,16 +73,16 @@ class KochCurve {
 
   graph() {
     ctx.clearRect(0, 0, width, height);
-    for (let line of this.lines) {
+    for (const line of this.lines) {
       line.graph();
     }
   }
 
   step() {
     if (this.iteration < this.limit) {
-      let newLines = [];
-      for (let line of this.lines) {
-        for (let child of line.children()) {
+      const newLines = [];
+      for (const line of this.lines) {
+        for (const child of line.children()) {
           newLines.push(child);
         }
       }
@@ -106,7 +105,7 @@ function reset() {
 }
 
 function resetToStep() {
-  let interation = curve.iteration;
+  const interation = curve.iteration;
   curve = new KochCurve();
   for (let i = 0; i < interation; i++) {
     curve.step();

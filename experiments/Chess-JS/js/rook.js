@@ -5,12 +5,11 @@
 class Rook extends Piece {
   constructor(...args) {
     super(...args);
-    this.type = "rook";
+    this.type = 'rook';
   }
 
   getLegalMoves(otherPieces) {
-    let listOfLegalMoves = [];
+    const listOfLegalMoves = [];
     return listOfLegalMoves;
   }
-
 }

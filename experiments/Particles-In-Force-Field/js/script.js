@@ -1,23 +1,23 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
-const canvas_container = document.getElementById("canvas_container");
+const canvasContainer = document.getElementById('canvas_container');
 
 let offSetLeft = canvas.offsetLeft;
 let offSetTop = canvas.offsetTop;
-let width = canvas.width = canvas_container.clientWidth;
-let height = canvas.height = canvas_container.clientHeight;
+let width = canvas.width = canvasContainer.clientWidth;
+let height = canvas.height = canvasContainer.clientHeight;
 
-const colors = ["#E6207C", "#6DED4A", "#3518F2", "#03051C", "#8367C7", "#7218FF", "#F9C80E", "#F86624", "#87F7D2", "#FFFFFF"];
+const colors = ['#E6207C', '#6DED4A', '#3518F2', '#03051C', '#8367C7', '#7218FF', '#F9C80E', '#F86624', '#87F7D2', '#FFFFFF'];
 const randomColor = () => colors[Math.floor(Math.random() * colors.length)];
 
 let system;
 
-window.addEventListener('resize', function() {
+window.addEventListener('resize', () => {
   offSetLeft = canvas.offsetLeft;
   offSetTop = canvas.offsetTop;
-  width = canvas.width = canvas_container.clientWidth;
-  height = canvas.height = canvas_container.clientHeight;
+  width = canvas.width = canvasContainer.clientWidth;
+  height = canvas.height = canvasContainer.clientHeight;
 
   reset();
 });
@@ -25,8 +25,8 @@ window.addEventListener('resize', function() {
 // --------------------------------------------------------------------
 
 document.addEventListener('mousemove', (e) => {
-  let mouseX = e.pageX - offSetLeft;
-  let mouseY = e.pageY - offSetTop;
+  const mouseX = e.pageX - offSetLeft;
+  const mouseY = e.pageY - offSetTop;
   system.setMousePos(mouseX, mouseY);
 });
 canvas.addEventListener('mousedown', () => {
@@ -38,12 +38,12 @@ canvas.addEventListener('mouseup', () => {
 
 class Particle {
   constructor() {
-    let x = Math.random() * width;
-    let y = Math.random() * height;
+    const x = Math.random() * width;
+    const y = Math.random() * height;
     this.pos = new Vector(x, y);
-    let angle = Math.random() * 2 * Math.PI;
-    let speedX = 2 * Math.cos(angle);
-    let speedY = 2 * Math.sin(angle);
+    const angle = Math.random() * 2 * Math.PI;
+    const speedX = 2 * Math.cos(angle);
+    const speedY = 2 * Math.sin(angle);
     this.velocity = new Vector(speedX, speedY);
     this.aceleration = new Vector(0, 0);
     this.radius = Math.random() * 8 + 1;
@@ -86,7 +86,7 @@ class ParticleSystem {
     this.forceFieldRadius = 200;
     this.particles = [];
     for (let i = 0; i < particles; i++) {
-      this.particles.push(new Particle);
+      this.particles.push(new Particle());
     }
   }
 
@@ -95,36 +95,36 @@ class ParticleSystem {
   }
 
   step() {
-    for (let particle of this.particles) {
-      let desired = Vector.sub(this.mousePos, particle.pos);
-      let rescaledDistance = Vector.mult(desired, 0.005);
-      let radius2 = 30 / Math.exp(rescaledDistance.mag());
+    for (const particle of this.particles) {
+      const desired = Vector.sub(this.mousePos, particle.pos);
+      const rescaledDistance = Vector.mult(desired, 0.005);
+      const radius2 = 30 / Math.exp(rescaledDistance.mag());
       particle.radius2 = radius2;
       if (desired.mag() < this.forceFieldRadius) {
         if (this.forceFieldActive) {
           desired.setMag(-this.maxSpeed);
-          let steering = Vector.sub(desired, particle.velocity);
+          const steering = Vector.sub(desired, particle.velocity);
           steering.limit(this.maxForce);
           particle.aceleration = steering;
         }
       }
     }
-    for (let particle of this.particles) {
+    for (const particle of this.particles) {
       particle.step();
     }
   }
 
   draw() {
-    ctx.globalCompositeOperation = "lighter"
+    ctx.globalCompositeOperation = 'lighter';
     ctx.clearRect(0, 0, width, height);
-    for (let particle of this.particles) {
+    for (const particle of this.particles) {
       particle.draw();
     }
   }
 }
 
 function reset() {
-  let particles = Math.floor((width * height) / 6000);
+  const particles = Math.floor((width * height) / 6000);
   system = new ParticleSystem(particles);
 }
 

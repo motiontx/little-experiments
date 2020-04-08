@@ -1,5 +1,5 @@
 const imageBackground = new Image();
-imageBackground.src = "assets/background.png";
+imageBackground.src = 'assets/background.png';
 
 class Background {
   constructor() {
@@ -14,7 +14,7 @@ class Background {
   }
 
   draw() {
-    ctx.fillStyle = "#8ec4cc";
+    ctx.fillStyle = '#8ec4cc';
     ctx.fillRect(0, 0, width, height);
     ctx.drawImage(imageBackground, 0 - this.counter, height - 202);
   }

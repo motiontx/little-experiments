@@ -15,7 +15,8 @@ const sliderV = document.getElementById('sliderV');
 const sliderValueH = document.getElementById('sliderValueH');
 const sliderValueV = document.getElementById('sliderValueV');
 
-let width, height;
+let width; let
+  height;
 
 let imageData;
 let pixels;
@@ -24,47 +25,47 @@ let numPixels;
 let divisionsY = 50;
 let divisionsX = 50;
 
-let image = new Image();
-image.src = "assets/example.png";
+const image = new Image();
+image.src = 'assets/example.png';
 image.onload = () => load();
 
 // --------------------------------------------------------------------
 
-sliderH.oninput = function() {
+sliderH.oninput = function () {
   sliderValueH.innerHTML = this.value;
   divisionsY = this.value;
-}
+};
 
-sliderV.oninput = function() {
+sliderV.oninput = function () {
   sliderValueV.innerHTML = this.value;
   divisionsX = this.value;
-}
+};
 
-imageInputButton.onclick = function() {
+imageInputButton.onclick = () => {
   imageInput.click();
-}
+};
 
-imageInput.onchange = function(e) {
-  let files = e.target.files; // FileList object
-  let file = files[0];
+imageInput.onchange = (e) => {
+  const { files } = e.target; // FileList object
+  const file = files[0];
   if (file.type.match('image.*')) {
-    let reader = new FileReader();
+    const reader = new FileReader();
     // Read in the image file as a data URL.
     reader.readAsDataURL(file);
-    reader.onload = function(e) {
-      if (e.target.readyState == FileReader.DONE) {
-        image.src = e.target.result;
+    reader.onload = (d) => {
+      if (d.target.readyState === FileReader.DONE) {
+        image.src = d.target.result;
         image.onload = () => load();
       }
-    }
+    };
   } else {
-    alert("not an image");
+    alert('not an image');
   }
 };
 
 function load() {
-  let excessV = image.height % divisionsY;
-  let excessH = image.width % divisionsX;
+  const excessV = image.height % divisionsY;
+  const excessH = image.width % divisionsX;
 
   width = canvas.width = image.width - excessH;
   height = canvas.height = image.height - excessV;
@@ -77,17 +78,16 @@ function load() {
 }
 
 function cropVertical() {
-  let even = [];
-  let odd = [];
-  let div = width / divisionsX;
-  for (let i = 0; i < numPixels; i++) {
+  const even = [];
+  const odd = [];
+  const div = width / divisionsX;
+  for (let i = 0; i < numPixels; i += 1) {
+    const r = pixels[i * 4];
+    const g = pixels[i * 4 + 1];
+    const b = pixels[i * 4 + 2];
+    const a = pixels[i * 4 + 3];
 
-    let r = pixels[i * 4],
-      g = pixels[i * 4 + 1],
-      b = pixels[i * 4 + 2];
-    a = pixels[i * 4 + 3];
-
-    if (Math.floor((i % width) / div) % 2 == 0) {
+    if (Math.floor((i % width) / div) % 2 === 0) {
       odd.push(r);
       odd.push(g);
       odd.push(b);
@@ -102,7 +102,7 @@ function cropVertical() {
 
   let j = 0;
   let k = 0;
-  for (let i = 0; i < numPixels; i++) {
+  for (let i = 0; i < numPixels; i += 1) {
     if (i % width < Math.floor(divisionsX * 0.5) * div) {
       pixels[i * 4] = even[j];
       pixels[i * 4 + 1] = even[j + 1];
@@ -121,17 +121,16 @@ function cropVertical() {
 }
 
 function cropHorizontal() {
-  let even = [];
-  let odd = [];
-  let div = height / divisionsY;
-  for (let i = 0; i < numPixels; i++) {
+  const even = [];
+  const odd = [];
+  const div = height / divisionsY;
+  for (let i = 0; i < numPixels; i += 1) {
+    const r = pixels[i * 4];
+    const g = pixels[i * 4 + 1];
+    const b = pixels[i * 4 + 2];
+    const a = pixels[i * 4 + 3];
 
-    let r = pixels[i * 4];
-    let g = pixels[i * 4 + 1];
-    let b = pixels[i * 4 + 2];
-    let a = pixels[i * 4 + 3];
-
-    if (Math.floor(i / (div * width)) % 2 == 0) {
+    if (Math.floor(i / (div * width)) % 2 === 0) {
       odd.push(r);
       odd.push(g);
       odd.push(b);
@@ -150,14 +149,14 @@ function cropHorizontal() {
     pixels[c * 4 + 1] = even[i + 1];
     pixels[c * 4 + 2] = even[i + 2];
     pixels[c * 4 + 3] = even[i + 3];
-    c++;
+    c += 1;
   }
   for (let i = 0; i < odd.length; i += 4) {
     pixels[c * 4] = odd[i];
     pixels[c * 4 + 1] = odd[i + 1];
     pixels[c * 4 + 2] = odd[i + 2];
     pixels[c * 4 + 3] = odd[i + 3];
-    c++;
+    c += 1;
   }
   ctx.putImageData(imageData, 0, 0);
 }
@@ -168,7 +167,7 @@ function reset() {
 
 function crop(iterations) {
   load();
-  for (var i = 0; i < iterations; i++) {
+  for (let i = 0; i < iterations; i += 1) {
     cropVertical();
     cropHorizontal();
   }

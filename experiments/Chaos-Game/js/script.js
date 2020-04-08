@@ -5,125 +5,117 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
-const canvas_container = document.getElementById("canvas_container");
+const canvasContainer = document.getElementById('canvas_container');
 
-let offSetLeft = canvas.offsetLeft;
-let offSetTop = canvas.offsetTop;
-let width = canvas.width = canvas_container.clientWidth;
-let height = canvas.height = canvas_container.clientHeight;
+let current = 'sierpinski';
 
-window.addEventListener('resize', function() {
-  offSetLeft = canvas.offsetLeft;
-  offSetTop = canvas.offsetTop;
-  width = canvas.width = canvas_container.clientWidth;
-  height = canvas.height = canvas_container.clientHeight;
-
-  switch (current) {
-    case "sierpinski": simulateSierpinsky(); break;
-    case "pentagon": simulatePentagon(); break;
-  }
-
-});
+let width = canvas.width = canvasContainer.clientWidth;
+let height = canvas.height = canvasContainer.clientHeight;
 
 // --------------------------------------------------------------------
 
-let current = "sierpinski";
+function simulateSierpinsky() {
+  current = 'sierpinski';
 
-function simulateSierpinsky(){
+  const c = ctx.createImageData(width, height);
 
-  current = "sierpinski";
+  const nodes = 3;
+  const zoom = 0.5;
 
-  let c = ctx.createImageData(width, height);
-
-  let nodes = 3;
-  let zoom = 0.5;
-
-  function draw(point){
-    let x = Math.floor(point.x);
-    let y = Math.floor(point.y);
-    let pixel = (width*y+x)*4;
-    c.data[pixel] = Math.floor(((y*255)/height)*0.5)
-    c.data[pixel+1] = Math.floor(((x*255)/width + (y*255)/height)*0.1)
-    c.data[pixel+2] = Math.floor(((x*255)/width)*0.6)
-    c.data[pixel+3] = 255;
+  function draw(point) {
+    const x = Math.floor(point.x);
+    const y = Math.floor(point.y);
+    const pixel = (width * y + x) * 4;
+    c.data[pixel] = Math.floor(((y * 255) / height) * 0.5);
+    c.data[pixel + 1] = Math.floor(((x * 255) / width + (y * 255) / height) * 0.1);
+    c.data[pixel + 2] = Math.floor(((x * 255) / width) * 0.6);
+    c.data[pixel + 3] = 255;
   }
 
-  let points = [];
+  const points = [];
 
-  let r = height*0.5;
-  let center = {x: width * 0.5, y: height * 0.625}
-  for (let i = 0; i < nodes; i++) {
-    let angle = i * Math.PI*2 / nodes -  Math.PI/2;
-    let x = center.x + r * Math.cos(angle);
-    let y = center.y + r * Math.sin(angle);
-    points.push({x: x, y: y});
+  const r = height * 0.5;
+  const center = { x: width * 0.5, y: height * 0.625 };
+  for (let i = 0; i < nodes; i += 1) {
+    const angle = (i * Math.PI * 2) / nodes - Math.PI / 2;
+    const x = center.x + r * Math.cos(angle);
+    const y = center.y + r * Math.sin(angle);
+    points.push({ x, y });
   }
 
-  pivot = {x:Math.random()*width, y: Math.random()*height};
+  const pivot = { x: Math.random() * width, y: Math.random() * height };
 
-  for (let i = 0; i < 500000; i++) {
-    let choice = Math.floor(Math.random() * nodes) ;
-    let selected = points[choice];
-    pivot.x = pivot.x + (selected.x-pivot.x) * zoom;
-    pivot.y = pivot.y + (selected.y-pivot.y) * zoom;
+  for (let i = 0; i < 500000; i += 1) {
+    const choice = Math.floor(Math.random() * nodes);
+    const selected = points[choice];
+    pivot.x += (selected.x - pivot.x) * zoom;
+    pivot.y += (selected.y - pivot.y) * zoom;
     draw(pivot);
   }
 
-  ctx.putImageData(c, 0, 0)
-
+  ctx.putImageData(c, 0, 0);
 }
 
-function simulatePentagon(){
+function simulatePentagon() {
+  current = 'pentagon';
 
-  current = "pentagon";
+  const c = ctx.createImageData(width, height);
 
-  let c = ctx.createImageData(width, height);
+  const nodes = 5;
+  const zoom = 0.5;
 
-  let nodes = 5;
-  let zoom = 0.5;
-
-  function draw(point){
-    let x = Math.floor(point.x);
-    let y = Math.floor(point.y);
-    let pixel = (width*y+x)*4;
-    c.data[pixel] = Math.floor(((y*255)/height)*0.5)
-    c.data[pixel+1] = Math.floor(((x*255)/width + (y*255)/height)*0.1)
-    c.data[pixel+2] = Math.floor(((x*255)/width)*0.6)
-    c.data[pixel+3] = 255;
+  function draw(point) {
+    const x = Math.floor(point.x);
+    const y = Math.floor(point.y);
+    const pixel = (width * y + x) * 4;
+    c.data[pixel] = Math.floor(((y * 255) / height) * 0.5);
+    c.data[pixel + 1] = Math.floor(((x * 255) / width + (y * 255) / height) * 0.1);
+    c.data[pixel + 2] = Math.floor(((x * 255) / width) * 0.6);
+    c.data[pixel + 3] = 255;
   }
 
-  let points = [];
+  const points = [];
 
-  let r = height*0.5;
-  let center = {x: width * 0.5, y: height * 0.5}
-  for (let i = 0; i < nodes; i++) {
-    let angle = i * Math.PI*2 / nodes -  Math.PI/2;
-    let x = center.x + r * Math.cos(angle);
-    let y = center.y + r * Math.sin(angle);
-    points.push({x: x, y: y});
+  const r = height * 0.5;
+  const center = { x: width * 0.5, y: height * 0.5 };
+  for (let i = 0; i < nodes; i += 1) {
+    const angle = (i * Math.PI * 2) / nodes - Math.PI / 2;
+    const x = center.x + r * Math.cos(angle);
+    const y = center.y + r * Math.sin(angle);
+    points.push({ x, y });
   }
 
-  pivot = {x:Math.random()*width, y: Math.random()*height};
+  const pivot = { x: Math.random() * width, y: Math.random() * height };
 
   let prev = -1;
-  for (let i = 0; i < 500000; i++) {
+  for (let i = 0; i < 500000; i += 1) {
     let choice;
     while (true) {
-      choice = Math.floor(Math.random() * nodes) ;
-      if (choice != prev) {
+      choice = Math.floor(Math.random() * nodes);
+      if (choice !== prev) {
         prev = choice;
         break;
       }
     }
 
-    let selected = points[choice];
-    pivot.x = pivot.x + (selected.x-pivot.x) * zoom;
-    pivot.y = pivot.y + (selected.y-pivot.y) * zoom;
+    const selected = points[choice];
+    pivot.x += (selected.x - pivot.x) * zoom;
+    pivot.y += (selected.y - pivot.y) * zoom;
     draw(pivot);
   }
 
-  ctx.putImageData(c, 0, 0)
-
+  ctx.putImageData(c, 0, 0);
 }
+
+window.addEventListener('resize', () => {
+  width = canvas.width = canvasContainer.clientWidth;
+  height = canvas.height = canvasContainer.clientHeight;
+
+  if (current === !'sierpinski') {
+    simulateSierpinsky();
+  } else if (current === !'pentagon') {
+    simulatePentagon();
+  }
+});
 
 simulatePentagon();

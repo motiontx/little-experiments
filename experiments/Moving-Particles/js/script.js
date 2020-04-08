@@ -5,14 +5,14 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
-const canvas_container = document.getElementById("canvas_container");
+const canvas_container = document.getElementById('canvas_container');
 
 let offSetLeft = canvas.offsetLeft;
 let offSetTop = canvas.offsetTop;
 let width = canvas.width = canvas_container.clientWidth;
 let height = canvas.height = canvas_container.clientHeight;
 
-window.addEventListener('resize', function() {
+window.addEventListener('resize', () => {
   offSetLeft = canvas.offsetLeft;
   offSetTop = canvas.offsetTop;
   width = canvas.width = canvas_container.clientWidth;
@@ -26,8 +26,8 @@ window.addEventListener('resize', function() {
 let system;
 
 function distanceBetween(p1, p2) {
-  let dx = p2.x - p1.x;
-  let dy = p2.y - p1.y;
+  const dx = p2.x - p1.x;
+  const dy = p2.y - p1.y;
   return Math.sqrt(dx * dx + dy * dy);
 }
 
@@ -68,32 +68,32 @@ class Particle {
 class ParticleSystem {
   constructor(particles) {
     this.particles = [];
-    for (var i = 0; i < particles; i++) {
-      this.particles.push(new Particle);
+    for (let i = 0; i < particles; i++) {
+      this.particles.push(new Particle());
     }
   }
 
   step() {
-    for (let particle of this.particles) {
+    for (const particle of this.particles) {
       particle.step();
     }
   }
 
   draw() {
-    ctx.globalCompositeOperation = "source-over";
-    ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
     ctx.fillRect(0, 0, width, height);
-    ctx.globalCompositeOperation = "lighter"
+    ctx.globalCompositeOperation = 'lighter';
     ctx.lineWidth = 2;
-    for (let p1 of this.particles) {
+    for (const p1 of this.particles) {
       p1.draw();
-      for (let p2 of this.particles) {
-        let distance = distanceBetween(p1, p2);
+      for (const p2 of this.particles) {
+        const distance = distanceBetween(p1, p2);
         if (distance < 200) {
           ctx.beginPath();
           ctx.moveTo(p1.x, p1.y);
           ctx.lineTo(p2.x, p2.y);
-          ctx.strokeStyle = `rgba(${p2.r},${p2.g},${p2.b},${25/distance})`;
+          ctx.strokeStyle = `rgba(${p2.r},${p2.g},${p2.b},${25 / distance})`;
           ctx.stroke();
         }
       }
@@ -102,9 +102,9 @@ class ParticleSystem {
 }
 
 function reset() {
-  let x = width / 150;
-  let y = height / 150;
-  let particles = Math.floor(x * y);
+  const x = width / 150;
+  const y = height / 150;
+  const particles = Math.floor(x * y);
   system = new ParticleSystem(particles);
 }
 

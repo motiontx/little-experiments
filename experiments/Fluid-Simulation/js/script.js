@@ -5,14 +5,14 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
-const canvas_container = document.getElementById("canvas_container");
+const canvas_container = document.getElementById('canvas_container');
 
 let offSetLeft = canvas_container.offsetLeft;
 let offSetTop = canvas_container.offsetTop;
 let width = canvas.width = canvas_container.clientWidth;
 let height = canvas.height = canvas_container.clientHeight;
 
-window.addEventListener('resize', function() {
+window.addEventListener('resize', () => {
   offSetLeft = canvas.offsetLeft;
   offSetTop = canvas.offsetTop;
   width = canvas.width = canvas_container.clientWidth;
@@ -28,9 +28,9 @@ let prevY = 0;
 const n = 80;
 const RESOLUTION = width / n;
 
-canvas.addEventListener("mousedown", () => penDown = true);
-canvas.addEventListener("mouseup", () => penDown = false);
-canvas.addEventListener("mousemove", (evt) => {
+canvas.addEventListener('mousedown', () => penDown = true);
+canvas.addEventListener('mouseup', () => penDown = false);
+canvas.addEventListener('mousemove', (evt) => {
   prevX = mouseX;
   prevY = mouseY;
   mouseX = Math.floor((evt.clientX - offSetLeft) / RESOLUTION);
@@ -55,7 +55,6 @@ class Fluid {
 
     this.Vy = Array(this.size * this.size).fill(0);
     this.Vy0 = Array(this.size * this.size).fill(0);
-
   }
 
   ix(x, y) {
@@ -67,16 +66,16 @@ class Fluid {
   }
 
   addVelocity(x, y, amountX, amountY) {
-    let index = this.ix(x, y);
+    const index = this.ix(x, y);
     this.Vx[index] += amountX;
     this.Vy[index] += amountY;
   }
 
   renderD() {
-    ctx.clearRect(0, 0, width, height)
+    ctx.clearRect(0, 0, width, height);
     for (let i = 0; i < this.size; i++) {
       for (let j = 0; j < this.size; j++) {
-        let color = this.density[this.ix(j,i)];
+        const color = this.density[this.ix(j, i)];
         ctx.fillStyle = `rgb(${color},${color},0)`;
         ctx.fillRect(j * RESOLUTION, i * RESOLUTION, RESOLUTION - 2, RESOLUTION - 2);
       }
@@ -111,11 +110,11 @@ class Fluid {
 
   set_bnd(b, x) {
     // x array...
-    for (let i = 1; i < this.size - 1; i++) {
+    for (let i = 1; i < this.size - 1; i += 1) {
       x[this.ix(i, 0)] = b == 2 ? -x[this.ix(i, 1)] : x[this.ix(i, 1)];
       x[this.ix(i, this.size - 1)] = b == 2 ? -x[this.ix(i, this.size - 2)] : x[this.ix(i, this.size - 2)];
     }
-    for (let j = 1; j < this.size - 1; j++) {
+    for (let j = 1; j < this.size - 1; j += 1) {
       x[this.ix(0, j)] = b == 1 ? -x[this.ix(1, j)] : x[this.ix(1, j)];
       x[this.ix(this.size - 1, j)] = b == 1 ? -x[this.ix(this.size - 2, j)] : x[this.ix(this.size - 2, j)];
     }
@@ -127,19 +126,24 @@ class Fluid {
 
   advect(b, d, d0, velocX, velocY) {
     // d d0 velox velocy arrays...
-    let i0, i1, j0, j1;
+    let i0; let i1; let j0; let
+      j1;
 
-    let dtx = this.dt * (this.size - 2);
-    let dty = this.dt * (this.size - 2);
+    const dtx = this.dt * (this.size - 2);
+    const dty = this.dt * (this.size - 2);
 
-    let s0, s1, t0, t1;
-    let tmp1, tmp2, x, y;
+    let s0; let s1; let t0; let
+      t1;
+    let tmp1; let tmp2; let x; let
+      y;
 
-    let ifloat, jfloat;
-    let i, j;
+    let ifloat; let
+      jfloat;
+    let i; let
+      j;
 
-    for (j = 1, jfloat = 1; j < this.size - 1; j++, jfloat++) {
-      for (i = 1, ifloat = 1; i < this.size - 1; i++, ifloat++) {
+    for (j = 1, jfloat = 1; j < this.size - 1; j += 1, jfloat += 1) {
+      for (i = 1, ifloat = 1; i < this.size - 1; i += 1, ifloat += 1) {
         tmp1 = dtx * velocX[this.ix(i, j)];
         tmp2 = dty * velocY[this.ix(i, j)];
         x = ifloat - tmp1;
@@ -159,27 +163,25 @@ class Fluid {
         t1 = y - j0;
         t0 = 1.0 - t1;
 
-        let i0i = i0;
-        let i1i = i1;
-        let j0i = j0;
-        let j1i = j1;
+        const i0i = i0;
+        const i1i = i1;
+        const j0i = j0;
+        const j1i = j1;
 
-        d[this.ix(i, j)] =
-          s0 * (t0 * d0[this.ix(i0i, j0i)] + t1 * d0[this.ix(i0i, j1i)]) +
-          s1 * (t0 * d0[this.ix(i1i, j0i)] + t1 * d0[this.ix(i1i, j1i)]);
+        d[this.ix(i, j)] = s0 * (t0 * d0[this.ix(i0i, j0i)] + t1 * d0[this.ix(i0i, j1i)])
+          + s1 * (t0 * d0[this.ix(i1i, j0i)] + t1 * d0[this.ix(i1i, j1i)]);
       }
     }
     this.set_bnd(b, d);
   }
 
   step() {
-
-    let Vx = this.Vx;
-    let Vy = this.Vy;
-    let Vx0 = this.Vx0;
-    let Vy0 = this.Vy0;
-    let density = this.density;
-    let s = this.s;
+    const { Vx } = this;
+    const { Vy } = this;
+    const { Vx0 } = this;
+    const { Vy0 } = this;
+    const { density } = this;
+    const { s } = this;
 
 
     this.diffuse(1, Vx0, Vx);
@@ -197,27 +199,25 @@ class Fluid {
   }
 
   lin_solve(b, x, x0, a, c) {
-    let cRecip = 1.0 / c;
+    const cRecip = 1.0 / c;
     for (let k = 0; k < this.iter; k++) {
       for (let j = 1; j < this.size - 1; j++) {
         for (let i = 1; i < this.size - 1; i++) {
-          x[this.ix(i, j)] =
-            (x0[this.ix(i, j)] +
-              a * (x[this.ix(i + 1, j)] +
-                x[this.ix(i - 1, j)] +
-                x[this.ix(i, j + 1)] +
-                x[this.ix(i, j - 1)])) * cRecip;
+          x[this.ix(i, j)] = (x0[this.ix(i, j)]
+              + a * (x[this.ix(i + 1, j)]
+                + x[this.ix(i - 1, j)]
+                + x[this.ix(i, j + 1)]
+                + x[this.ix(i, j - 1)])) * cRecip;
         }
       }
       this.set_bnd(b, x);
     }
   }
-
 }
 
 const fluid = new Fluid(n, 0.1, 4, 0.000005, 0.000001);
 
-const center = width*0.5/RESOLUTION;
+const center = (width * 0.5) / RESOLUTION;
 let angle = 0;
 
 function loop() {
@@ -227,23 +227,23 @@ function loop() {
 
   if (penDown) {
     fluid.addDensity(mouseX, mouseY, 500);
-    let dx = mouseX - prevX;
-    let dy = mouseY - prevY;
+    const dx = mouseX - prevX;
+    const dy = mouseY - prevY;
     fluid.addVelocity(mouseX, mouseY, dx, dy);
   }
 
-  let dx = Math.cos(angle);
-  let dy = Math.sin(angle);
-  angle += Math.random()*0.5 - 0.25;
+  const dx = Math.cos(angle);
+  const dy = Math.sin(angle);
+  angle += Math.random() * 0.5 - 0.25;
   fluid.addDensity(center, center, 100);
-  fluid.addDensity(center-1, center, 100);
-  fluid.addDensity(center, center-1, 100);
-  fluid.addDensity(center+1, center, 100);
-  fluid.addDensity(center, center+1, 100);
-  fluid.addDensity(center-1, center-1, 100);
-  fluid.addDensity(center+1, center-1, 100);
-  fluid.addDensity(center+1, center+1, 100);
-  fluid.addDensity(center-1, center+1, 100);
+  fluid.addDensity(center - 1, center, 100);
+  fluid.addDensity(center, center - 1, 100);
+  fluid.addDensity(center + 1, center, 100);
+  fluid.addDensity(center, center + 1, 100);
+  fluid.addDensity(center - 1, center - 1, 100);
+  fluid.addDensity(center + 1, center - 1, 100);
+  fluid.addDensity(center + 1, center + 1, 100);
+  fluid.addDensity(center - 1, center + 1, 100);
   fluid.addVelocity(center, center, dx, dy);
 }
 loop();

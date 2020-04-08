@@ -1,6 +1,6 @@
 // Utils --------------------------------------------------------------
 
-CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
+CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
   if (w < 2 * r) r = w / 2;
   if (h < 2 * r) r = h / 2;
   this.beginPath();
@@ -11,19 +11,17 @@ CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
   this.arcTo(x, y, x + w, y, r);
   this.closePath();
   return this;
-}
+};
 
-const newArray = (width, el) => {
-    return Array(width).fill(el);
-}
+const newArray = (width, el) => Array(width).fill(el);
 
 const newMatrix = (width, height, el) => {
-  let matrix = [];
-  for (let i = 0; i < height; i++) {
+  const matrix = [];
+  for (let i = 0; i < height; i += 1) {
     matrix.push(newArray(width, el));
   }
   return matrix;
-}
+};
 
 const optionsMenu = document.getElementById('options');
 
@@ -34,12 +32,12 @@ const SaveSettings = () => {
   tileColor = tileColorInput.value;
   reset();
   closeOptions();
-}
+};
 
 const openOptions = () => {
   optionsMenu.classList.add('unfolded');
-}
+};
 
 const closeOptions = () => {
   optionsMenu.classList.remove('unfolded');
-}
+};
