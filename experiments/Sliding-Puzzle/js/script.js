@@ -152,8 +152,8 @@ class Game {
       }
 
       this.shuffled = true;
+      this.startPlaying();
     }
-    this.startPlaying();
   }
 
   // Numbers --------------------------------------------------------- //
@@ -322,7 +322,7 @@ class Game {
         this.matrix[y][x] = -1;
         this.updatePiecePosition(piece, newPos.x, newPos.y);
 
-        this.movements++;
+        this.movements += 1;
         this.updateBoardMovements();
 
         if (this.checkIfIWin()) {

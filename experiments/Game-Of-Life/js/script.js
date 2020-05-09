@@ -7,11 +7,11 @@ let offSetLeft; let offSetTop; let width; let height; let size; let
 const mPos = { x: 0, y: 0 };
 const cursor = { x: -1, y: -1 };
 let running = false;
-const dots = 30;
-const fps = 30;
+let dots = 30;
+let fps = 30;
 let iWantToDraw = true;
-const bgColor = '#ffffff';
-const tileColor = '#000000';
+let bgColor = '#ffffff';
+let tileColor = '#000000';
 
 const fpsInput = document.getElementById('fpsInput');
 const sizeInput = document.getElementById('sizeInput');
