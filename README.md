@@ -1,10 +1,10 @@
-# Little-Experiments
+# Little Experiments
 
     A collection of small experiments programmed in javascript.
 
 ## Website
 
-👉 [🔗](https://motiontx.github.io/Little-Experiments) 👈    
+👉 [🔗](https://motiontx.github.io/little-experiments) 👈    
 
 ## Categories
 
@@ -18,37 +18,37 @@
 
 ### ⭐️ Best ⭐️
 
-* 🌱 *Game Of Life* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Game-Of-Life)
-* 💣 *Minesweeper* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Minesweeper)
-* 🎹 *Piano* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Piano)
-* 🎮 *Sliding Puzzle* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Sliding-Puzzle)
+* 🌱 *Game Of Life* [🔗](https://motiontx.github.io/little-experiments/experiments/Game-Of-Life)
+* 💣 *Minesweeper* [🔗](https://motiontx.github.io/little-experiments/experiments/Minesweeper)
+* 🎹 *Piano* [🔗](https://motiontx.github.io/little-experiments/experiments/Piano)
+* 🎮 *Sliding Puzzle* [🔗](https://motiontx.github.io/little-experiments/experiments/Sliding-Puzzle)
 
 ### 🚧 Work in Progress 🚧
 
-* 🔲 *Chess* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Chess-JS)
-* 💦 *Fluid Simulation* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Fluid-Simulation)
-* ✒️ *Paint JS* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Paint-JS)
-* ◻️ *Ray Casting* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Ray-Casting)
+* 🔲 *Chess* [🔗](https://motiontx.github.io/little-experiments/experiments/Chess-JS)
+* 💦 *Fluid Simulation* [🔗](https://motiontx.github.io/little-experiments/experiments/Fluid-Simulation)
+* ✒️ *Paint JS* [🔗](https://motiontx.github.io/little-experiments/experiments/Paint-JS)
+* ◻️ *Ray Casting* [🔗](https://motiontx.github.io/little-experiments/experiments/Ray-Casting)
 
 ### 🔶 Others 🔶
 
-* 💻 *10 PRINT* [🔗](https://motiontx.github.io/Little-Experiments/experiments/10-PRINT)
-* 🌿 *Barnsley Fern* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Barnsley-Fern)
-* ➖ *Cantor Set* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Cantor-Set)
-* 🎨 *Canvas* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Canvas)
-* 🎮 *Chaos Game* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Chaos-Game)
-* 🕒 *Clock Of Clocks* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Clock-Of-Clocks)
-* 🖼 *Cropped Image* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Cropped-Image)
-* 🌼 *Diffusion Limited Aggregation* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Diffusion-Limited-Aggregation)
-* 🐦 *Flappy Bird* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Flappy-Bird)
-* 🌲 *Fractal Tree* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Fractal-Tree)
-* 🐍 *Isometric Snake* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Isometric-Snake)
-* 〽️ *Koch Curve* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Koch-Curve)
-* ♨️ *Lorenz Attractor* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Lorenz-Attractor)
-* 〰️ *Moving Particles* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Moving-Particles)
-* ⚪️ *Particles In Force Field* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Particles-In-Force-Field)
-* 🌸 *Phyllotaxis* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Phyllotaxis)
-* 🔘 *Plinko* [🔗](https://motiontx.github.io/Little-Experiments/experiments/Plinko)
+* 💻 *10 PRINT* [🔗](https://motiontx.github.io/little-experiments/experiments/10-PRINT)
+* 🌿 *Barnsley Fern* [🔗](https://motiontx.github.io/little-experiments/experiments/Barnsley-Fern)
+* ➖ *Cantor Set* [🔗](https://motiontx.github.io/little-experiments/experiments/Cantor-Set)
+* 🎨 *Canvas* [🔗](https://motiontx.github.io/little-experiments/experiments/Canvas)
+* 🎮 *Chaos Game* [🔗](https://motiontx.github.io/little-experiments/experiments/Chaos-Game)
+* 🕒 *Clock Of Clocks* [🔗](https://motiontx.github.io/little-experiments/experiments/Clock-Of-Clocks)
+* 🖼 *Cropped Image* [🔗](https://motiontx.github.io/little-experiments/experiments/Cropped-Image)
+* 🌼 *Diffusion Limited Aggregation* [🔗](https://motiontx.github.io/little-experiments/experiments/Diffusion-Limited-Aggregation)
+* 🐦 *Flappy Bird* [🔗](https://motiontx.github.io/little-experiments/experiments/Flappy-Bird)
+* 🌲 *Fractal Tree* [🔗](https://motiontx.github.io/little-experiments/experiments/Fractal-Tree)
+* 🐍 *Isometric Snake* [🔗](https://motiontx.github.io/little-experiments/experiments/Isometric-Snake)
+* 〽️ *Koch Curve* [🔗](https://motiontx.github.io/little-experiments/experiments/Koch-Curve)
+* ♨️ *Lorenz Attractor* [🔗](https://motiontx.github.io/little-experiments/experiments/Lorenz-Attractor)
+* 〰️ *Moving Particles* [🔗](https://motiontx.github.io/little-experiments/experiments/Moving-Particles)
+* ⚪️ *Particles In Force Field* [🔗](https://motiontx.github.io/little-experiments/experiments/Particles-In-Force-Field)
+* 🌸 *Phyllotaxis* [🔗](https://motiontx.github.io/little-experiments/experiments/Phyllotaxis)
+* 🔘 *Plinko* [🔗](https://motiontx.github.io/little-experiments/experiments/Plinko)
 
 ---
 
@@ -57,7 +57,7 @@
 * 🕹 *Tetris*
 * 🔴 *Connect Four*
 * ❌ *Tic Tac Toe*
-* 🎲 *Rubic's Cube*
+* 🎲 *Rubik's Cube*
 * 🐍 *Snake 2D*
 * 🌆 *Image To Ascii*
 * 🔍 *Labyrinth*
