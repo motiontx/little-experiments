@@ -82,6 +82,7 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .link:hover{
@@ -232,6 +233,7 @@ body{
   width: 14px;
   height: 14px;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .c-star{

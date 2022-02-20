@@ -1,0 +1,308 @@
+html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -ms-user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #e5e5e5;
+  background-image: url("data:image/svg+xml,%3Csvg width='64' height='64' viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 16c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm0-2c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zm33.414-6l5.95-5.95L45.95.636 40 6.586 34.05.636 32.636 2.05 38.586 8l-5.95 5.95 1.414 1.414L40 9.414l5.95 5.95 1.414-1.414L41.414 8zM40 48c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm0-2c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zM9.414 40l5.95-5.95-1.414-1.414L8 38.586l-5.95-5.95L.636 34.05 6.586 40l-5.95 5.95 1.414 1.414L8 41.414l5.95 5.95 1.414-1.414L9.414 40z' fill='%2314213d' fill-opacity='0.07' fill-rule='evenodd'/%3E%3C/svg%3E");
+  font-family: monospace;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/*----------- Game -----------*/
+
+.game {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  background-color: #242423;
+  background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23cfdbd5' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+  border-radius: 6px;
+  border: 1px solid;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.15);
+  border-bottom-width: 15px;
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.8);
+}
+
+/*----------- Pieces -----------*/
+
+.pieces {
+  background-color: #e7e7e7;
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2H0v-2h20v-2H0V8h20V6H0V4h20V2H0V0h22v20h2V0h2v20h2V0h2v20h2V0h2v20h2V0h2v20h2v2H20v-1.5zM0 20h2v20H0V20zm4 0h2v20H4V20zm4 0h2v20H8V20zm4 0h2v20h-2V20zm4 0h2v20h-2V20zm4 4h20v2H20v-2zm0 4h20v2H20v-2zm0 4h20v2H20v-2zm0 4h20v2H20v-2z' fill='%23ffffff' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  border: 2px solid black;
+  box-shadow: inset 0 0 20px -5px rgba(0, 0, 0, 0.8);
+  width: 70vmin;
+  height: 70vmin;
+}
+
+/*----------- Top Bar / Win Screen -----------*/
+
+.topBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.row-options {
+  display: flex;
+  height: 2rem;
+}
+
+.checkboxDiv {
+  display: flex;
+}
+
+.button,
+.info,
+.button-win,
+.info-win,
+#difficultyDiv {
+  font-family: monospace;
+  position: relative;
+  cursor: pointer;
+  background: #f5f5f5;
+  padding: 5px;
+  margin: 0 5px;
+  border-radius: 4px;
+  border: 1px solid;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.15);
+  border-bottom-width: 5px;
+  transition: all 0.3s ease;
+  top: 0;
+}
+
+.button:active,
+#photoCheckbox:checked + label {
+  border-bottom-width: 0;
+  top: 5px;
+}
+
+.number {
+  font-style: italic;
+}
+
+.winScreen {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.winData {
+  background: #03bb85;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 2px #02835d solid;
+}
+
+.winText {
+  color: white;
+  font-size: 5rem;
+  background-color: #02835d;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid;
+  border-color: #027653;
+  border-bottom-width: 5px;
+  margin: 0;
+}
+
+.winInfo {
+  margin: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.score,
+.winButtons {
+  display: flex;
+}
+
+#closeWinScreen,
+#reset {
+  color: white;
+  background: #bb0339;
+}
+
+#winShuffle,
+#shuffle {
+  color: white;
+  background: #bb8503;
+}
+
+.d-none {
+  display: none;
+}
+
+/*----------- Firm -----------*/
+
+.firm {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: #333;
+  font-size: 16px;
+  text-align: center;
+}
+
+.heart {
+  color: #ff1493;
+}
+
+/*----------- Media Query -----------*/
+
+@media (max-height: 1079px) {
+  .firm {
+    display: none;
+  }
+}
+
+@media (max-height: 599px), (max-width: 599px) {
+  .winText {
+    font-size: 2rem;
+  }
+
+  .winInfo {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0;
+  }
+
+  .winText {
+    text-align: center;
+    width: 90%;
+  }
+
+  .score,
+  .winButtons {
+    margin: 0.2rem;
+  }
+
+  .winButtons {
+    order: 1;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-height: 499px), (max-width: 499px) {
+  .button,
+  .info,
+  #difficultyDiv {
+    padding: 4px;
+    margin: 0 4px;
+    border-bottom-width: 4px;
+    font-size: 0.65rem;
+  }
+
+  .button:active,
+  #photoCheckbox:checked + label {
+    top: 4px;
+  }
+
+  #difficultyInput {
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-height: 389px), (max-width: 389px) {
+  .button,
+  .info,
+  #difficultyDiv {
+    padding: 2px;
+    margin: 0 1px;
+    border-radius: 2px;
+    border-bottom-width: 1px;
+    font-size: 0.5rem;
+  }
+
+  .button-win,
+  .info-win {
+    padding: 4px;
+    margin: 0 4px;
+    border-bottom-width: 4px;
+    font-size: 0.65rem;
+  }
+
+  .button:active,
+  #photoCheckbox:checked + label {
+    top: 0px;
+  }
+
+  #difficultyInput {
+    font-size: 0.48rem;
+  }
+}
+
+.tile {
+  position: absolute;
+  width: calc((100% / var(--rows)) * var(--tile-width));
+  height: calc((100% / var(--cols)) * var(--tile-height));
+  left: calc(((100% / var(--rows)) * var(--tile-x)) + var(--tile-offset-x));
+  bottom: calc((100% / var(--rows)) * var(--tile-y));
+
+  background: var(--tile-color);
+  border-radius: 4px;
+  border: 1px solid;
+  box-sizing: border-box;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.15);
+  border-bottom-width: 0.3rem;
+  transition: bottom 0.3s;
+}
+
+.tile-width-3 {
+  background-color: #f5cb5c;
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='' fill-opacity='1' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.tile-width-2 {
+  background-color: #242423;
+  background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23cfdbd5' fill-opacity='0.4'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.tile-width-1 {
+  background-color: #bc4a3c;
+  background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%233a0600' fill-opacity='0.4'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}

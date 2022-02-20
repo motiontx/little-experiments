@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <title>Falling Puzzle</title>
+    <!-- CSS files-->
+    <link rel="stylesheet" href="css/master.css" />
+  </head>
+
+  <body>
+    <div class="content">
+      <div class="winScreen d-none" id="winScreen">
+        <div class="winData">
+          <h1 class="winText">You Win!</h1>
+          <div class="winInfo">
+            <div class="winButtons">
+              <button type="button" class="button-win" id="closeWinScreen">
+                Exit
+              </button>
+              <button type="button" class="button-win" id="winShuffle">
+                Shuffle
+              </button>
+            </div>
+            <div class="score">
+              <div class="info-win">
+                Movements: <span id="winMovements"></span>
+              </div>
+              <div class="info-win">Time: <span id="winTime"></span>s</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="game">
+        <div class="topBar">
+          <div class="options">
+            <div class="row-options">
+              <button type="button" class="button" id="reset">Reset</button>
+            </div>
+          </div>
+        </div>
+        <div class="pieces" id="pieces"></div>
+      </div>
+
+      <p class="firm">
+        Made with <span class="heart">♥</span> by Vittorio Retrivi
+      </p>
+    </div>
+    <!-- JavaScript files-->
+    <script src="js/script.js" charset="utf-8"></script>
+  </body>
+</html>
